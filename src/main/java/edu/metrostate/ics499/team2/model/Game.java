@@ -1,17 +1,13 @@
 package edu.metrostate.ics499.team2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name="game")
+@Document(collection = "game")
 public abstract class Game {
 	
 	@Id
-	@GeneratedValue
-	private Long gameId;
+	private String gameId;
 	
 	private String question;
 	private String answer;
@@ -26,11 +22,11 @@ public abstract class Game {
 		this.answer = answer;
 	}
 	
-	public Long getGameId() {
+	public String getGameId() {
 		return this.gameId;
 	}
 	
-	public void setGameId(Long gameId) {
+	public void setGameId(String gameId) {
 		this.gameId = gameId;
 	}
 	
@@ -48,6 +44,10 @@ public abstract class Game {
 	
 	public void setAnswer(String answer) {
 		this.answer = answer;
+	}
+	
+	public Boolean isEqual(String id) {
+		return this.gameId.equals(id);
 	}
 
 }

@@ -1,18 +1,12 @@
 package edu.metrostate.ics499.team2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name="flashcard")
+@Document(collection = "flashcard")
 public class Flashcard extends Game {
 	
-	@Id
-	@GeneratedValue
-	private Long flashcardId;
-	
-	private String question;
-	private String answer;
+	public Flashcard(String question, String answer) {
+		super(question, answer);
+	}
 }
