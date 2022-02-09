@@ -38,7 +38,7 @@ public class FlashcardController {
 	public List<Flashcard> queryQuestions(String question) {
 		LOG.info("Getting all flashcards that match the question");
 		return flashcardRepo.findByQuestion(question);
-	}
+	} 
 	
 	@GetMapping(value = "/answers")
 	public List<Flashcard> queryAnswers(String answer) {
@@ -49,5 +49,10 @@ public class FlashcardController {
 	@PostMapping("/add")
 	public Flashcard create(@RequestBody final Flashcard flashcard) {
 		return flashcardRepo.save(flashcard);
+	}
+
+	public Object getFlashcardById(Long gameId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
