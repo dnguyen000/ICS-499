@@ -88,7 +88,7 @@ public abstract class Games {
 			return false;
 		
 		
-		Game other = (Game) obj;
+		Games other = (Games) obj;
 		if (matchingSymbol == null) {
 			if (other.matchingSymbol != null)
 				return false;
