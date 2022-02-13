@@ -4,6 +4,7 @@ package edu.metrostate.ics499.team2.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,9 +35,9 @@ public class ElementController {
     	if(null != family)
     		elms = this.elmService.getElementByFamily(family);
     	else
-    		elms = this.elementRepo.findAll();
+    		elms = this.elementRepo.findAll(Sort.by(Sort.Direction.ASC, "atomicNumber"));
     	
-    	model.addAttribute("elmFams", elms);
+    	model.addAttribute("elms", elms);
 		return "elements";
     }
 	

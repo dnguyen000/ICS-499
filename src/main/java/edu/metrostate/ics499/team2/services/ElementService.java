@@ -1,6 +1,7 @@
 package edu.metrostate.ics499.team2.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,9 @@ public class ElementService {
 		for(String symbol: elementsMap.keySet()) {
 			elms.add(elementsMap.get(symbol));
 		}
-		return elms;		
+		// apparently this sorts by atomicNumber
+		Collections.sort(elms);  
+		return elms;	
 	}
 
 }

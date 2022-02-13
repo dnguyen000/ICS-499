@@ -17,16 +17,14 @@
 				<th>Valence</th>
 				<th>Ionic Charge</th>
 			</tr>
-			<tr th:each="elmFam: ${elmFams}">
-<!-- 				<td th:text="${elmFam.name}!=null?${elmFam.family} : 'VACANT'">Name</td> -->
-				<td th:text="${elmFam.name}">Symbol</td>
-				<td th:text="${elmFam.symbol}">Symbol</td>
-				<td th:text="${elmFam.getAtomicNum()}">Atomic Number</td>
-				<td th:text="${elmFam.family}">Family</td>
-				<td th:text="${elmFam.massNumber}">Mass Number</td>
-				<td th:text="${elmFam.getValence()}">Valence</td>
-				<td th:text="${elmFam.ionicCharge}">Ionic Charge</td>
-<!-- 				<td th:text="${elmFam.name}!=null?${elmFam.family} + ', ' + ${elmFam.valence} : 'VACANT'">Name</td> -->		
+			<tr th:each="elm: ${elms}">
+				<td th:text="${elm.name}">Name</td>
+				<td th:text="${elm.symbol}">Symbol</td>
+				<td th:text="${elm.getAtomicNum()}">Atomic Number</td>
+				<td th:text="${elm.family}">Family</td>
+				<td th:text="${elm.massNumber}">Mass Number</td>
+				<td th:text="${elm.getValence()}">Valence</td>
+				<td th:text="${elm.ionicCharge}">Ionic Charge</td>
 			</tr>
 		</table>
 	</body>
