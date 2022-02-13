@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Elements by Family</title>
+	</head>
+	<body>
+		<h1>Welcome to Elements Page</h1>
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>Symbol</td>
+				<td>Atomic Number</td>
+				<td>Family</td>
+				<td>Mass Number</td>
+				<td>Valence</td>
+				<td>Ionic Charge</td>
+			</tr>
+			<tr th:each="elmFam: ${elmFams}">
+<!-- 				<td th:text="${elmFam.name}!=null?${elmFam.family} : 'VACANT'">Name</td> -->
+				<td th:text="${elmFam.name}">Symbol</td>
+				<td th:text="${elmFam.symbol}">Symbol</td>
+				<td th:text="${elmFam.getAtomicNum()}">Atomic Number</td>
+				<td th:text="${elmFam.family}">Family</td>
+				<td th:text="${elmFam.massNumber}">Mass Number</td>
+				<td th:text="${elmFam.getValence()}">Valence</td>
+				<td th:text="${elmFam.ionicCharge}">Ionic Charge</td>
+<!-- 				<td th:text="${elmFam.name}!=null?${elmFam.family} + ', ' + ${elmFam.valence} : 'VACANT'">Name</td> -->		
+			</tr>
+		</table>
+	</body>
+</html>
