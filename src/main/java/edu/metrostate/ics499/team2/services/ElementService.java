@@ -20,18 +20,14 @@ public class ElementService {
 		this.elmRepo = elmRepo;		
 	}
 	
+//	algorithm partially from url below
+//	https://www.linkedin.com/learning/learning-spring-with-spring-boot-2019/develop-a-service-object-with-spring
 	public List<Element> getElementByFamily(String family) {
-		Iterable<Element> elements = this.elmRepo.findAll();
+		Iterable<Element> elmsFams = elmRepo.findElementByFamily(family);
 		Map<String, Element> elementsMap = new HashMap<String, Element>();
-		elements.forEach(element -> {
+		elmsFams.forEach(element -> {
 			elementsMap.put(element.getSymbol(), element);
 		});
-		
-//		Iterable<Element> elmsFams = elmRepo.findElementByFamily(family);
-//		elmsFams.forEach(elmFam -> {
-//			
-//		});
-		
 		List<Element> elms = new ArrayList<>();
 		for(String symbol: elementsMap.keySet()) {
 			elms.add(elementsMap.get(symbol));

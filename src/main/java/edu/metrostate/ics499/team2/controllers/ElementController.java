@@ -12,10 +12,10 @@ import edu.metrostate.ics499.team2.model.Element;
 import edu.metrostate.ics499.team2.repositories.ElementRepository;
 import edu.metrostate.ics499.team2.services.ElementService;
 
-@Controller
-//@RestController
-// thymeleaf doesn't work with @RestController
+// thymeleaf doesn't work with @RestController (see url below)
 // https://stackoverflow.com/questions/63965406/unable-to-render-thymleaf-page-from-spring-boot-controller-prints-only-the-retu
+// @RestController
+@Controller
 @RequestMapping("/elements")
 public class ElementController {
 	
@@ -30,28 +30,22 @@ public class ElementController {
 	
     @GetMapping
     public String getElements(@RequestParam(value="family", required=false)String family, Model model) {
-    	List<Element> elmFams = this.elmService.getElementByFamily(family);
-    	model.addAttribute("elmFams", elmFams);
+    	List<Element> elms;
+    	if(null != family)
+    		elms = this.elmService.getElementByFamily(family);
+    	else
+    		elms = this.elementRepo.findAll();
+    	
+    	model.addAttribute("elmFams", elms);
 		return "elements";
     }
 	
+//  just storing this because I don't understand it
 //	Model View Controller (MVC)
 //	@GetMapping
 //	public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request) {
 //		modelAndView.setViewName("index");
 //		return modelAndView;
 //	}
-	
-    @GetMapping("/hello")
-	@ResponseBody
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-    	return String.format("Hello %s!", name);
-    }
-    
-    @GetMapping("/all")
-	@ResponseBody
-    public Iterable<Element> getElements(){
-    	return this.elementRepo.findAll();
-    }
 
 }
