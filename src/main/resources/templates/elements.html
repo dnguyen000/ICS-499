@@ -3,18 +3,19 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Elements by Family</title>
+		<link th:href="@{/styles/main.css}" rel="stylesheet" />
 	</head>
 	<body>
 		<h1>Welcome to Elements Page</h1>
 		<table>
 			<tr>
-				<td>Name</td>
-				<td>Symbol</td>
-				<td>Atomic Number</td>
-				<td>Family</td>
-				<td>Mass Number</td>
-				<td>Valence</td>
-				<td>Ionic Charge</td>
+				<th>Name</th>
+				<th>Symbol</th>
+				<th>Atomic Number</th>
+				<th>Family</th>
+				<th>Mass Number</th>
+				<th>Valence</th>
+				<th>Ionic Charge</th>
 			</tr>
 			<tr th:each="elmFam: ${elmFams}">
 <!-- 				<td th:text="${elmFam.name}!=null?${elmFam.family} : 'VACANT'">Name</td> -->
