@@ -1,6 +1,6 @@
 [{
   "_id": {
-    "$oid": "62084473b567a9367d1be488"
+    "$oid": "620971c928523f3d62aa4fe6"
   },
   "symbol": "H",
   "name": "Hydrogen",
@@ -12,7 +12,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be489"
+    "$oid": "620971c928523f3d62aa4fe7"
   },
   "symbol": "He",
   "name": "Helium",
@@ -24,7 +24,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be48a"
+    "$oid": "620971c928523f3d62aa4fe8"
   },
   "symbol": "Li",
   "name": "Lithium",
@@ -36,7 +36,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be48b"
+    "$oid": "620971c928523f3d62aa4fe9"
   },
   "symbol": "Be",
   "name": "Beryllium",
@@ -48,7 +48,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be48c"
+    "$oid": "620971c928523f3d62aa4fea"
   },
   "symbol": "B",
   "name": "Boron",
@@ -60,7 +60,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be48d"
+    "$oid": "620971c928523f3d62aa4feb"
   },
   "symbol": "C",
   "name": "Carbon",
@@ -72,7 +72,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be48e"
+    "$oid": "620971c928523f3d62aa4fec"
   },
   "symbol": "N",
   "name": "Nitrogen",
@@ -84,7 +84,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be48f"
+    "$oid": "620971c928523f3d62aa4fed"
   },
   "symbol": "O",
   "name": "Oxygen",
@@ -96,7 +96,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be490"
+    "$oid": "620971c928523f3d62aa4fee"
   },
   "symbol": "F",
   "name": "...",
@@ -108,7 +108,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be491"
+    "$oid": "620971c928523f3d62aa4fef"
   },
   "symbol": "Ne",
   "name": "...",
@@ -120,7 +120,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be492"
+    "$oid": "620971c928523f3d62aa4ff0"
   },
   "symbol": "Na",
   "name": "Sodium",
@@ -132,7 +132,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be493"
+    "$oid": "620971c928523f3d62aa4ff1"
   },
   "symbol": "Mg",
   "name": "Magnesium",
@@ -144,7 +144,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be494"
+    "$oid": "620971c928523f3d62aa4ff2"
   },
   "symbol": "Al",
   "name": "Aluminium",
@@ -156,7 +156,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be495"
+    "$oid": "620971c928523f3d62aa4ff3"
   },
   "symbol": "Si",
   "name": "Silicon",
@@ -168,7 +168,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be496"
+    "$oid": "620971c928523f3d62aa4ff4"
   },
   "symbol": "P",
   "name": "Phosphorus",
@@ -180,7 +180,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be497"
+    "$oid": "620971c928523f3d62aa4ff5"
   },
   "symbol": "S",
   "name": "Sulfur",
@@ -192,7 +192,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be498"
+    "$oid": "620971c928523f3d62aa4ff6"
   },
   "symbol": "Cl",
   "name": "Chlorine",
@@ -204,7 +204,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be499"
+    "$oid": "620971c928523f3d62aa4ff7"
   },
   "symbol": "Ar",
   "name": "Argon",
@@ -216,7 +216,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be49a"
+    "$oid": "620971c928523f3d62aa4ff8"
   },
   "symbol": "K",
   "name": "Potassium",
@@ -228,7 +228,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be49b"
+    "$oid": "620971c928523f3d62aa4ff9"
   },
   "symbol": "Ca",
   "name": "...",
@@ -240,7 +240,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be49c"
+    "$oid": "620971c928523f3d62aa4ffa"
   },
   "symbol": "Sc",
   "name": "...",
@@ -252,7 +252,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be49d"
+    "$oid": "620971c928523f3d62aa4ffb"
   },
   "symbol": "Ti",
   "name": "Titanium",
@@ -264,7 +264,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be49e"
+    "$oid": "620971c928523f3d62aa4ffc"
   },
   "symbol": "V",
   "name": "...",
@@ -276,7 +276,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be49f"
+    "$oid": "620971c928523f3d62aa4ffd"
   },
   "symbol": "Cr",
   "name": "...",
@@ -288,7 +288,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4a0"
+    "$oid": "620971c928523f3d62aa4ffe"
   },
   "symbol": "Mn",
   "name": "...",
@@ -300,7 +300,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4a1"
+    "$oid": "620971c928523f3d62aa4fff"
   },
   "symbol": "Fe",
   "name": "Iron",
@@ -312,7 +312,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4a2"
+    "$oid": "620971c928523f3d62aa5000"
   },
   "symbol": "Co",
   "name": "...",
@@ -324,7 +324,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4a3"
+    "$oid": "620971c928523f3d62aa5001"
   },
   "symbol": "Ni",
   "name": "...",
@@ -336,7 +336,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4a4"
+    "$oid": "620971c928523f3d62aa5002"
   },
   "symbol": "Cu",
   "name": "...",
@@ -348,7 +348,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4a5"
+    "$oid": "620971c928523f3d62aa5003"
   },
   "symbol": "Zn",
   "name": "...",
@@ -360,7 +360,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4a6"
+    "$oid": "620971c928523f3d62aa5004"
   },
   "symbol": "Ga",
   "name": "...",
@@ -372,7 +372,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4a7"
+    "$oid": "620971c928523f3d62aa5005"
   },
   "symbol": "Ge",
   "name": "...",
@@ -384,7 +384,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4a8"
+    "$oid": "620971c928523f3d62aa5006"
   },
   "symbol": "As",
   "name": "...",
@@ -396,7 +396,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4a9"
+    "$oid": "620971c928523f3d62aa5007"
   },
   "symbol": "Se",
   "name": "...",
@@ -408,7 +408,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4aa"
+    "$oid": "620971c928523f3d62aa5008"
   },
   "symbol": "Br",
   "name": "...",
@@ -420,7 +420,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4ab"
+    "$oid": "620971c928523f3d62aa5009"
   },
   "symbol": "Kr",
   "name": "...",
@@ -432,7 +432,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4ac"
+    "$oid": "620971c928523f3d62aa500a"
   },
   "symbol": "Rb",
   "name": "...",
@@ -444,7 +444,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4ad"
+    "$oid": "620971c928523f3d62aa500b"
   },
   "symbol": "Sr",
   "name": "...",
@@ -456,7 +456,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4ae"
+    "$oid": "620971c928523f3d62aa500c"
   },
   "symbol": "Y",
   "name": "...",
@@ -468,7 +468,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4af"
+    "$oid": "620971c928523f3d62aa500d"
   },
   "symbol": "Zr",
   "name": "...",
@@ -480,7 +480,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4b0"
+    "$oid": "620971c928523f3d62aa500e"
   },
   "symbol": "Nb",
   "name": "...",
@@ -492,7 +492,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4b1"
+    "$oid": "620971c928523f3d62aa500f"
   },
   "symbol": "Mo",
   "name": "...",
@@ -504,10 +504,10 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4b2"
+    "$oid": "620971c928523f3d62aa5010"
   },
-  "symbol": "Te",
-  "name": "...",
+  "symbol": "Tc",
+  "name": "Technetium",
   "family": "Metal",
   "atomicNumber": 43,
   "massNumber": 0,
@@ -516,7 +516,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4b3"
+    "$oid": "620971c928523f3d62aa5011"
   },
   "symbol": "Ru",
   "name": "...",
@@ -528,7 +528,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4b4"
+    "$oid": "620971c928523f3d62aa5012"
   },
   "symbol": "Rh",
   "name": "...",
@@ -540,7 +540,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4b5"
+    "$oid": "620971c928523f3d62aa5013"
   },
   "symbol": "Pd",
   "name": "...",
@@ -552,9 +552,9 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4b6"
+    "$oid": "620971c928523f3d62aa5014"
   },
-  "symbol": "Pd",
+  "symbol": "Ag",
   "name": "...",
   "family": "Metal",
   "atomicNumber": 47,
@@ -564,9 +564,9 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4b7"
+    "$oid": "620971c928523f3d62aa5015"
   },
-  "symbol": "Ag",
+  "symbol": "Cd",
   "name": "...",
   "family": "Metal",
   "atomicNumber": 48,
@@ -576,10 +576,10 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4b8"
+    "$oid": "620971c928523f3d62aa5016"
   },
-  "symbol": "Cd",
-  "name": "...",
+  "symbol": "In",
+  "name": "Indium",
   "family": "Metal",
   "atomicNumber": 49,
   "massNumber": 0,
@@ -588,7 +588,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4b9"
+    "$oid": "620971c928523f3d62aa5017"
   },
   "symbol": "Sn",
   "name": "...",
@@ -600,7 +600,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4ba"
+    "$oid": "620971c928523f3d62aa5018"
   },
   "symbol": "Sb",
   "name": "...",
@@ -612,7 +612,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4bb"
+    "$oid": "620971c928523f3d62aa5019"
   },
   "symbol": "Te",
   "name": "...",
@@ -624,7 +624,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4bc"
+    "$oid": "620971c928523f3d62aa501a"
   },
   "symbol": "I",
   "name": "...",
@@ -636,7 +636,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4bd"
+    "$oid": "620971c928523f3d62aa501b"
   },
   "symbol": "Xe",
   "name": "...",
@@ -648,7 +648,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4be"
+    "$oid": "620971c928523f3d62aa501c"
   },
   "symbol": "Cs",
   "name": "...",
@@ -660,7 +660,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4bf"
+    "$oid": "620971c928523f3d62aa501d"
   },
   "symbol": "Ba",
   "name": "...",
@@ -672,7 +672,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4c0"
+    "$oid": "620971c928523f3d62aa501e"
   },
   "symbol": "La",
   "name": "...",
@@ -684,7 +684,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4c1"
+    "$oid": "620971c928523f3d62aa501f"
   },
   "symbol": "Hf",
   "name": "...",
@@ -696,7 +696,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4c2"
+    "$oid": "620971c928523f3d62aa5020"
   },
   "symbol": "Ta",
   "name": "...",
@@ -708,7 +708,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4c3"
+    "$oid": "620971c928523f3d62aa5021"
   },
   "symbol": "W",
   "name": "...",
@@ -720,7 +720,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4c4"
+    "$oid": "620971c928523f3d62aa5022"
   },
   "symbol": "Re",
   "name": "...",
@@ -732,7 +732,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4c5"
+    "$oid": "620971c928523f3d62aa5023"
   },
   "symbol": "Os",
   "name": "...",
@@ -744,7 +744,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4c6"
+    "$oid": "620971c928523f3d62aa5024"
   },
   "symbol": "Ir",
   "name": "...",
@@ -756,7 +756,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4c7"
+    "$oid": "620971c928523f3d62aa5025"
   },
   "symbol": "Pt",
   "name": "...",
@@ -768,7 +768,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4c8"
+    "$oid": "620971c928523f3d62aa5026"
   },
   "symbol": "Au",
   "name": "...",
@@ -780,7 +780,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4c9"
+    "$oid": "620971c928523f3d62aa5027"
   },
   "symbol": "Hg",
   "name": "...",
@@ -792,7 +792,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4ca"
+    "$oid": "620971c928523f3d62aa5028"
   },
   "symbol": "Tl",
   "name": "...",
@@ -804,7 +804,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4cb"
+    "$oid": "620971c928523f3d62aa5029"
   },
   "symbol": "Pb",
   "name": "...",
@@ -816,7 +816,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4cc"
+    "$oid": "620971c928523f3d62aa502a"
   },
   "symbol": "Bi",
   "name": "...",
@@ -828,10 +828,10 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4cd"
+    "$oid": "620971c928523f3d62aa502b"
   },
-  "symbol": "",
-  "name": "...",
+  "symbol": "Po",
+  "name": "Polonium",
   "family": "Metalloid",
   "atomicNumber": 84,
   "massNumber": 0,
@@ -840,10 +840,10 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4ce"
+    "$oid": "620971c928523f3d62aa502c"
   },
-  "symbol": "",
-  "name": "...",
+  "symbol": "At",
+  "name": "Astatine",
   "family": "Metalloid",
   "atomicNumber": 85,
   "massNumber": 0,
@@ -852,10 +852,10 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4cf"
+    "$oid": "620971c928523f3d62aa502d"
   },
-  "symbol": "",
-  "name": "...",
+  "symbol": "Rn",
+  "name": "Radon",
   "family": "Nonmetal",
   "atomicNumber": 86,
   "massNumber": 0,
@@ -864,7 +864,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4d0"
+    "$oid": "620971c928523f3d62aa502e"
   },
   "symbol": "Fr",
   "name": "...",
@@ -876,7 +876,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4d1"
+    "$oid": "620971c928523f3d62aa502f"
   },
   "symbol": "Ra",
   "name": "...",
@@ -888,7 +888,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4d2"
+    "$oid": "620971c928523f3d62aa5030"
   },
   "symbol": "Ac",
   "name": "...",
@@ -900,7 +900,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4d3"
+    "$oid": "620971c928523f3d62aa5031"
   },
   "symbol": "Rf",
   "name": "...",
@@ -912,7 +912,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4d4"
+    "$oid": "620971c928523f3d62aa5032"
   },
   "symbol": "Db",
   "name": "...",
@@ -924,7 +924,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4d5"
+    "$oid": "620971c928523f3d62aa5033"
   },
   "symbol": "Sg",
   "name": "...",
@@ -936,7 +936,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4d6"
+    "$oid": "620971c928523f3d62aa5034"
   },
   "symbol": "Bh",
   "name": "...",
@@ -948,7 +948,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4d7"
+    "$oid": "620971c928523f3d62aa5035"
   },
   "symbol": "Hs",
   "name": "...",
@@ -960,7 +960,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4d8"
+    "$oid": "620971c928523f3d62aa5036"
   },
   "symbol": "Mt",
   "name": "...",
@@ -972,7 +972,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4d9"
+    "$oid": "620971c928523f3d62aa5037"
   },
   "symbol": "Ds",
   "name": "...",
@@ -984,7 +984,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4da"
+    "$oid": "620971c928523f3d62aa5038"
   },
   "symbol": "Rg",
   "name": "...",
@@ -996,7 +996,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4db"
+    "$oid": "620971c928523f3d62aa5039"
   },
   "symbol": "Cn",
   "name": "...",
@@ -1008,10 +1008,10 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4dc"
+    "$oid": "620971c928523f3d62aa503a"
   },
-  "symbol": "",
-  "name": "...",
+  "symbol": "Nh",
+  "name": "unknown",
   "family": "Metal",
   "atomicNumber": 113,
   "massNumber": 0,
@@ -1020,7 +1020,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4dd"
+    "$oid": "620971c928523f3d62aa503b"
   },
   "symbol": "Fl",
   "name": "...",
@@ -1032,10 +1032,10 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4de"
+    "$oid": "620971c928523f3d62aa503c"
   },
-  "symbol": "",
-  "name": "...",
+  "symbol": "Mc",
+  "name": "unknown",
   "family": "Metal",
   "atomicNumber": 115,
   "massNumber": 0,
@@ -1044,7 +1044,7 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4df"
+    "$oid": "620971c928523f3d62aa503d"
   },
   "symbol": "Lv",
   "name": "...",
@@ -1056,10 +1056,10 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4e0"
+    "$oid": "620971c928523f3d62aa503e"
   },
-  "symbol": "",
-  "name": "...",
+  "symbol": "Ts",
+  "name": "unknown",
   "family": "Metal",
   "atomicNumber": 117,
   "massNumber": 0,
@@ -1068,10 +1068,10 @@
   "_class": "edu.metrostate.ics499.team2.model.Element"
 },{
   "_id": {
-    "$oid": "62084473b567a9367d1be4e1"
+    "$oid": "620971c928523f3d62aa503f"
   },
-  "symbol": "",
-  "name": "...",
+  "symbol": "Og",
+  "name": "unknown",
   "family": "Nonmetal",
   "atomicNumber": 118,
   "massNumber": 0,
