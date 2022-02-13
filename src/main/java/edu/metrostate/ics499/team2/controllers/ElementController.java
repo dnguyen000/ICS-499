@@ -6,10 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import edu.metrostate.ics499.team2.model.Element;
 import edu.metrostate.ics499.team2.repositories.ElementRepository;
@@ -36,7 +33,6 @@ public class ElementController {
     	List<Element> elmFams = this.elmService.getElementByFamily(family);
     	model.addAttribute("elmFams", elmFams);
 		return "elements";
-    	
     }
 	
 //	Model View Controller (MVC)
@@ -46,12 +42,14 @@ public class ElementController {
 //		return modelAndView;
 //	}
 	
-//    @GetMapping("/hello")
-//    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-//    	return String.format("Hello %s!", name);
-//    }
+    @GetMapping("/hello")
+	@ResponseBody
+    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+    	return String.format("Hello %s!", name);
+    }
     
     @GetMapping("/all")
+	@ResponseBody
     public Iterable<Element> getElements(){
     	return this.elementRepo.findAll();
     }
