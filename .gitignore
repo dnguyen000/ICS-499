@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### encrypted files ####
+src/main/resources/application.yml
