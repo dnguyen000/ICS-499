@@ -29,6 +29,7 @@ public class ElementController {
 		this.elementRepo = repository;
 	}
 	
+	// provides a thymeleaf table template of all elements in ascending order, or by family with GET variable family
     @GetMapping
     public String getElements(@RequestParam(value="family", required=false)String family, Model model) {
     	List<Element> elms;
@@ -47,6 +48,35 @@ public class ElementController {
 //	public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request) {
 //		modelAndView.setViewName("index");
 //		return modelAndView;
+//	}
+    
+    @GetMapping("/createall")
+    @ResponseBody
+    public String createAll() {
+//		System.out.println("-------------CREATE ELEMENTS -------------------------------\n");
+    	elmService.createPeriodicElements();
+    	return "Data creation complete...";
+    }
+    
+    @GetMapping("/showall")
+    @ResponseBody
+    public List<Element> showAll() {
+//    	System.out.println("\n----------------SHOW ALL ELEMENTS ---------------------------\n");
+    	return elmService.showAllElements();
+    }
+    
+//	public void run(String ...args) {
+//		System.out.println("\n--------------GET ELEMENTS BY SYMBOL-----------------------------------\n");
+//		elmService.getElementBySymbol("He");
+//		System.out.println("\n-----------GET ELEMENTS BY FAMILY ---------------------------------\n");
+//		elmService.getElementsByFamily("Metal");
+//		// System.out.println("\n-----------UPDATE CATEGORY NAME OF SNACKS CATEGORY----------------\n");
+//		// updateCategoryName("snacks");
+//		// System.out.println("\n----------DELETE A GROCERY ITEM----------------------------------\n");
+//		// deleteGroceryItem("Kodo Millet"); 
+//		System.out.println("\n------------FINAL COUNT OF ELEMENTS -------------------------\n");
+//		elmService.findCountOfElements();
+//		System.out.println("\n-------------------THANK YOU---------------------------");
 //	}
 
 }
