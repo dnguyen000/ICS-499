@@ -46,7 +46,7 @@ public class Element implements Comparable <Element> {
 		return this.symbol;
 	}
 	// atomic number
-	public int getAtomicNum() {
+	public int getAtomicNumber() {
 		return this.atomicNumber;
 	}
 	// mass number

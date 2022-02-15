@@ -20,10 +20,10 @@
 			<tr th:each="elm: ${elms}">
 				<td th:text="${elm.name}">Name</td>
 				<td th:text="${elm.symbol}">Symbol</td>
-				<td th:text="${elm.getAtomicNum()}">Atomic Number</td>
+				<td th:text="${elm.atomicNumber}">Atomic Number</td>
 				<td th:text="${elm.family}">Family</td>
 				<td th:text="${elm.massNumber}">Mass Number</td>
-				<td th:text="${elm.getValence()}">Valence</td>
+				<td th:text="${elm.valence}">Valence</td>
 				<td th:text="${elm.ionicCharge}">Ionic Charge</td>
 			</tr>
 		</table>
