@@ -17,10 +17,9 @@ public class ChemistryApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(ChemistryApplication.class, args);
 	}
-	
 	@Autowired
     ElementRepository elementRepo;
-	
+
     //CREATE
     // name, symbol, family, atomicNumber, massNumber, valence, ionicCharge
     void createPeriodicElements() {
@@ -171,20 +170,20 @@ public class ChemistryApplication implements CommandLineRunner {
 	}
  
 	public void run(String ...args) {
-//		System.out.println("-------------CREATE ELEMENTS -------------------------------\n");
-//		createPeriodicElements();
-		System.out.println("\n----------------SHOW ALL ELEMENTS ---------------------------\n");
-		showAllElements();
-		System.out.println("\n--------------GET ELEMENTS BY SYMBOL-----------------------------------\n");
-		getElementBySymbol("He");
-		System.out.println("\n-----------GET ELEMENTS BY FAMILY ---------------------------------\n");
-		getElementsByFamily("Metal");
-		// System.out.println("\n-----------UPDATE CATEGORY NAME OF SNACKS CATEGORY----------------\n");
-		// updateCategoryName("snacks");
-		// System.out.println("\n----------DELETE A GROCERY ITEM----------------------------------\n");
-		// deleteGroceryItem("Kodo Millet"); 
-		System.out.println("\n------------FINAL COUNT OF ELEMENTS -------------------------\n");
-		findCountOfElements();
-		System.out.println("\n-------------------THANK YOU---------------------------");
+////		System.out.println("-------------CREATE ELEMENTS -------------------------------\n");
+////		createPeriodicElements();
+//		System.out.println("\n----------------SHOW ALL ELEMENTS ---------------------------\n");
+//		showAllElements();
+//		System.out.println("\n--------------GET ELEMENTS BY SYMBOL-----------------------------------\n");
+//		getElementBySymbol("He");
+//		System.out.println("\n-----------GET ELEMENTS BY FAMILY ---------------------------------\n");
+//		getElementsByFamily("Metal");
+//		// System.out.println("\n-----------UPDATE CATEGORY NAME OF SNACKS CATEGORY----------------\n");
+//		// updateCategoryName("snacks");
+//		// System.out.println("\n----------DELETE A GROCERY ITEM----------------------------------\n");
+//		// deleteGroceryItem("Kodo Millet"); 
+//		System.out.println("\n------------FINAL COUNT OF ELEMENTS -------------------------\n");
+//		findCountOfElements();
+//		System.out.println("\n-------------------THANK YOU---------------------------");
 	}
 }

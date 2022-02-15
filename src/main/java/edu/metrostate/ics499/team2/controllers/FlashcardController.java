@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.metrostate.ics499.team2.model.Flashcard;
@@ -18,12 +19,15 @@ import edu.metrostate.ics499.team2.repositories.FlashcardRepository;
 @RequestMapping("/flashcards")
 public class FlashcardController {
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
-	
-	@Autowired
 	private FlashcardRepository flashcardRepo;
 	
+	@Autowired
+	public FlashcardController(FlashcardRepository flashcardRepo) {
+		this.flashcardRepo = flashcardRepo;
+	}
+	
 	@GetMapping(value = "/all")
-	public List<Flashcard> list() {
+	public @ResponseBody List<Flashcard> list() {
 		LOG.info("Getting all flashcards.");
 		return flashcardRepo.findAll();
 	}
