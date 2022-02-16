@@ -30,7 +30,7 @@ class Ics499ChemApplicationTests {
 	@Test
 	@DisplayName("should equal Hydrogen")
 	void testFindBySymbol() {
-		Element elm = ElementRepo.findElementBySymbol("H");
+		Element elm = ElementRepo.findItemBySymbol("H");
 		assertEquals(elm.getSymbol(), "H");
 	}
 	
