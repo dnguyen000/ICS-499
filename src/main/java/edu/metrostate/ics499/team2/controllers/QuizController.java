@@ -40,7 +40,7 @@ public class QuizController {
 	} 
 	@GetMapping(value = "/answers")
 	public List<Quiz> queryAnswers(String answer) {
-		LOG.info("Getting all flashcards that match the answer");
+		LOG.info("Getting all quiz");
 		return quizRepo.findByAnswer(answer);
 	}
 	
