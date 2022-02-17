@@ -50,4 +50,9 @@ public class FlashcardController {
 	public Flashcard create(@RequestBody final Flashcard flashcard) {
 		return flashcardRepo.save(flashcard);
 	}
+
+	public Object getFlashcardById(Long gameId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
