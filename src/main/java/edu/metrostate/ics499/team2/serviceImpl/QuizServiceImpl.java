@@ -17,7 +17,7 @@ public class QuizServiceImpl implements  QuizService{
 	
 	
 	@Override
-	public Quiz createQuize(Quiz quiz) {
+	public Quiz createQuiz(Quiz quiz) {
 		Quiz q  = new Quiz(quiz.getAnswer(), quiz.getQuestion());
 		return quizRepo.save(q);
 		

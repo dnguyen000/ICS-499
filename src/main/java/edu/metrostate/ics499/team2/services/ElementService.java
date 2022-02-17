@@ -154,7 +154,7 @@ public class ElementService {
 	// 2. Get item by symbol
 	public void getElementBySymbol(String symbol) {
 		System.out.println("Getting item by symbol: " + symbol);
-		Element elm = elmRepo.findItemBySymbol(symbol);
+		Element elm = elmRepo.findElementBySymbol(symbol);
 		System.out.println(getItemDetails(elm));
 	}
  
