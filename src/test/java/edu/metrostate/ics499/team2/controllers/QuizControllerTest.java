@@ -45,7 +45,7 @@ import edu.metrostate.ics499.team2.model.Quiz;
 			quizController.create(quiz);
 			
 			
-			assertTrue(quizController.queryQuestion(question).size() > 0);
+			assertTrue(quizController.queryQuestions(question).size() > 0);
 		}
 		
 		@Test
@@ -55,7 +55,7 @@ import edu.metrostate.ics499.team2.model.Quiz;
 			String answer = "yes";
 			Quiz quiz = new Quiz(question, answer);
 			quizController.create(quiz);
-			assertTrue(quizController.queryAnswer(answer).size() > 0);
+			assertTrue(quizController.queryAnswers(answer).size() > 0);
 		}
 		@Test
 		@DisplayName("It should return a list of quiz description from the db")
@@ -64,7 +64,7 @@ import edu.metrostate.ics499.team2.model.Quiz;
 			String answer = "yes";
 			Quiz quiz = new Quiz(question, answer);
 			quizController.create(quiz);
-			assertTrue(quizController.queryAnswer(answer).size() > 0);
+			assertTrue(quizController.queryAnswers(answer).size() > 0);
 		}
 		@After
 		public void tearDown() throws Exception {

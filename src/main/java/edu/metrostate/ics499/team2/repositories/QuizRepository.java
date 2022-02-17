@@ -12,9 +12,9 @@ import edu.metrostate.ics499.team2.model.RegisteredUser;
 
 @Repository
 public interface QuizRepository extends MongoRepository<Quiz, String>{
-	Quiz findByQuizId(String id);
+	Quiz findByGameId(String id);
 	List<Quiz> findByQuestion(String question);
-	List<Quiz> findByCorrectAnswer(String correctAnswer);
+	List<Quiz> findByAnswer(String Answer);
 	
 }
 
