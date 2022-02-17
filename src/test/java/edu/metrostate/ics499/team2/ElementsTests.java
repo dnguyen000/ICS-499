@@ -1,4 +1,4 @@
-
+package edu.metrostate.ics499.team2;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -30,7 +30,7 @@ class Ics499ChemApplicationTests {
 	@Test
 	@DisplayName("should equal Hydrogen")
 	void testFindBySymbol() {
-		Element elm = ElementRepo.findItemBySymbol("H");
+		Element elm = ElementRepo.findElementBySymbol("H");
 		assertEquals(elm.getSymbol(), "H");
 	}
 	

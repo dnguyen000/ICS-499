@@ -4,7 +4,7 @@ package edu.metrostate.ics499.team2.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("elements")
+@Document("elms")
 public class Element implements Comparable <Element> {
 	
 	@Id
@@ -46,7 +46,7 @@ public class Element implements Comparable <Element> {
 		return this.symbol;
 	}
 	// atomic number
-	public int getAtomicNum() {
+	public int getAtomicNumber() {
 		return this.atomicNumber;
 	}
 	// mass number
@@ -54,7 +54,7 @@ public class Element implements Comparable <Element> {
 		return this.massNumber;
 	}
 	// valence
-	public int getvalence() {
+	public int getValence() {
 		return this.valence;
 	}
 	// ionic charge

@@ -1,0 +1,1081 @@
+[{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b26"
+  },
+  "symbol": "H",
+  "name": "Hydrogen",
+  "family": "Nonmetal",
+  "atomicNumber": 1,
+  "massNumber": 1.008,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b27"
+  },
+  "symbol": "He",
+  "name": "Helium",
+  "family": "Nonmetal",
+  "atomicNumber": 2,
+  "massNumber": 4.003,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b28"
+  },
+  "symbol": "Li",
+  "name": "Lithium",
+  "family": "Metal",
+  "atomicNumber": 3,
+  "massNumber": 6.941,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b29"
+  },
+  "symbol": "Be",
+  "name": "Beryllium",
+  "family": "Metal",
+  "atomicNumber": 4,
+  "massNumber": 9.012,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b2a"
+  },
+  "symbol": "B",
+  "name": "Boron",
+  "family": "Metalloid",
+  "atomicNumber": 5,
+  "massNumber": 10.81,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b2b"
+  },
+  "symbol": "C",
+  "name": "Carbon",
+  "family": "Nonmetal",
+  "atomicNumber": 6,
+  "massNumber": 12.01,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b2c"
+  },
+  "symbol": "N",
+  "name": "Nitrogen",
+  "family": "Nonmetal",
+  "atomicNumber": 7,
+  "massNumber": 14.01,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b2d"
+  },
+  "symbol": "O",
+  "name": "Oxygen",
+  "family": "Nonmetal",
+  "atomicNumber": 8,
+  "massNumber": 16,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b2e"
+  },
+  "symbol": "F",
+  "name": "Flourine",
+  "family": "Nonmetal",
+  "atomicNumber": 9,
+  "massNumber": 19,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b2f"
+  },
+  "symbol": "Ne",
+  "name": "Neon",
+  "family": "Nonmetal",
+  "atomicNumber": 10,
+  "massNumber": 20.18,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b30"
+  },
+  "symbol": "Na",
+  "name": "Sodium",
+  "family": "Metal",
+  "atomicNumber": 11,
+  "massNumber": 22.99,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b31"
+  },
+  "symbol": "Mg",
+  "name": "Magnesium",
+  "family": "Metal",
+  "atomicNumber": 12,
+  "massNumber": 24.31,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b32"
+  },
+  "symbol": "Al",
+  "name": "Aluminium",
+  "family": "Metal",
+  "atomicNumber": 13,
+  "massNumber": 26.98,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b33"
+  },
+  "symbol": "Si",
+  "name": "Silicon",
+  "family": "Metal",
+  "atomicNumber": 14,
+  "massNumber": 28.09,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b34"
+  },
+  "symbol": "P",
+  "name": "Phosphorus",
+  "family": "Nonmetal",
+  "atomicNumber": 15,
+  "massNumber": 30.97,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b35"
+  },
+  "symbol": "S",
+  "name": "Sulfur",
+  "family": "Nonmetal",
+  "atomicNumber": 16,
+  "massNumber": 32.07,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b36"
+  },
+  "symbol": "Cl",
+  "name": "Chlorine",
+  "family": "Nonmetal",
+  "atomicNumber": 17,
+  "massNumber": 35.45,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b37"
+  },
+  "symbol": "Ar",
+  "name": "Argon",
+  "family": "Nonmetal",
+  "atomicNumber": 18,
+  "massNumber": 39.95,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b38"
+  },
+  "symbol": "K",
+  "name": "Potassium",
+  "family": "Metal",
+  "atomicNumber": 19,
+  "massNumber": 39.1,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b39"
+  },
+  "symbol": "Ca",
+  "name": "Calcium",
+  "family": "Metal",
+  "atomicNumber": 20,
+  "massNumber": 40.08,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b3a"
+  },
+  "symbol": "Sc",
+  "name": "Scandium",
+  "family": "Metal",
+  "atomicNumber": 21,
+  "massNumber": 44.96,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b3b"
+  },
+  "symbol": "Ti",
+  "name": "Titanium",
+  "family": "Metal",
+  "atomicNumber": 22,
+  "massNumber": 57.88,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b3c"
+  },
+  "symbol": "V",
+  "name": "Vanadium",
+  "family": "Metal",
+  "atomicNumber": 23,
+  "massNumber": 50.94,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b3d"
+  },
+  "symbol": "Cr",
+  "name": "Chromium",
+  "family": "Metal",
+  "atomicNumber": 24,
+  "massNumber": 52,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b3e"
+  },
+  "symbol": "Mn",
+  "name": "Manganese",
+  "family": "Metal",
+  "atomicNumber": 25,
+  "massNumber": 54.94,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b3f"
+  },
+  "symbol": "Fe",
+  "name": "Iron",
+  "family": "Metal",
+  "atomicNumber": 26,
+  "massNumber": 55.85,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b40"
+  },
+  "symbol": "Co",
+  "name": "Cobolt",
+  "family": "Metal",
+  "atomicNumber": 27,
+  "massNumber": 58.93,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b41"
+  },
+  "symbol": "Ni",
+  "name": "Nickel",
+  "family": "Metal",
+  "atomicNumber": 28,
+  "massNumber": 58.69,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b42"
+  },
+  "symbol": "Cu",
+  "name": "Copper",
+  "family": "Metal",
+  "atomicNumber": 29,
+  "massNumber": 63.55,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b43"
+  },
+  "symbol": "Zn",
+  "name": "Zinc",
+  "family": "Metal",
+  "atomicNumber": 30,
+  "massNumber": 65.41,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b44"
+  },
+  "symbol": "Ga",
+  "name": "Gallium",
+  "family": "Metal",
+  "atomicNumber": 31,
+  "massNumber": 69.72,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b45"
+  },
+  "symbol": "Ge",
+  "name": "Germanium",
+  "family": "Metalloid",
+  "atomicNumber": 32,
+  "massNumber": 72.64,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b46"
+  },
+  "symbol": "As",
+  "name": "Arsenic",
+  "family": "Metalloid",
+  "atomicNumber": 33,
+  "massNumber": 74.92,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b47"
+  },
+  "symbol": "Se",
+  "name": "Selenium",
+  "family": "Nonmetal",
+  "atomicNumber": 34,
+  "massNumber": 78.96,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b48"
+  },
+  "symbol": "Br",
+  "name": "Bromine",
+  "family": "Nonmetal",
+  "atomicNumber": 35,
+  "massNumber": 79.9,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b49"
+  },
+  "symbol": "Kr",
+  "name": "Krypton",
+  "family": "Nonmetal",
+  "atomicNumber": 36,
+  "massNumber": 83.8,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b4a"
+  },
+  "symbol": "Rb",
+  "name": "Rubidium",
+  "family": "Metal",
+  "atomicNumber": 37,
+  "massNumber": 85.47,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b4b"
+  },
+  "symbol": "Sr",
+  "name": "Strontium",
+  "family": "Metal",
+  "atomicNumber": 38,
+  "massNumber": 87.62,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b4c"
+  },
+  "symbol": "Y",
+  "name": "Yttrium",
+  "family": "Metal",
+  "atomicNumber": 39,
+  "massNumber": 88.91,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b4d"
+  },
+  "symbol": "Zr",
+  "name": "Zirconium",
+  "family": "Metal",
+  "atomicNumber": 40,
+  "massNumber": 91.22,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b4e"
+  },
+  "symbol": "Nb",
+  "name": "Niobium",
+  "family": "Metal",
+  "atomicNumber": 41,
+  "massNumber": 92.91,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b4f"
+  },
+  "symbol": "Mo",
+  "name": "Molybdenum",
+  "family": "Metal",
+  "atomicNumber": 42,
+  "massNumber": 95.94,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b50"
+  },
+  "symbol": "Tc",
+  "name": "Technetium",
+  "family": "Metal",
+  "atomicNumber": 43,
+  "massNumber": 98,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b51"
+  },
+  "symbol": "Ru",
+  "name": "Ruthenium",
+  "family": "Metal",
+  "atomicNumber": 44,
+  "massNumber": 101.1,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b52"
+  },
+  "symbol": "Rh",
+  "name": "Rhodium",
+  "family": "Metal",
+  "atomicNumber": 45,
+  "massNumber": 102.9,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b53"
+  },
+  "symbol": "Pd",
+  "name": "Palladium",
+  "family": "Metal",
+  "atomicNumber": 46,
+  "massNumber": 106.4,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b54"
+  },
+  "symbol": "Ag",
+  "name": "Silver",
+  "family": "Metal",
+  "atomicNumber": 47,
+  "massNumber": 107.9,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b55"
+  },
+  "symbol": "Cd",
+  "name": "Cadmium",
+  "family": "Metal",
+  "atomicNumber": 48,
+  "massNumber": 112.4,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b56"
+  },
+  "symbol": "In",
+  "name": "Indium",
+  "family": "Metal",
+  "atomicNumber": 49,
+  "massNumber": 114.8,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b57"
+  },
+  "symbol": "Sn",
+  "name": "Tin",
+  "family": "Metal",
+  "atomicNumber": 50,
+  "massNumber": 118.7,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b58"
+  },
+  "symbol": "Sb",
+  "name": "Antimony",
+  "family": "Metalloid",
+  "atomicNumber": 51,
+  "massNumber": 121.8,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b59"
+  },
+  "symbol": "Te",
+  "name": "Tellurium",
+  "family": "Metalloid",
+  "atomicNumber": 52,
+  "massNumber": 127.6,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b5a"
+  },
+  "symbol": "I",
+  "name": "Iodine",
+  "family": "Nonmetal",
+  "atomicNumber": 53,
+  "massNumber": 126.9,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b5b"
+  },
+  "symbol": "Xe",
+  "name": "Xenon",
+  "family": "Nonmetal",
+  "atomicNumber": 54,
+  "massNumber": 131.3,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b5c"
+  },
+  "symbol": "Cs",
+  "name": "Casium",
+  "family": "Metal",
+  "atomicNumber": 55,
+  "massNumber": 132.9,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b5d"
+  },
+  "symbol": "Ba",
+  "name": "Barium",
+  "family": "Metal",
+  "atomicNumber": 56,
+  "massNumber": 137.3,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b5e"
+  },
+  "symbol": "La",
+  "name": "Lanthanum",
+  "family": "Metal",
+  "atomicNumber": 57,
+  "massNumber": 138.9,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b5f"
+  },
+  "symbol": "Hf",
+  "name": "Hafnium",
+  "family": "Metal",
+  "atomicNumber": 72,
+  "massNumber": 178.5,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b60"
+  },
+  "symbol": "Ta",
+  "name": "Tantalum",
+  "family": "Metal",
+  "atomicNumber": 73,
+  "massNumber": 180.9,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b61"
+  },
+  "symbol": "W",
+  "name": "Tungsten",
+  "family": "Metal",
+  "atomicNumber": 74,
+  "massNumber": 183.8,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b62"
+  },
+  "symbol": "Re",
+  "name": "Rhenium",
+  "family": "Metal",
+  "atomicNumber": 75,
+  "massNumber": 186.2,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b63"
+  },
+  "symbol": "Os",
+  "name": "Osmium",
+  "family": "Metal",
+  "atomicNumber": 76,
+  "massNumber": 190.2,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b64"
+  },
+  "symbol": "Ir",
+  "name": "Iridium",
+  "family": "Metal",
+  "atomicNumber": 77,
+  "massNumber": 192.2,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b65"
+  },
+  "symbol": "Pt",
+  "name": "Platinum",
+  "family": "Metal",
+  "atomicNumber": 78,
+  "massNumber": 195.1,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b66"
+  },
+  "symbol": "Au",
+  "name": "Gold",
+  "family": "Metal",
+  "atomicNumber": 79,
+  "massNumber": 197,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b67"
+  },
+  "symbol": "Hg",
+  "name": "Mercury",
+  "family": "Metal",
+  "atomicNumber": 80,
+  "massNumber": 200.6,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b68"
+  },
+  "symbol": "Tl",
+  "name": "Thallium",
+  "family": "Metal",
+  "atomicNumber": 81,
+  "massNumber": 204.4,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b69"
+  },
+  "symbol": "Pb",
+  "name": "Lead",
+  "family": "Metal",
+  "atomicNumber": 82,
+  "massNumber": 207.2,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b6a"
+  },
+  "symbol": "Bi",
+  "name": "Bismuth",
+  "family": "Metal",
+  "atomicNumber": 83,
+  "massNumber": 209,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b6b"
+  },
+  "symbol": "Po",
+  "name": "Polonium",
+  "family": "Metalloid",
+  "atomicNumber": 84,
+  "massNumber": 209,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b6c"
+  },
+  "symbol": "At",
+  "name": "Astatine",
+  "family": "Metalloid",
+  "atomicNumber": 85,
+  "massNumber": 210,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b6d"
+  },
+  "symbol": "Rn",
+  "name": "Radon",
+  "family": "Nonmetal",
+  "atomicNumber": 86,
+  "massNumber": 222,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b6e"
+  },
+  "symbol": "Fr",
+  "name": "Francium",
+  "family": "Metal",
+  "atomicNumber": 87,
+  "massNumber": 223,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b6f"
+  },
+  "symbol": "Ra",
+  "name": "Radium",
+  "family": "Metal",
+  "atomicNumber": 88,
+  "massNumber": 226,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b70"
+  },
+  "symbol": "Ac",
+  "name": "Actinium",
+  "family": "Metal",
+  "atomicNumber": 89,
+  "massNumber": 227,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b71"
+  },
+  "symbol": "Rf",
+  "name": "Rutherfordium",
+  "family": "Metal",
+  "atomicNumber": 104,
+  "massNumber": 267,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b72"
+  },
+  "symbol": "Db",
+  "name": "Dubnium",
+  "family": "Metal",
+  "atomicNumber": 105,
+  "massNumber": 268,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b73"
+  },
+  "symbol": "Sg",
+  "name": "Seaborgium",
+  "family": "Metal",
+  "atomicNumber": 106,
+  "massNumber": 271,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b74"
+  },
+  "symbol": "Bh",
+  "name": "Bohrium",
+  "family": "Metal",
+  "atomicNumber": 107,
+  "massNumber": 272,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b75"
+  },
+  "symbol": "Hs",
+  "name": "Hassium",
+  "family": "Metal",
+  "atomicNumber": 108,
+  "massNumber": 270,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b76"
+  },
+  "symbol": "Mt",
+  "name": "Meitnerium",
+  "family": "Metal",
+  "atomicNumber": 109,
+  "massNumber": 276,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b77"
+  },
+  "symbol": "Ds",
+  "name": "Darmstadtium",
+  "family": "Metal",
+  "atomicNumber": 110,
+  "massNumber": 281,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b78"
+  },
+  "symbol": "Rg",
+  "name": "Roentgenium",
+  "family": "Metal",
+  "atomicNumber": 111,
+  "massNumber": 280,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b79"
+  },
+  "symbol": "Cn",
+  "name": "Copernicium",
+  "family": "Metal",
+  "atomicNumber": 112,
+  "massNumber": 285,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b7a"
+  },
+  "symbol": "Nh",
+  "name": "unknown",
+  "family": "Metal",
+  "atomicNumber": 113,
+  "massNumber": 284,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b7b"
+  },
+  "symbol": "Fl",
+  "name": "unknown",
+  "family": "Metal",
+  "atomicNumber": 114,
+  "massNumber": 289,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b7c"
+  },
+  "symbol": "Mc",
+  "name": "unknown",
+  "family": "Metal",
+  "atomicNumber": 115,
+  "massNumber": 289,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b7d"
+  },
+  "symbol": "Lv",
+  "name": "unknwon",
+  "family": "Metal",
+  "atomicNumber": 116,
+  "massNumber": 293,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b7e"
+  },
+  "symbol": "Ts",
+  "name": "unknown",
+  "family": "Metal",
+  "atomicNumber": 117,
+  "massNumber": 294,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+},{
+  "_id": {
+    "$oid": "6209ad86c1482e018e7e7b7f"
+  },
+  "symbol": "Og",
+  "name": "unknown",
+  "family": "Nonmetal",
+  "atomicNumber": 118,
+  "massNumber": 294,
+  "valence": 0,
+  "ionicCharge": 0,
+  "_class": "edu.metrostate.ics499.team2.model.Element"
+}]

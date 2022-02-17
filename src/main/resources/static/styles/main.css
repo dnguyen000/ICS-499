@@ -1,0 +1,20 @@
+h1 {
+    font-family: sans-serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+
+table {
+    font-weight: 700;
+}
+
+td {	
+    background-color: #99C;
+    padding: 10px 10px;
+    border-style: solid;
+    width: 100px;
+}
+
+* {
+    font-family: sans-serif;
+}
