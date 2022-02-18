@@ -7,7 +7,7 @@ import com.mongodb.MongoException;
 
 import edu.metrostate.ics499.team2.model.Quiz;
 import edu.metrostate.ics499.team2.repositories.QuizRepository;
-import edu.metrostate.ics499.team2.service.QuizService;
+import edu.metrostate.ics499.team2.services.QuizService;
 
 @Service
 public class QuizServiceImpl implements  QuizService{

@@ -13,7 +13,7 @@ import edu.metrostate.ics499.team2.model.Element;
 import edu.metrostate.ics499.team2.repositories.ElementRepository;
 
 @Service
-public class ElementService {
+public class ElementService implements ServiceInterface<Element> {
 	private final ElementRepository elmRepo;
 	
 	@Autowired
@@ -186,6 +186,12 @@ public class ElementService {
 			", \nItem Atomic Number: " + item.getAtomicNumber() +
 			", \nItem Family: " + item.getFamily()
 		;
+	}
+
+	@Override
+	public boolean isValid(Element obj) {
+		return showAllElements().stream()
+				.filter(element -> element.equals(obj)).toList().size() > 0 ? true : false;
 	}
 
 }
