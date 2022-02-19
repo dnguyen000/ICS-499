@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.metrostate.ics499.team2.model.Flashcard;
 import edu.metrostate.ics499.team2.model.Quiz;
 import edu.metrostate.ics499.team2.repositories.QuizRepository;
+import edu.metrostate.ics499.team2.serviceImpl.QuizServiceImpl;
+import edu.metrostate.ics499.team2.services.QuizService;
 
 @RestController
 @RequestMapping("/quiz")
@@ -23,31 +25,31 @@ public class QuizController {
 
 	
 	@Autowired
-	private QuizRepository quizRepo;
+	private QuizServiceImpl temp;
 	
 	@GetMapping(value = "/all")
 	public List<Quiz> list() {
-	    return quizRepo.findAll();
+	    return temp.list();
 	}
 	@GetMapping(value = "{gameId}")
 	public Quiz getQuizById(String id) {
-		return this.quizRepo.findByGameId(id);
+		return this.temp.getQuizById(id);
 	}
 	@GetMapping(value = "/questions")
 	public List<Quiz> queryQuestions(String question) {
 		LOG.info("Getting all quiz that match the question");
-		return quizRepo.findByQuestion(question);
+		return temp.queryQuestions(question);
 	} 
 	@GetMapping(value = "/answers")
 	public List<Quiz> queryAnswers(String answer) {
 		LOG.info("Getting all quiz");
-		return quizRepo.findByAnswer(answer);
+		return temp.queryAnswers(answer);
 	}
 	
 	
 	@PostMapping("/add")
 	public Quiz create(@RequestBody final Quiz quiz) {
-		return quizRepo.save(quiz);
+		return temp.createQuiz(quiz);
 		
 	}
 }
