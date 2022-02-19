@@ -30,11 +30,11 @@ public class RegisteredUserService {
 	}
 
 	public RegisteredUser getUserByEmail(@PathVariable String email) {
-		return this.userRepo.findByUserEmail(email);
+		return this.userRepo.findByEmail(email);
 	}
 	
 	public RegisteredUser getByUserEmailAndPassword(String email, String password) {
-		return this.userRepo.findByUserEmailAndPassword(email, password);
+		return this.userRepo.findByEmailAndPassword(email, password);
 	}
 
 	public RegisteredUser create(@RequestBody final RegisteredUser registeredUser) {
