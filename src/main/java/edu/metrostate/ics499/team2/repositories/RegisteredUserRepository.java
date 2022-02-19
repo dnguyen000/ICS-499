@@ -8,4 +8,6 @@ import edu.metrostate.ics499.team2.model.RegisteredUser;
 @Repository
 public interface RegisteredUserRepository extends MongoRepository<RegisteredUser, String>{
 	RegisteredUser findByUserId(String Id);
+	RegisteredUser findByUserEmail(String email);
+	RegisteredUser findByUserEmailAndPassword(String email, String Password);
 }
