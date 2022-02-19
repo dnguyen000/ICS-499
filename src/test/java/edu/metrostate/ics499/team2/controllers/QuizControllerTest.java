@@ -26,7 +26,11 @@ import edu.metrostate.ics499.team2.model.Quiz;
 		}
 		
 		@Test
+<<<<<<< HEAD
 		@DisplayName("It should insert the quize into the db")
+=======
+		@DisplayName("It should insert the quiz into the db")
+>>>>>>> main
 		void testCreate() {
 			String question = "Does this work?";
 			String answer = "yes";

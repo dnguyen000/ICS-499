@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import edu.metrostate.ics499.team2.model.Element;
-import edu.metrostate.ics499.team2.repositories.ElementRepository;
+import edu.metrostate.ics499.team2.services.ElementService;
 
 // thymeleaf doesn't work with @RestController (see url below)
 // https://stackoverflow.com/questions/63965406/unable-to-render-thymleaf-page-from-spring-boot-controller-prints-only-the-retu
@@ -18,11 +18,19 @@ import edu.metrostate.ics499.team2.repositories.ElementRepository;
 @RequestMapping("/elements")
 public class ElementController {
 	
+<<<<<<< HEAD
     private final ElementRepository elmRepo;
 	
 	@Autowired
 	public ElementController(ElementRepository elmRepo) {
 		this.elmRepo = elmRepo;
+=======
+    private final ElementService elmService;
+	
+	@Autowired
+	public ElementController(ElementService service) {
+		this.elmService = service;
+>>>>>>> main
 	}
 	
 	// provides a thymeleaf table template of all elements in ascending order, or by family with GET variable family
@@ -30,13 +38,20 @@ public class ElementController {
     public String getElements(@RequestParam(value="family", required=false)String family, Model model) {
     	List<Element> elms;
     	if(null != family)
+<<<<<<< HEAD
     		elms = elmRepo.findAll(family);
     	else
     		elms = elmRepo.findAll();
+=======
+    		elms = this.elmService.getElementByFamily(family);
+    	else
+    		elms = this.elmService.showAllElements();
+>>>>>>> main
     	
     	model.addAttribute("elms", elms);
 		return "elements";
     }
+<<<<<<< HEAD
     
 
 	// CREATE
@@ -145,11 +160,29 @@ public class ElementController {
 		elmRepo.save(new Element("unknown", 		"Ts", 	"Metal", 		117, (294), 0, 0));
 		elmRepo.save(new Element("unknown", 		"Og", 	"Nonmetal", 	118, (294), 0, 0));
         System.out.println("Data creation complete...");
+=======
+	
+//  just storing this because I don't understand it
+//	Model View Controller (MVC)
+//	@GetMapping
+//	public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request) {
+//		modelAndView.setViewName("index");
+//		return modelAndView;
+//	}
+    
+    @GetMapping("/createall")
+    @ResponseBody
+    public String createAll() {
+//		System.out.println("-------------CREATE ELEMENTS -------------------------------\n");
+    	elmService.createPeriodicElements();
+    	return "Data creation complete...";
+>>>>>>> main
     }
     
     @GetMapping("/showall")
     @ResponseBody
     public List<Element> showAll() {
+<<<<<<< HEAD
     	return elmRepo.findAll();
     }
     
@@ -170,6 +203,17 @@ public class ElementController {
     }
     
 //	public void run(String ...args) {
+=======
+//    	System.out.println("\n----------------SHOW ALL ELEMENTS ---------------------------\n");
+    	return elmService.showAllElements();
+    }
+    
+//	public void run(String ...args) {
+//		System.out.println("\n--------------GET ELEMENTS BY SYMBOL-----------------------------------\n");
+//		elmService.getElementBySymbol("He");
+//		System.out.println("\n-----------GET ELEMENTS BY FAMILY ---------------------------------\n");
+//		elmService.getElementsByFamily("Metal");
+>>>>>>> main
 //		// System.out.println("\n-----------UPDATE CATEGORY NAME OF SNACKS CATEGORY----------------\n");
 //		// updateCategoryName("snacks");
 //		// System.out.println("\n----------DELETE A GROCERY ITEM----------------------------------\n");

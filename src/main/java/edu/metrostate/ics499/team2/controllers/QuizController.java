@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+<<<<<<< HEAD
+=======
+import edu.metrostate.ics499.team2.model.Flashcard;
+>>>>>>> main
 import edu.metrostate.ics499.team2.model.Quiz;
 import edu.metrostate.ics499.team2.repositories.QuizRepository;
 

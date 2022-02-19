@@ -7,7 +7,11 @@ import com.mongodb.MongoException;
 
 import edu.metrostate.ics499.team2.model.Quiz;
 import edu.metrostate.ics499.team2.repositories.QuizRepository;
+<<<<<<< HEAD
 import edu.metrostate.ics499.team2.service.QuizService;
+=======
+import edu.metrostate.ics499.team2.services.QuizService;
+>>>>>>> main
 
 @Service
 public class QuizServiceImpl implements  QuizService{
@@ -17,7 +21,11 @@ public class QuizServiceImpl implements  QuizService{
 	
 	
 	@Override
+<<<<<<< HEAD
 	public Quiz createQuize(Quiz quiz) {
+=======
+	public Quiz createQuiz(Quiz quiz) {
+>>>>>>> main
 		Quiz q  = new Quiz(quiz.getAnswer(), quiz.getQuestion());
 		return quizRepo.save(q);
 		
