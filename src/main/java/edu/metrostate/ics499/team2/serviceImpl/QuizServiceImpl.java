@@ -1,5 +1,7 @@
 package edu.metrostate.ics499.team2.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +55,14 @@ public class QuizServiceImpl implements  QuizService{
 			throw new MongoException ("Record not found");
 		
 	}
+	public List<Quiz> queryQuestions(String question) {
+		
+		return quizRepo.findByQuestion(question);
+	} 
+	public List<Quiz> queryAnswers(String answer) {
+		
+		return quizRepo.findByAnswer(answer);
+	}
 
 	@Override
 	public Quiz getAnswerById(String answer) {
@@ -60,6 +70,10 @@ public class QuizServiceImpl implements  QuizService{
 			return quizRepo.findById(answer).get();
 		else
 			throw new MongoException ("Answer not found");
+	}
+	
+	public List<Quiz> list() {
+	    return quizRepo.findAll();
 	}
 
 	
