@@ -1,16 +1,19 @@
-
+package edu.metrostate.ics499.team2;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import edu.metrostate.ics499.team2.model.Element;
 import edu.metrostate.ics499.team2.repositories.ElementRepository;
 
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class Ics499ChemApplicationTests {
 
@@ -30,7 +33,7 @@ class Ics499ChemApplicationTests {
 	@Test
 	@DisplayName("should equal Hydrogen")
 	void testFindBySymbol() {
-		Element elm = ElementRepo.findItemBySymbol("H");
+		Element elm = ElementRepo.findElementBySymbol("H");
 		assertEquals(elm.getSymbol(), "H");
 	}
 	

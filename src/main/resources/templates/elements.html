@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Elements by Family</title>
+		<link th:href="@{/styles/main.css}" rel="stylesheet" />
+	</head>
+	<body>
+		<h1>Welcome to Elements Page</h1>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Symbol</th>
+				<th>Atomic Number</th>
+				<th>Family</th>
+				<th>Mass Number</th>
+				<th>Valence</th>
+				<th>Ionic Charge</th>
+			</tr>
+			<tr th:each="elm: ${elms}">
+				<td th:text="${elm.name}">Name</td>
+				<td th:text="${elm.symbol}">Symbol</td>
+				<td th:text="${elm.atomicNumber}">Atomic Number</td>
+				<td th:text="${elm.family}">Family</td>
+				<td th:text="${elm.massNumber}">Mass Number</td>
+				<td th:text="${elm.valence}">Valence</td>
+				<td th:text="${elm.ionicCharge}">Ionic Charge</td>
+			</tr>
+		</table>
+	</body>
+</html>

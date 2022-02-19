@@ -33,4 +33,5 @@ public class RegisteredUserController {
 	public RegisteredUser create(@RequestBody final RegisteredUser registeredUser) {
 		return registeredUserRepo.save(registeredUser);
 	}
+	
 }
