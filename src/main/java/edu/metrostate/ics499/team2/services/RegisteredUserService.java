@@ -13,7 +13,7 @@ import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.repositories.RegisteredUserRepository;
 
 @Service
-public class RegisteredUserService {
+public class RegisteredUserService implements ServiceInterface<RegisteredUser>{
 	private RegisteredUserRepository userRepo;
 	
 	@Autowired
@@ -38,6 +38,12 @@ public class RegisteredUserService {
 	}
 
 	public RegisteredUser create(@RequestBody final RegisteredUser registeredUser) {
-		return userRepo.save(registeredUser);
+		return isValid(registeredUser) ? userRepo.save(registeredUser) : null;
+	}
+	
+	@Override
+	public boolean isValid(RegisteredUser obj) {
+		return getUsers().stream()
+							.filter(user -> user.equals(obj)).toList().size() > 0 ? false : true;
 	}
 }
