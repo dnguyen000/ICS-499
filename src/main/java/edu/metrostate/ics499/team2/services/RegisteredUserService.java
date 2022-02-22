@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import edu.metrostate.ics499.team2.model.RegisteredUser;
@@ -38,8 +36,20 @@ public class RegisteredUserService implements ServiceInterface<RegisteredUser>{
 	}
 
 	public RegisteredUser create(@RequestBody final RegisteredUser registeredUser) {
-		return isValid(registeredUser) ? userRepo.save(registeredUser) : null;
+		//System.out.print("serv create\n");
+		if(isValid(registeredUser)) {
+			//System.out.print("Pass\n");
+			return userRepo.save(registeredUser);
+		}else {
+			//System.out.print("Fail\n");
+			return null;
+		}
+		//return isValid(registeredUser) ? userRepo.save(registeredUser) : null;
 	}
+	
+	/*public void create() {
+		userRepo.save(new RegisteredUser("Andrew", "Vick", "atvick21@gmail.com", "kek", 2));
+	}*/
 	
 	@Override
 	public boolean isValid(RegisteredUser obj) {

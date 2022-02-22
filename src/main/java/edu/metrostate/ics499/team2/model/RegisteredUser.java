@@ -82,7 +82,6 @@ public class RegisteredUser {
 		if (getClass() != obj.getClass())
 			return false;
 		RegisteredUser other = (RegisteredUser) obj;
-		return Objects.equals(email, other.email) && Objects.equals(password, other.password) 
-				&& Objects.equals(userId, other.userId);
+		return Objects.equals(email, other.email);
 	}
 }
