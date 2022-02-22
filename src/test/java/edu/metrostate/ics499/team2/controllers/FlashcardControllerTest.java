@@ -1,10 +1,8 @@
 package edu.metrostate.ics499.team2.controllers;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.After;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -89,7 +87,7 @@ class FlashcardControllerTest {
 	}
 	
 	
-	@After
+	@AfterAll
 	public void tearDown() throws Exception {
 		//TODO: Find a way to clean up DB after each test
 	}

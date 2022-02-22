@@ -1,6 +1,5 @@
 package edu.metrostate.ics499.team2.repository;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;

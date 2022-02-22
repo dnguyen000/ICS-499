@@ -1,9 +1,9 @@
 package edu.metrostate.ics499.team2.controllers;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.After;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -42,8 +42,7 @@ import edu.metrostate.ics499.team2.model.Quiz;
 			String question = "Does questions display?";
 			String answer = "yes";
 			Quiz quiz = new Quiz(question, answer);
-			quizController.create(quiz);
-			
+			quizController.create(quiz);			
 			
 			assertTrue(quizController.queryQuestions(question).size() > 0);
 		}
@@ -66,7 +65,7 @@ import edu.metrostate.ics499.team2.model.Quiz;
 			quizController.create(quiz);
 			assertTrue(quizController.queryAnswers(answer).size() > 0);
 		}
-		@After
+		@AfterAll
 		public void tearDown() throws Exception {
 			//TODO: Find a way to clean up DB after each test
 		}
