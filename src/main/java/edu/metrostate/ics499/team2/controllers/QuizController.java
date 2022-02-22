@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.metrostate.ics499.team2.model.Quiz;
-import edu.metrostate.ics499.team2.serviceImpl.QuizServiceImpl;
+import edu.metrostate.ics499.team2.services.QuizService;
 
 @RestController
 @RequestMapping("/quiz")
@@ -22,31 +22,31 @@ public class QuizController {
 
 	
 	@Autowired
-	private QuizServiceImpl temp;
+	private QuizService quizService;
 	
 	@GetMapping(value = "/all")
 	public List<Quiz> list() {
-	    return temp.list();
+	    return quizService.list();
 	}
 	@GetMapping(value = "{gameId}")
 	public Quiz getQuizById(String id) {
-		return this.temp.getQuizById(id);
+		return this.quizService.getQuizById(id);
 	}
 	@GetMapping(value = "/questions")
 	public List<Quiz> queryQuestions(String question) {
 		LOG.info("Getting all quiz that match the question");
-		return temp.queryQuestions(question);
+		return quizService.queryQuestions(question);
 	} 
 	@GetMapping(value = "/answers")
 	public List<Quiz> queryAnswers(String answer) {
 		LOG.info("Getting all quiz");
-		return temp.queryAnswers(answer);
+		return quizService.queryAnswers(answer);
 	}
 	
 	
 	@PostMapping("/add")
 	public Quiz create(@RequestBody final Quiz quiz) {
-		return temp.createQuiz(quiz);
+		return quizService.createQuiz(quiz);
 		
 	}
 }
