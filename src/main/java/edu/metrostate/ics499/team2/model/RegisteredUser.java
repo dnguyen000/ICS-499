@@ -9,11 +9,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class RegisteredUser {
 	
 	@Id
-	private String userId;
+	private String email;
 	
 	private String firstName;
 	private String lastName;
-	private String email;
 	private String password;
 	private int highScore;
 	
@@ -23,14 +22,6 @@ public class RegisteredUser {
 		this.email = email;
 		this.password = password;
 		this.highScore = highScore;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public String getFirstName() {
