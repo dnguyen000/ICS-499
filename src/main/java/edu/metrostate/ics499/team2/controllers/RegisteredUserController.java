@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.metrostate.ics499.team2.model.RegisteredUser;
@@ -40,8 +40,10 @@ public class RegisteredUserController {
 		return this.userService.getUserByEmail(email);
 	}
 	
-	@PostMapping("/add")
+	@GetMapping("/add")
+	@ResponseBody
 	public RegisteredUser create(@RequestBody final RegisteredUser registeredUser) {
+		//System.out.print("cont create\n");
 		return this.userService.create(registeredUser);
 	}
 	
