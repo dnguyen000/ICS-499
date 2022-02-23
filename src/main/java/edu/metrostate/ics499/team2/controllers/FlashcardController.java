@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.metrostate.ics499.team2.model.Flashcard;
-import edu.metrostate.ics499.team2.repositories.FlashcardRepository;
 import edu.metrostate.ics499.team2.services.FlashcardService;
 
 @RestController
