@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Element implements Comparable <Element> {
 	
 	@Id
-	private String id;												// primary key per @Id
-	private String symbol;											// symbol (was not working as primary key?)
+	private String symbol;											// symbol (becomes _id in mongo)
 
 	private String name;											// name
 	private String family;											// family: metal, metalloid, non-metal

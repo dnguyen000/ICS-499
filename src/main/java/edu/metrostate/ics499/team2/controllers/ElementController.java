@@ -61,18 +61,23 @@ public class ElementController {
     	return elmService.showAllElements();
     }
     
+    @GetMapping("/family")
+    @ResponseBody
+    public Iterable<Element> showAll(String family) {
+    	return elmService.getElementsByFamily(family);
+    }
+    
+    @GetMapping("/symbol")
+    @ResponseBody
+    public Element findElementBySymbol(String symbol) {
+    	return elmService.getElementBySymbol(symbol);
+    }
+    
 //	public void run(String ...args) {
-//		System.out.println("\n--------------GET ELEMENTS BY SYMBOL-----------------------------------\n");
-//		elmService.getElementBySymbol("He");
-//		System.out.println("\n-----------GET ELEMENTS BY FAMILY ---------------------------------\n");
-//		elmService.getElementsByFamily("Metal");
 //		// System.out.println("\n-----------UPDATE CATEGORY NAME OF SNACKS CATEGORY----------------\n");
 //		// updateCategoryName("snacks");
 //		// System.out.println("\n----------DELETE A GROCERY ITEM----------------------------------\n");
 //		// deleteGroceryItem("Kodo Millet"); 
-//		System.out.println("\n------------FINAL COUNT OF ELEMENTS -------------------------\n");
-//		elmService.findCountOfElements();
-//		System.out.println("\n-------------------THANK YOU---------------------------");
 //	}
 
 }

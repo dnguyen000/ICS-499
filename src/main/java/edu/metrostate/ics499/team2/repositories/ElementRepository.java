@@ -18,6 +18,6 @@ public interface ElementRepository extends MongoRepository<Element, String> {
     
     public long count();
     
-    Iterable<Element> findElementByFamily(String family);
+    Iterable<Element> findElementsByFamily(String family);
 
 }

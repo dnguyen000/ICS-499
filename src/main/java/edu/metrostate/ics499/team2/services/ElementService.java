@@ -24,7 +24,7 @@ public class ElementService implements ServiceInterface<Element> {
 //	algorithm partially from url below
 //	https://www.linkedin.com/learning/learning-spring-with-spring-boot-2019/develop-a-service-object-with-spring
 	public List<Element> getElementByFamily(String family) {
-		Iterable<Element> elmsFams = elmRepo.findElementByFamily(family);
+		Iterable<Element> elmsFams = elmRepo.findElementsByFamily(family);
 		Map<String, Element> elementsMap = new HashMap<String, Element>();
 		elmsFams.forEach(element -> {
 			elementsMap.put(element.getSymbol(), element);
@@ -152,23 +152,18 @@ public class ElementService implements ServiceInterface<Element> {
 	}
 	
 	// 2. Get item by symbol
-	public void getElementBySymbol(String symbol) {
-		System.out.println("Getting item by symbol: " + symbol);
-		Element elm = elmRepo.findElementBySymbol(symbol);
-		System.out.println(getItemDetails(elm));
+	public Element getElementBySymbol(String symbol) {
+		return elmRepo.findElementBySymbol(symbol);
 	}
  
 	// 3. Get name and symbol of a all items of a particular family
-	public void getElementsByFamily(String family) {
-		System.out.println("Getting items for the family " + family);
-		List<Element> list = elmRepo.findAll(family);
-		list.forEach(item -> System.out.println("Name: " + item.getName() + ", Symbol: " + item.getSymbol()));
+	public Iterable<Element> getElementsByFamily(String family) {
+		return elmRepo.findElementsByFamily(family);
 	}
  
 	// 4. Get count of documents in the collection
-	public void findCountOfElements() {
-		long count = elmRepo.count();
-		System.out.println("Number of documents in the collection: " + count);
+	public long findCountOfElements() {
+		return elmRepo.count();
 	}
  
 	// Print details in readable form 

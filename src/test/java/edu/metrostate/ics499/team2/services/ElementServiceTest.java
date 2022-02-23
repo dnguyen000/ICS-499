@@ -1,6 +1,7 @@
 package edu.metrostate.ics499.team2.services;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,14 +20,14 @@ class ElementServiceTest {
 	ElementService elmService;
 	
 	@Test
-	@DisplayName("it should return false")
+	@DisplayName("it should return true")
 	void isValid_returns_false() {
 		Element hydrogen = new Element("Hydrogen", "H", "Nonmetal", 1, 1.008, 0, 0);
-		assertFalse(elmService.isValid(hydrogen));
+		assertTrue(elmService.isValid(hydrogen));
 	}
 	
 	@Test
-	@DisplayName("it should return true")
+	@DisplayName("it should return false")
 	void isValid_returns_true() {
 		Element superUnknown = new Element("superUnknown", "SUk", "Nonmetal", 1000, 1.008, 0, 0);
 		assertFalse(elmService.isValid(superUnknown));
