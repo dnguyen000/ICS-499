@@ -1,5 +1,7 @@
 package edu.metrostate.ics499.team2.model;
 
+import java.util.Objects;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -69,5 +71,17 @@ public class RegisteredUser {
 
 	public void setHighScore(int highScore) {
 		this.highScore = highScore;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RegisteredUser other = (RegisteredUser) obj;
+		return Objects.equals(email, other.email);
 	}
 }
