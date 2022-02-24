@@ -16,12 +16,21 @@ public class RegisteredUser {
 	private String password;
 	private int highScore;
 	
+	public RegisteredUser() {
+		
+	}
+	
 	public RegisteredUser(String firstName, String lastName, String email, String password, int highScore) {
 		this.firstName= firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.highScore = highScore;
+	}
+
+	public RegisteredUser(RegisteredUser createUser) {
+		this.password = createUser.getPassword();
+		this.email = createUser.getEmail();
 	}
 
 	public String getFirstName() {
@@ -64,15 +73,19 @@ public class RegisteredUser {
 		this.highScore = highScore;
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RegisteredUser other = (RegisteredUser) obj;
-		return Objects.equals(email, other.email);
+	public String getName() {
+		return getFirstName() + " " + getLastName();
 	}
+	
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		RegisteredUser other = (RegisteredUser) obj;
+//		return Objects.equals(username, other.username);
+//	}
 }
