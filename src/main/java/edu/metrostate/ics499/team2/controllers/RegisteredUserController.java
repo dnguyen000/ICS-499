@@ -14,9 +14,8 @@ import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.services.RegisteredUserService;
 
 @RestController
-@RequestMapping("/registeredUser")
-public class RegisteredUserController {
-	
+@RequestMapping("/api/registereduser")
+public class RegisteredUserController {	
 	
 	private RegisteredUserService userService;
 	
@@ -29,22 +28,17 @@ public class RegisteredUserController {
 	public List<RegisteredUser> getUsers() {
 		return userService.getUsers();
 	}
+
 	
-	@GetMapping(value = "{userId}")
-	public RegisteredUser getUserById(@PathVariable String id) {
-		return this.userService.getUserById(id);
-	}
-	
-	@GetMapping(value = "/email")
+	@GetMapping("/email")
 	public RegisteredUser getUserByEmail(@PathVariable String email) {
 		return this.userService.getUserByEmail(email);
 	}
 	
 	@GetMapping("/add")
 	@ResponseBody
-	public RegisteredUser create(@RequestBody final RegisteredUser registeredUser) {
-		//System.out.print("cont create\n");
-		return this.userService.create(registeredUser);
+	public void create(@RequestBody final RegisteredUser registeredUser) {
+		this.userService.create(registeredUser);
 	}
 	
 }
