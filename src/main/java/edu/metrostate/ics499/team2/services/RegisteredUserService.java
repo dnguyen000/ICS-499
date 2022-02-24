@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import edu.metrostate.ics499.team2.model.RegisteredUser;
-import edu.metrostate.ics499.team2.model.UserCreationDTO;
 import edu.metrostate.ics499.team2.repositories.RegisteredUserRepository;
 
 @Service
@@ -32,17 +31,13 @@ public class RegisteredUserService implements ServiceInterface<RegisteredUser>{
 	public RegisteredUser getUserByEmail(@PathVariable String email) {
 		return this.userRepo.findByEmail(email);
 	}
-	
-//	public RegisteredUser getByUserEmailAndPassword(String email, String password) {
-//		return this.userRepo.findByEmailAndPassword(email, password);
-//	}
 
 	@Transactional(rollbackFor = Exception.class)
 	public String create(@RequestBody final RegisteredUser creatUserDTO) {
-//		if(isValid(creatUserDTO))
+		if(isValid(creatUserDTO))
 			creatUserDTO.setPassword(bCryptPasswordEncoder
 			.encode(creatUserDTO.getPassword())); 
-			return userRepo.save(creatUserDTO).getEmail();
+		return userRepo.save(creatUserDTO).getEmail();
 	}
 
 	@Override

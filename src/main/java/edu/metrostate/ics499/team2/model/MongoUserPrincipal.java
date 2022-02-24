@@ -3,13 +3,14 @@ package edu.metrostate.ics499.team2.model;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+// implement UserDetails to be returned by UserDetailsService
 public class MongoUserPrincipal implements UserDetails {
-    private RegisteredUser user;
+    
+	private RegisteredUser user;
 
     public MongoUserPrincipal(RegisteredUser user) {
         this.user = user;
@@ -31,30 +32,17 @@ public class MongoUserPrincipal implements UserDetails {
 	}
 
 	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
+	public boolean isAccountNonExpired() { return true;	}
 
 	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+	public boolean isAccountNonLocked() { return true; }
 
 	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+	public boolean isCredentialsNonExpired() { return true; }
 
 	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+	public boolean isEnabled() { return true; }
 	
-	public RegisteredUser getRegisteredUser() {
-		return user;
-	}
-    //...
+	public RegisteredUser getRegisteredUser() {	return user; }
+	
 }

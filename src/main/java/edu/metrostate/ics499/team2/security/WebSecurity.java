@@ -23,6 +23,7 @@ import static edu.metrostate.ics499.team2.security.SecurityConstants.*;
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
+	// implement UserDetailsService
     private MongoUserDetailsService userDetailsService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -38,9 +39,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())				// enabled CSRF token for postman
                 .and()
-//                .csrf().disable()
+//                .csrf().disable()																// rather not disable CSRF security
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 // this disables session creation on Spring Security

@@ -29,8 +29,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
-
-//        setFilterProcessesUrl("/api/services/controller/user/login");
+        
+        // spring defines the /login end point automatically, this just defines where it is
         setFilterProcessesUrl("/api/registereduser/login");
         
     }
@@ -53,6 +53,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
     }
 
+    // complete JWT with MongoUserPrincipal
     @Override
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,

@@ -12,32 +12,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.metrostate.ics499.team2.model.RegisteredUser;
-import edu.metrostate.ics499.team2.model.UserCreationDTO;
-import edu.metrostate.ics499.team2.model.UserDTO;
 import edu.metrostate.ics499.team2.services.RegisteredUserService;
-
-import edu.metrostate.ics499.team2.model.Mapper;
 
 @RestController
 @RequestMapping("/api/registereduser")
 public class RegisteredUserController {	
 	
 	private RegisteredUserService userService;
-	private Mapper mapper;
 	
 	@Autowired
 	public RegisteredUserController(RegisteredUserService userService) {
 		this.userService = userService;
 	}
-	
-//    @GetMapping
-//    @ResponseBody
-//    public List<UserDTO> getUsers() {
-//        return userService.getAll()
-//          .stream()
-//          .map(mapper::toDto)
-//          .collect(toList());
-//    }
 	
 	@GetMapping("/all")
 	public List<RegisteredUser> getUsers() {
@@ -49,6 +35,7 @@ public class RegisteredUserController {
 		return this.userService.getUserByEmail(email);
 	}
 	
+	// define a POST end point
 	@PostMapping("/add")
 	@ResponseBody
 	public String create(@RequestBody final RegisteredUser createUser) {

@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EntityScan( basePackages = {"edu.metrostate.ics499.team2.model"} )
 public class ChemistryApplication {
 	
+	// define a BCrypt bean
 	@Bean public BCryptPasswordEncoder bCryptPasswordEncoder() {
 	    return new BCryptPasswordEncoder(); 
 	}

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.metrostate.ics499.team2.model.Element;
-import edu.metrostate.ics499.team2.model.UserCreationDTO;
 import edu.metrostate.ics499.team2.repositories.ElementRepository;
 
 @Service

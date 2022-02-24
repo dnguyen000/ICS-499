@@ -17,6 +17,7 @@ public class MongoUserDetailsService implements UserDetailsService {
     @Autowired
     private RegisteredUserRepository userRepository;
 
+    // define how to return a user from the database
     @Override
     public UserDetails loadUserByUsername(String username) {
         RegisteredUser user = userRepository.findByEmail(username);

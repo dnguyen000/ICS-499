@@ -16,9 +16,8 @@ public class RegisteredUser {
 	private String password;
 	private int highScore;
 	
-	public RegisteredUser() {
-		
-	}
+	// default constructor
+	public RegisteredUser() { }
 	
 	public RegisteredUser(String firstName, String lastName, String email, String password, int highScore) {
 		this.firstName= firstName;
