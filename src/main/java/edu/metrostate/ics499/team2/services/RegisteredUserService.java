@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import edu.metrostate.ics499.team2.model.RegisteredUser;
+import edu.metrostate.ics499.team2.model.UserCreationDTO;
 import edu.metrostate.ics499.team2.repositories.RegisteredUserRepository;
 
 @Service

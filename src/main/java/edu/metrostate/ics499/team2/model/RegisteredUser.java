@@ -1,6 +1,7 @@
 package edu.metrostate.ics499.team2.model;
 
-import java.util.Objects;
+import java.util.List;
+//import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,6 +16,7 @@ public class RegisteredUser {
 	private String lastName;
 	private String password;
 	private int highScore;
+	private List<Role> roles;
 	
 	// default constructor
 	public RegisteredUser() { }
@@ -27,9 +29,9 @@ public class RegisteredUser {
 		this.highScore = highScore;
 	}
 
-	public RegisteredUser(RegisteredUser createUser) {
-		this.password = createUser.getPassword();
-		this.email = createUser.getEmail();
+	public RegisteredUser(UserCreationDTO userDTO) {
+		this.password = userDTO.getPassword();
+		this.email = userDTO.getEmail();
 	}
 
 	public String getFirstName() {
@@ -74,6 +76,14 @@ public class RegisteredUser {
 	
 	public String getName() {
 		return getFirstName() + " " + getLastName();
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 	
 //	@Override
