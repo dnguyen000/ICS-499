@@ -34,11 +34,11 @@ public class RegisteredUserService implements ServiceInterface<RegisteredUser>{
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public String create(@RequestBody final RegisteredUser creatUserDTO) {
-		if(isValid(creatUserDTO))
-			creatUserDTO.setPassword(bCryptPasswordEncoder
-			.encode(creatUserDTO.getPassword())); 
-		return userRepo.save(creatUserDTO).getEmail();
+	public String create(@RequestBody final RegisteredUser user) {
+		if(isValid(user))
+			user.setPassword(bCryptPasswordEncoder
+			.encode(user.getPassword())); 
+		return userRepo.save(user).getEmail();
 	}
 
 	@Override

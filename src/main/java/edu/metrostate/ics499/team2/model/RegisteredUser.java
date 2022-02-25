@@ -2,6 +2,7 @@ package edu.metrostate.ics499.team2.model;
 
 import java.util.List;
 //import java.util.Objects;
+import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,12 +22,13 @@ public class RegisteredUser {
 	// default constructor
 	public RegisteredUser() { }
 	
-	public RegisteredUser(String firstName, String lastName, String email, String password, int highScore) {
+	public RegisteredUser(String firstName, String lastName, String email, String password, int highScore, List<Role> roles) {
 		this.firstName= firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.highScore = highScore;
+		this.roles = Objects.requireNonNull(roles);
 	}
 
 	public RegisteredUser(UserCreationDTO userDTO) {

@@ -18,31 +18,35 @@ import edu.metrostate.ics499.team2.services.RegisteredUserService;
 
 import edu.metrostate.ics499.team2.model.Mapper;
 
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api/registereduser")
 public class RegisteredUserController {	
 	
 	private RegisteredUserService userService;
+//	private RoleService roleService;
 	private Mapper mapper;
 	
 	@Autowired
-	public RegisteredUserController(RegisteredUserService userService) {
+	public RegisteredUserController(RegisteredUserService userService, Mapper mapper) {
 		this.userService = userService;
+		this.mapper = mapper;
 	}
 	
-//    @GetMapping
-//    @ResponseBody
-//    public List<UserDTO> getUsers() {
-//        return userService.getAll()
-//          .stream()
-//          .map(mapper::toDto)
-//          .collect(toList());
-//    }
+    @GetMapping
+    @ResponseBody
+    public List<UserDTO> getUsers() {
+        return userService.getUsers()
+          .stream()
+          .map(mapper::toDto)
+          .collect(Collectors.toList());
+    }
 	
-	@GetMapping("/all")
-	public List<RegisteredUser> getUsers() {
-		return userService.getUsers();
-	}
+//	@GetMapping("/all")
+//	public List<RegisteredUser> getUsers() {
+//		return userService.getUsers();
+//	}
 	
 	@GetMapping("/email")
 	public RegisteredUser getUserByEmail(@PathVariable String email) {
@@ -54,6 +58,13 @@ public class RegisteredUserController {
 	@ResponseBody
 	public String create(@RequestBody final RegisteredUser createUser) {
 		return this.userService.create(createUser);
+//		RegisteredUser user = mapper.toUser(userDTO);
+//        userDTO.getRoles()
+//          .stream()
+//          .map(role -> roleService.getOrCreate(role))
+//          .forEach(user::addRole);
+//        userService.save(user);
+//        return new UserIdDTO(user.getId());
 	}
 	
 }
