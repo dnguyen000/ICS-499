@@ -14,9 +14,9 @@ import edu.metrostate.ics499.team2.model.UserCreationDTO;
 import edu.metrostate.ics499.team2.repositories.RegisteredUserRepository;
 
 @Service
-public class RegisteredUserService implements ServiceInterface<RegisteredUser>{
-	private RegisteredUserRepository userRepo;
+public class RegisteredUserService implements ServiceInterface<RegisteredUser> {
 	
+	private RegisteredUserRepository userRepo;	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
@@ -37,7 +37,7 @@ public class RegisteredUserService implements ServiceInterface<RegisteredUser>{
 	public String create(@RequestBody final RegisteredUser user) {
 		if(isValid(user))
 			user.setPassword(bCryptPasswordEncoder
-			.encode(user.getPassword())); 
+					.encode(user.getPassword())); 
 		return userRepo.save(user).getEmail();
 	}
 

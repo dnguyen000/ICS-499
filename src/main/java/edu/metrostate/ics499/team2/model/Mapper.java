@@ -18,8 +18,7 @@ public class Mapper {
         } catch(Exception e) {
         	System.out.println(e.getMessage());
         	return new UserDTO(name);
-        }
-        
+        }        
     }
 
     public RegisteredUser toUser(UserCreationDTO userDTO) {

@@ -7,11 +7,11 @@ import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.model.UserCreationDTO;
 
 @Repository
-public interface RegisteredUserRepository extends MongoRepository<RegisteredUser, String>{
+public interface RegisteredUserRepository extends MongoRepository<RegisteredUser, String> {
+	
 	RegisteredUser findByEmail(String email);
-
-	RegisteredUser save(UserCreationDTO creatUserDTO);
 	
 	// we will not need to find a user by email and password
 //	RegisteredUser findByEmailAndPassword(String email, String Password);
+	
 }

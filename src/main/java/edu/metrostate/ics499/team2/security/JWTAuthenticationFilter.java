@@ -19,7 +19,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.metrostate.ics499.team2.model.MongoUserPrincipal;
-import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.model.UserCreationDTO;
 
 import static edu.metrostate.ics499.team2.security.SecurityConstants.*;
@@ -65,7 +64,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));
 
-        String body = ((MongoUserPrincipal) auth.getPrincipal()).getUsername() + " " + token;
+        String body = ((MongoUserPrincipal)auth.getPrincipal()).getUsername() + " " + token;
 
         res.getWriter().write(body);
         res.getWriter().flush();
