@@ -4,9 +4,11 @@ import java.util.List;
 
 public class UserCreationDTO {
 	
-    private String email;  
+    private String email;
 	private String password;
 	private List<String> roles;
+	
+	public UserCreationDTO() {};
 	
 	public UserCreationDTO(String email, String password, List<String> roles) {
 		this.email = email;

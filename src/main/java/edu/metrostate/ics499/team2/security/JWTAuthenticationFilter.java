@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.metrostate.ics499.team2.model.MongoUserPrincipal;
 import edu.metrostate.ics499.team2.model.RegisteredUser;
+import edu.metrostate.ics499.team2.model.UserCreationDTO;
 
 import static edu.metrostate.ics499.team2.security.SecurityConstants.*;
 
@@ -37,10 +38,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req,
-                                                HttpServletResponse res) throws AuthenticationException {
+    											HttpServletResponse res) throws AuthenticationException {
         try {
-            RegisteredUser creds = new ObjectMapper()
-                    .readValue(req.getInputStream(), RegisteredUser.class);
+        	UserCreationDTO creds = new ObjectMapper()
+            		.readValue(req.getInputStream(), UserCreationDTO.class);
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
