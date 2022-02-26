@@ -23,7 +23,7 @@ public class RegisteredUserService implements ServiceInterface<RegisteredUser> {
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public String create(final RegisteredUser user) {
+	public String saveUser(final RegisteredUser user) {
 		if(isValid(user))
 			user.setPassword(bCryptPasswordEncoder
 					.encode(user.getPassword()));

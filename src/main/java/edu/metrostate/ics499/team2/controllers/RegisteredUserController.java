@@ -34,7 +34,7 @@ public class RegisteredUserController {
 	@PostMapping("/add")
 	@ResponseBody
 	public String create(@RequestBody final RegisteredUser createUser) {
-		return this.userService.create(createUser);
+		return this.userService.saveUser(createUser);
 //		not sure why a UserCreationDTO might be necessary here yet?
 //		RegisteredUser user = mapper.toUser(userDTO);
 //        userDTO.getRoles()
