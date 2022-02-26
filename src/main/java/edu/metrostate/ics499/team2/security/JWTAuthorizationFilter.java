@@ -2,6 +2,8 @@ package edu.metrostate.ics499.team2.security;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -10,12 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import static edu.metrostate.ics499.team2.security.SecurityConstants.*;
@@ -53,19 +56,26 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .build()
                     .verify(token.replace(TOKEN_PREFIX, ""));
         	
-        	String user = decoded.getSubject();
+        	String user = decoded.getSubject();        	
+        	String[] roles = decoded.getClaim("authorities").asArray(String.class);
         	
-//        	String[] roles = decoded.getClaim("authorities").asArray(String.class);
-//            if (user != null && roles[0].equals("user")) {
-        	
-        	if (user != null) {
+            if (user != null) {
                 // new array list means authorities
-                return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+                return new UsernamePasswordAuthenticationToken(user, null, getAuthorities(roles));
             }
 
             return null;
         }
 
         return null;
+    }
+    
+    private Collection<? extends GrantedAuthority> getAuthorities(String[] roles) {
+	    List<GrantedAuthority> authorities
+	      = new ArrayList<>();
+	    for (String role: roles) {
+	        authorities.add(new SimpleGrantedAuthority(role));
+	    }			    
+	    return authorities;
     }
 }

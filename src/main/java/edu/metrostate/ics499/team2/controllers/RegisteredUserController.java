@@ -10,14 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import edu.metrostate.ics499.team2.model.RegisteredUser;
-import edu.metrostate.ics499.team2.model.UserCreationDTO;
 import edu.metrostate.ics499.team2.model.UserDTO;
 import edu.metrostate.ics499.team2.services.RegisteredUserService;
-
+import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.model.Mapper;
-
 import java.util.stream.Collectors;
 
 @RestController
@@ -34,25 +30,6 @@ public class RegisteredUserController {
 		this.mapper = mapper;
 	}
 	
-    @GetMapping
-    @ResponseBody
-    public List<UserDTO> getUsers() {
-        return userService.getUsers()
-          .stream()
-          .map(mapper::toDto)
-          .collect(Collectors.toList());
-    }
-	
-//	@GetMapping("/all")
-//	public List<RegisteredUser> getUsers() {
-//		return userService.getUsers();
-//	}
-	
-	@GetMapping("/email")
-	public RegisteredUser getUserByEmail(@PathVariable String email) {
-		return this.userService.getUserByEmail(email);
-	}
-	
 	// define a POST end point
 	@PostMapping("/add")
 	@ResponseBody
@@ -66,6 +43,26 @@ public class RegisteredUserController {
 //          .forEach(user::addRole);
 //        userService.save(user);
 //        return new UserIdDTO(user.getId());
+	}
+	
+	// list all using DTO 
+    @GetMapping("/list")
+    @ResponseBody
+    public List<UserDTO> getUsers() {
+        return userService.getUsers()
+          .stream()
+          .map(mapper::toDto)
+          .collect(Collectors.toList());
+    }
+	
+//	@GetMapping("/list")
+//	public List<RegisteredUser> getUsers() {
+//		return userService.getUsers();
+//	}
+	
+	@GetMapping("/email")
+	public RegisteredUser getUserByEmail(@PathVariable String email) {
+		return this.userService.getUserByEmail(email);
 	}
 	
 }

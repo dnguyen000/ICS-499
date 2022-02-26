@@ -35,6 +35,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers("/api/registereduser/list").hasAnyAuthority("admin")			// must be admin user to access
                 .anyRequest().authenticated()
                 .and()
                 .csrf()																		// CSRF settings

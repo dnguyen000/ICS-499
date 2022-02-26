@@ -11,7 +11,4 @@ public interface RegisteredUserRepository extends MongoRepository<RegisteredUser
 	
 	RegisteredUser findByEmail(String email);
 	
-	// we will not need to find a user by email and password
-//	RegisteredUser findByEmailAndPassword(String email, String Password);
-	
 }

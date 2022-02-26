@@ -1,13 +1,9 @@
 package edu.metrostate.ics499.team2.model;
 
 import java.util.List;
-//import java.util.Objects;
-import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import edu.metrostate.ics499.team2.security.Role;
 
 @Document(collection = "users")
 public class RegisteredUser {
@@ -30,7 +26,8 @@ public class RegisteredUser {
 		this.email = email;
 		this.password = password;
 		this.highScore = highScore;
-		this.roles = Objects.requireNonNull(roles);
+//		this.roles = Objects.requireNonNull(roles);
+		this.roles = roles;
 	}
 
 	public RegisteredUser(UserCreationDTO userDTO) {

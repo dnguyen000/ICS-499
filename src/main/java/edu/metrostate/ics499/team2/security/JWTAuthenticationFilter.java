@@ -29,11 +29,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private AuthenticationManager authenticationManager;
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-        
+        this.authenticationManager = authenticationManager;        
         // spring defines the /login end point automatically, this just defines where it is
-        setFilterProcessesUrl("/api/registereduser/login");
-        
+        setFilterProcessesUrl("/api/registereduser/login");        
     }
 
     @Override
@@ -43,25 +41,26 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         	UserCreationDTO creds = new ObjectMapper()
             		.readValue(req.getInputStream(), UserCreationDTO.class);
 
-            return authenticationManager.authenticate(
+            return authenticationManager.authenticate (
                     new UsernamePasswordAuthenticationToken(
                             creds.getEmail(),
                             creds.getPassword(),
-                            new ArrayList<>())
+                            new ArrayList<>()
+                    )
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    // complete JWT with MongoUserPrincipal
     @Override
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
                                             FilterChain chain,
                                             Authentication auth) throws IOException {    	
     	
-    	String[] claims = getClaimsFromUser((MongoUserPrincipal)auth.getPrincipal());    
+    	String[] claims = getClaimsFromUser((MongoUserPrincipal)auth.getPrincipal());
+    	
         String token = JWT.create()
                 .withSubject(((MongoUserPrincipal) auth.getPrincipal()).getUsername())
                 .withArrayClaim(AUTHORITIES, claims)
