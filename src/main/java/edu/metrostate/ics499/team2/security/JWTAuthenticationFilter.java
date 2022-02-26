@@ -59,23 +59,21 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication auth) throws IOException {    	
     	
-    	String[] claims = getClaimsFromUser((MongoUserPrincipal)auth.getPrincipal());
-    	
+    	String[] claims = getClaimsFromUser((MongoUserPrincipal)auth.getPrincipal());    	
         String token = JWT.create()
                 .withSubject(((MongoUserPrincipal) auth.getPrincipal()).getUsername())
                 .withArrayClaim(AUTHORITIES, claims)
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .sign(Algorithm.HMAC512(SECRET.getBytes()));
-
+                .sign(Algorithm.HMAC512(SECRET.getBytes())
+		);
         String body = ((MongoUserPrincipal)auth.getPrincipal()).getUsername() + " " + token;
-
         res.getWriter().write(body);
         res.getWriter().flush();
     }
     
     private String[] getClaimsFromUser(MongoUserPrincipal user) {
         List<String> authorities = new ArrayList<>();
-        for (GrantedAuthority grantedAuthority : user.getAuthorities()){
+        for (GrantedAuthority grantedAuthority : user.getAuthorities()) {
             authorities.add(grantedAuthority.getAuthority());
         }
         return authorities.toArray(new String[0]);

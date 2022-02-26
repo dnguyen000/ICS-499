@@ -19,20 +19,18 @@ public class MongoUserPrincipal implements UserDetails {
 
     public MongoUserPrincipal(RegisteredUser user) {
         this.user = user;
-    }
-    
+    }    
 
     // https://www.baeldung.com/spring-security-granted-authority-vs-role
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-	    List<GrantedAuthority> authorities
-	      = new ArrayList<>();
+	    List<GrantedAuthority> authorities = new ArrayList<>();
 	    List<String> roles = this.user
 				.getRoles()
 				.stream()
 				.map(Role::getName)
 				.collect(Collectors.toList());
-	    for (String role: roles) {
+	    for (String role : roles) {
 	        authorities.add(new SimpleGrantedAuthority(role));
 	    }			    
 	    return authorities;

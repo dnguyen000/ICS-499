@@ -9,4 +9,5 @@ public class SecurityConstants {
 	  // an allowed end point to create users
 	  public static final String SIGN_UP_URL = "/api/registereduser/add";
 	  public static final String AUTHORITIES = "authorities";
+	  public static final String FORBIDDEN_MESSAGE = "You need to log in to access this page";
 }

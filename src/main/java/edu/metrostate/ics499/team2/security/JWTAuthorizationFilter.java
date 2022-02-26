@@ -71,8 +71,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     }
     
     private Collection<? extends GrantedAuthority> getAuthorities(String[] roles) {
-	    List<GrantedAuthority> authorities
-	      = new ArrayList<>();
+	    List<GrantedAuthority> authorities = new ArrayList<>();
 	    for (String role: roles) {
 	        authorities.add(new SimpleGrantedAuthority(role));
 	    }			    

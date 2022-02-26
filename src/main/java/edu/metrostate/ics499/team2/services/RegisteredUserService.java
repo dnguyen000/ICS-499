@@ -22,16 +22,16 @@ public class RegisteredUserService implements ServiceInterface<RegisteredUser> {
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
-	public RegisteredUser getUserByEmail(String email) {
-		return this.userRepo.findByEmail(email);
-	}
-    
 	@Transactional(rollbackFor = Exception.class)
 	public String create(final RegisteredUser user) {
 		if(isValid(user))
 			user.setPassword(bCryptPasswordEncoder
 					.encode(user.getPassword()));
 		return userRepo.save(user).getEmail();
+	}
+	
+	public RegisteredUser getUserByEmail(String email) {
+		return this.userRepo.findByEmail(email);
 	}
 
 	public List<RegisteredUser> getUsers() {
