@@ -15,6 +15,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 import static edu.metrostate.ics499.team2.security.SecurityConstants.*;
 
@@ -47,12 +49,16 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
         if (token != null) {
             // parse the token.
-            String user = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
+        	DecodedJWT decoded = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
                     .build()
-                    .verify(token.replace(TOKEN_PREFIX, ""))
-                    .getSubject();
-
-            if (user != null) {
+                    .verify(token.replace(TOKEN_PREFIX, ""));
+        	
+        	String user = decoded.getSubject();
+        	
+//        	String[] roles = decoded.getClaim("authorities").asArray(String.class);
+//            if (user != null && roles[0].equals("user")) {
+        	
+        	if (user != null) {
                 // new array list means authorities
                 return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
             }

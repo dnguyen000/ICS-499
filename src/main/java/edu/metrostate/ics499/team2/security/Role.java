@@ -1,4 +1,4 @@
-package edu.metrostate.ics499.team2.model;
+package edu.metrostate.ics499.team2.security;
 
 public class Role {
 

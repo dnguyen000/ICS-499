@@ -7,6 +7,8 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import edu.metrostate.ics499.team2.security.Role;
+
 @Document(collection = "users")
 public class RegisteredUser {
 	

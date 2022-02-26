@@ -3,6 +3,7 @@ package edu.metrostate.ics499.team2.security;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +13,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import edu.metrostate.ics499.team2.model.MongoUserPrincipal;
 import edu.metrostate.ics499.team2.model.UserCreationDTO;
 
 import static edu.metrostate.ics499.team2.security.SecurityConstants.*;
@@ -58,9 +59,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
                                             FilterChain chain,
-                                            Authentication auth) throws IOException {
+                                            Authentication auth) throws IOException {    	
+    	
+    	String[] claims = getClaimsFromUser((MongoUserPrincipal)auth.getPrincipal());    
         String token = JWT.create()
                 .withSubject(((MongoUserPrincipal) auth.getPrincipal()).getUsername())
+                .withArrayClaim(AUTHORITIES, claims)
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));
 
@@ -69,4 +73,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         res.getWriter().write(body);
         res.getWriter().flush();
     }
+    
+    private String[] getClaimsFromUser(MongoUserPrincipal user) {
+        List<String> authorities = new ArrayList<>();
+        for (GrantedAuthority grantedAuthority : user.getAuthorities()){
+            authorities.add(grantedAuthority.getAuthority());
+        }
+        return authorities.toArray(new String[0]);
+    }
+    
 }

@@ -8,4 +8,5 @@ public class SecurityConstants {
 	  public static final String HEADER_STRING = "Authorization";
 	  // an allowed end point to create users
 	  public static final String SIGN_UP_URL = "/api/registereduser/add";
-	}
+	  public static final String AUTHORITIES = "authorities";
+}

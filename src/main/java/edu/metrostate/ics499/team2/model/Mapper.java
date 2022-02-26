@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
+import edu.metrostate.ics499.team2.security.Role;
+
 @Component
 public class Mapper {
+	
     public UserDTO toDto(RegisteredUser user) {
-        String name = user.getName();
+        String name = user.getName();        
         try {
 	        List<String> roles = user
 	          .getRoles()

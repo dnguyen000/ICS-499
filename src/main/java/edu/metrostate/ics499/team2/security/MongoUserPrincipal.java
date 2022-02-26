@@ -1,11 +1,16 @@
-package edu.metrostate.ics499.team2.model;
+package edu.metrostate.ics499.team2.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import edu.metrostate.ics499.team2.model.RegisteredUser;
 
 // implement UserDetails to be returned by UserDetailsService
 public class MongoUserPrincipal implements UserDetails {
@@ -17,8 +22,24 @@ public class MongoUserPrincipal implements UserDetails {
     }
 
 	@Override
+//	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		return Collections.<GrantedAuthority>singletonList(new SimpleGrantedAuthority("user"));
+//		
+//	}
+	
+//	https://www.baeldung.com/spring-security-granted-authority-vs-role
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		 return Collections.<GrantedAuthority>singletonList(new SimpleGrantedAuthority("user"));
+	    List<GrantedAuthority> authorities
+	      = new ArrayList<>();
+	    List<String> roles = this.user
+				.getRoles()
+				.stream()
+				.map(Role::getName)
+				.collect(Collectors.toList());
+	    for (String role: roles) {
+	        authorities.add(new SimpleGrantedAuthority(role));
+	    }			    
+	    return authorities;
 	}
 
 	@Override
