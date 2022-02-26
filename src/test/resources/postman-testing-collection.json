@@ -1,0 +1,147 @@
+{
+  "info": {
+    "_postman_id": "bfdc83e9-4fc2-4ce6-b61e-6ecc2976e351",
+    "name": "jwt-tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "return xsrf-token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.environment.set(\"xsrf-token\", decodeURIComponent(pm.cookies.get(\"XSRF-TOKEN\")));"
+            ]
+          }
+        }
+      ],
+      "id": "8f4ff9c6-4c48-46c0-b523-2aebf4280c60",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:8080/api/registereduser/add",
+        "description": "get xsf token"
+      },
+      "response": []
+    },
+    {
+      "name": "add user",
+      "id": "aa49cc82-d13f-4130-9e1f-5ddbdb8193da",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-XSRF-TOKEN",
+            "value": "{{xsrf-token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"firstName\": \"New\",\r\n    \"lastName\": \"User\",\r\n    \"email\": \"any@mail.com\",\r\n    \"password\": \"P@ssWorD!\",\r\n    \"roles\": [\"admin\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://localhost:8080/api/registereduser/add",
+        "description": "add user"
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "id": "d9ca0887-0436-481b-8ca7-15684bd19445",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-XSRF-TOKEN",
+            "value": "{{xsrf-token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n \"email\":\"any@mail.com\",\r\n \"password\":\"P@ssWorD!\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://localhost:8080/api/registereduser/login",
+        "description": "login user"
+      },
+      "response": []
+    },
+    {
+      "name": "authenticated request",
+      "id": "06df6232-9def-4aa4-a5a1-61fbb5d8a450",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnlAbWFpbC5jb20iLCJleHAiOjE2NDU4NjIwNTksImF1dGhvcml0aWVzIjpbImFkbWluIl19.agz5Ntp4S2AQwcXNO8WCr4zjn3sNerd9Dvtmp75kjm3zLhiiMYSG_N0Eh8cnuha-l7cLtIo1YqLQQQ4LtV-euw",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8080/api/registereduser/list"
+      },
+      "response": []
+    },
+    {
+      "name": "logout",
+      "id": "561a3397-ab11-4920-af9b-73a76ae52112",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibXhqdW1wZXJjQGhvdG1haWwuY29tIiwiZXhwIjoxNjQ1ODU3ODI2LCJhdXRob3JpdGllcyI6WyJ1c2VyIl19.YgOfZyCcgp8ZJxO1dXPQQPZ7qgnkd2ZYkysajOtaQnKumGvASjwa0v_iNWQfo46kknEKwNrScWGIfy45AyMFhQ",
+            "type": "text"
+          },
+          {
+            "key": "X-XSRF-TOKEN",
+            "value": "{{xsrf-token}}",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8080/api/registereduser/logout"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "a54126c8-8598-483f-9afe-034e599f159e",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "3f5c62b6-b767-4a8e-8d06-e36598854191",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
