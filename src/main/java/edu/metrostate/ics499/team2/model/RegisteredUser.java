@@ -1,5 +1,6 @@
 package edu.metrostate.ics499.team2.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -15,7 +16,7 @@ public class RegisteredUser {
 	private String lastName;
 	private String password;
 	private int highScore;
-	private List<Role> roles;
+	private List<Role> roles = new ArrayList<>();
 	
 	// default constructor
 	public RegisteredUser() { }

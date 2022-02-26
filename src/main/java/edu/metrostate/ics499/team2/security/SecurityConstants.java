@@ -7,7 +7,7 @@ public class SecurityConstants {
 	  public static final String TOKEN_PREFIX = "Bearer ";
 	  public static final String HEADER_STRING = "Authorization";
 	  // an allowed end point to create users
-	  public static final String SIGN_UP_URL = "/api/registereduser/add";
+	  public static final String SIGN_UP_URL = "/api/user/save";
 	  public static final String AUTHORITIES = "authorities";
 	  public static final String FORBIDDEN_MESSAGE = "You need to log in to access this page";
 }
