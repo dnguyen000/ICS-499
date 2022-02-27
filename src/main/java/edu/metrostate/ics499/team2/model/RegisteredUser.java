@@ -1,11 +1,12 @@
 package edu.metrostate.ics499.team2.model;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "registered user")
+@Document(collection = "users")
 public class RegisteredUser {
 	
 	@Id
@@ -15,13 +16,24 @@ public class RegisteredUser {
 	private String lastName;
 	private String password;
 	private int highScore;
+	private List<Role> roles = new ArrayList<>();
 	
-	public RegisteredUser(String firstName, String lastName, String email, String password, int highScore) {
+	// default constructor
+	public RegisteredUser() { }
+	
+	public RegisteredUser(String firstName, String lastName, String email, String password, int highScore, List<Role> roles) {
 		this.firstName= firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.highScore = highScore;
+//		this.roles = Objects.requireNonNull(roles);
+		this.roles = roles;
+	}
+
+	public RegisteredUser(UserLoginDTO userDTO) {
+		this.password = userDTO.getPassword();
+		this.email = userDTO.getEmail();
 	}
 
 	public String getFirstName() {
@@ -64,15 +76,27 @@ public class RegisteredUser {
 		this.highScore = highScore;
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RegisteredUser other = (RegisteredUser) obj;
-		return Objects.equals(email, other.email);
+	public String getName() {
+		return getFirstName() + " " + getLastName();
 	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		RegisteredUser other = (RegisteredUser) obj;
+//		return Objects.equals(username, other.username);
+//	}
 }
