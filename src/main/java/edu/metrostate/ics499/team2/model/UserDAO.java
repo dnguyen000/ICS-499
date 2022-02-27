@@ -2,17 +2,17 @@ package edu.metrostate.ics499.team2.model;
 
 import java.util.List;
 
-public class UserDTO {
+public class UserDAO {
 	
     private String username;
     private List<String> roles;
 	
-	public UserDTO(String username, List<String> roles) {
+	public UserDAO(String username, List<String> roles) {
 		this.username = username;
 		this.roles = roles;
 	}
 	
-	public UserDTO(String username) {
+	public UserDAO(String username) {
 		this.username = username;
 	}
 	

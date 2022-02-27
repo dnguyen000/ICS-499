@@ -2,15 +2,15 @@ package edu.metrostate.ics499.team2.model;
 
 import java.util.List;
 
-public class UserCreationDTO {
+public class UserLoginDTO {
 	
     private String email;
 	private String password;
 	private List<String> roles;
 	
-	public UserCreationDTO() {};
+	public UserLoginDTO() {};
 	
-	public UserCreationDTO(String email, String password, List<String> roles) {
+	public UserLoginDTO(String email, String password, List<String> roles) {
 		this.email = email;
 		this.password = password;
 		this.roles = roles;

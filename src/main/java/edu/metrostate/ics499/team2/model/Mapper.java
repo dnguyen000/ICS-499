@@ -4,25 +4,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
-@Component
+import lombok.extern.slf4j.Slf4j;
+
+@Component @Slf4j
 public class Mapper {
 	
-    public UserDTO toDto(RegisteredUser user) {
-        String name = user.getName();        
+    public UserDAO toDao(RegisteredUser user) {
+    	log.info("converting user to DAO");
         try {
 	        List<String> roles = user
 	          .getRoles()
 	          .stream()
 	          .map(Role::getName)
 	          .collect(Collectors.toList());
-	        return new UserDTO(name, roles);
+	        return new UserDAO(user.getEmail(), roles);
         } catch(Exception e) {
-        	System.out.println(e.getMessage());
-        	return new UserDTO(name);
+        	log.warn("error converting user");
+        	return null;
         }        
     }
 
-    public RegisteredUser toUser(UserCreationDTO userDTO) {
-        return new RegisteredUser(userDTO);
+    public RegisteredUser toUser(UserLoginDTO userDto) {
+        return new RegisteredUser(userDto);
     }
 }

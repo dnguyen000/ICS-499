@@ -31,7 +31,7 @@ public class RegisteredUser {
 		this.roles = roles;
 	}
 
-	public RegisteredUser(UserCreationDTO userDTO) {
+	public RegisteredUser(UserLoginDTO userDTO) {
 		this.password = userDTO.getPassword();
 		this.email = userDTO.getEmail();
 	}

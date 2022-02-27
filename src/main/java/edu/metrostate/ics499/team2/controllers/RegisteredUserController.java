@@ -2,6 +2,7 @@ package edu.metrostate.ics499.team2.controllers;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,17 +16,17 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import edu.metrostate.ics499.team2.services.RegisteredUserService;
 import lombok.Data;
+import edu.metrostate.ics499.team2.model.Mapper;
 import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.model.Role;
-import edu.metrostate.ics499.team2.model.Mapper;
+import edu.metrostate.ics499.team2.model.UserDAO;
 
 @RestController
 @RequestMapping("/api")
 public class RegisteredUserController {	
 	
-	private RegisteredUserService userService;
-//	private RoleService roleService;
-	private Mapper mapper;
+	private final RegisteredUserService userService;
+	private final Mapper mapper;
 	
 	@Autowired
 	public RegisteredUserController(RegisteredUserService userService, Mapper mapper) {
@@ -55,10 +56,15 @@ public class RegisteredUserController {
 		return ResponseEntity.ok().build();
 	}
     
-    @GetMapping("/users")
-    public ResponseEntity<List<RegisteredUser>>getUsers() {
-    	return ResponseEntity.ok().body(userService.getUsers());
-    }
+	@GetMapping("/users")
+	public ResponseEntity<List<UserDAO>> getUsers()
+	{
+	    return ResponseEntity.ok().body(userService
+	                                    .getUsers()
+	                                    .stream()
+	                                    .map(mapper::toDao)
+	                                    .collect(Collectors.toList()));
+	}
 	
 	@GetMapping("/email")
 	public RegisteredUser getUserByEmail(@PathVariable String email) {

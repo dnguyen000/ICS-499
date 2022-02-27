@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.metrostate.ics499.team2.model.UserCreationDTO;
+import edu.metrostate.ics499.team2.model.UserLoginDTO;
 
 import static edu.metrostate.ics499.team2.security.SecurityConstants.*;
 
@@ -33,7 +33,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
         try {
-        	UserCreationDTO creds = new ObjectMapper().readValue(req.getInputStream(), UserCreationDTO.class);
+        	UserLoginDTO creds = new ObjectMapper().readValue(req.getInputStream(), UserLoginDTO.class);
             return authenticationManager.authenticate (
                     new UsernamePasswordAuthenticationToken(
                             creds.getEmail(),
@@ -56,8 +56,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes())
 		);
-        String body = user.getUsername() + " " + access_token;
-        
+        String body = user.getUsername() + " " + access_token;        
         res.setHeader("access_token", access_token);
         res.getWriter().write(body);
         res.getWriter().flush();
