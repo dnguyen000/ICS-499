@@ -7,26 +7,22 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import edu.metrostate.ics499.team2.services.MongoUserDetailsService;
-
-//import edu.metrostate.ics499.team2.services.MongoUserDetailsService;
-
 import static edu.metrostate.ics499.team2.security.SecurityConstants.*;
 
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
+	
+    private final UserDetailsService userDetailsService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	// implement UserDetailsService
-    private MongoUserDetailsService userDetailsService;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    public WebSecurity(MongoUserDetailsService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public WebSecurity(UserDetailsService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsService = userService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
@@ -35,7 +31,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-                .antMatchers("/api/users").hasAnyAuthority("admin")							// must be admin user to access
+                .antMatchers("/api/users").hasAnyAuthority("admin")							// must be admin to access
                 .antMatchers("/api/role/save").hasAnyAuthority("admin")
                 .antMatchers("/api/role/addtouser").hasAnyAuthority("admin")
                 .anyRequest().authenticated()
@@ -49,7 +45,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 // this disables session creation on Spring Security
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
-
+    
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);

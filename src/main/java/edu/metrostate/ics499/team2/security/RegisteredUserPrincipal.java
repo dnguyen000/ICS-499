@@ -13,11 +13,11 @@ import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.model.Role;
 
 // implement UserDetails to be returned by UserDetailsService
-public class MongoUserPrincipal implements UserDetails {
+public class RegisteredUserPrincipal implements UserDetails {
     
 	private RegisteredUser user;
 
-    public MongoUserPrincipal(RegisteredUser user) {
+    public RegisteredUserPrincipal(RegisteredUser user) {
         this.user = user;
     }    
 
