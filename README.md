@@ -1,18 +1,11 @@
-#TEAM 2 Project
+# Interactive Chemistry Web Application
 
-##What we are building
-We are creating a learning tool for students studying chemistry. This tool will allow a sandbox environment for students to learn/validate chemical equations.
+<img src="/src/main/resources/static/images/chemistry.png" width="auto" height="95" />
 
-###Features
-- Full periodic table containing:
- - Element name
- - Atomic Number
-- Full UI allowing user interactivity of each element
- - Users can add elements together to form new compounds
- - Users can validate chemical compounds
-
-###Tech Stack
-The following were leveraged to build this project:
-- Spring Boot 4
-- Angular
-- MongoDB
+<a href="https://www.flaticon.com/free-icons/chemistry" title="chemistry icons">Chemistry icons created by Freepik - Flaticon</a>
+### Features
+- Interactive periodic table of elements.
+- Elemental experimentation.
+- Real time chemical reaction.
+- Create flash cards.
+- Test your knowledge with a quiz.
