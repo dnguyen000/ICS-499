@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -187,7 +188,7 @@ public class ElementService implements ServiceInterface<Element> {
 	@Override
 	public boolean isValid(Element obj) {
 		return showAllElements().stream()
-				.filter(element -> element.equals(obj)).toList().size() > 0 ? true : false;
+				.filter(element -> element.equals(obj)).collect(Collectors.toList()).size() > 0 ? true : false;
 	}
 
 }

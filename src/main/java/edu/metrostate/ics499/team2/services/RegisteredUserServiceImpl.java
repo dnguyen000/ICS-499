@@ -1,6 +1,7 @@
 package edu.metrostate.ics499.team2.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -71,7 +72,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, Service
 	@Override
 	public boolean isValid(RegisteredUser obj) {
 		return getUsers().stream()
-				.filter(user -> user.equals(obj)).toList().size() > 0 ? false : true;
+				.filter(user -> user.equals(obj)).collect(Collectors.toList()).size() > 0 ? false : true;
 	}
 
 	@Override
