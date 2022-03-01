@@ -15,7 +15,7 @@ import edu.metrostate.ics499.team2.model.Role;
 // implement UserDetails to be returned by UserDetailsService
 public class RegisteredUserPrincipal implements UserDetails {
     
-	private RegisteredUser user;
+	private RegisteredUser user;	// passing our user to spring security
 
     public RegisteredUserPrincipal(RegisteredUser user) {
         this.user = user;
@@ -24,6 +24,7 @@ public class RegisteredUserPrincipal implements UserDetails {
     // https://www.baeldung.com/spring-security-granted-authority-vs-role
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		return stream(this.user.getAuthorities()).map(SimpleGrantedAuthority::new).collect(toList());
 	    List<GrantedAuthority> authorities = new ArrayList<>();
 	    List<String> roles = this.user
 				.getRoles()
@@ -32,7 +33,7 @@ public class RegisteredUserPrincipal implements UserDetails {
 				.collect(Collectors.toList());
 	    for (String role : roles) {
 	        authorities.add(new SimpleGrantedAuthority(role));
-	    }			    
+	    }
 	    return authorities;
 	}
 
@@ -50,14 +51,12 @@ public class RegisteredUserPrincipal implements UserDetails {
 	public boolean isAccountNonExpired() { return true;	}
 
 	@Override
-	public boolean isAccountNonLocked() { return true; }
+	public boolean isAccountNonLocked() { return this.user.isNotLocked(); }
 
 	@Override
 	public boolean isCredentialsNonExpired() { return true; }
 
 	@Override
-	public boolean isEnabled() { return true; }
-	
-	public RegisteredUser getRegisteredUser() {	return user; }
+	public boolean isEnabled() { return this.user.isActive(); }
 	
 }
