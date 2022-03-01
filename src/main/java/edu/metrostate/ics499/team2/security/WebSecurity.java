@@ -1,5 +1,7 @@
 package edu.metrostate.ics499.team2.security;
 
+import edu.metrostate.ics499.team2.security.http.JwtAccessDeniedHandler;
+import edu.metrostate.ics499.team2.security.http.JwtAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,20 +23,27 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    public WebSecurity(UserDetailsService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public WebSecurity(UserDetailsService userService, BCryptPasswordEncoder bCryptPasswordEncoder, JwtAccessDeniedHandler jwtAccessDeniedHandler, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
         this.userDetailsService = userService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.POST, PUBLIC_URLS).permitAll()
                 .antMatchers("/api/users").hasAnyAuthority("admin")							// must be admin to access
                 .antMatchers("/api/role/save").hasAnyAuthority("admin")
                 .antMatchers("/api/role/addtouser").hasAnyAuthority("admin")
                 .anyRequest().authenticated()
+                .and()
+                .exceptionHandling().accessDeniedHandler(jwtAccessDeniedHandler)
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .csrf()																		// CSRF settings
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())			// return XSRF-TOKEN cookie for postman
