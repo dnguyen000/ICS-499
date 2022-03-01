@@ -1,8 +1,11 @@
-package edu.metrostate.ics499.team2.services;
+package edu.metrostate.ics499.team2.services.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import edu.metrostate.ics499.team2.services.RegisteredUserService;
+import edu.metrostate.ics499.team2.services.ServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -80,8 +83,11 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, Service
         RegisteredUser user = userRepo.findByEmail(username);
         if (user == null) {
         	log.error("user not found in the database");
-            throw new UsernameNotFoundException("user not found in the database");
+            throw new UsernameNotFoundException("user not found by username: " + username);
         } else {
+			user.setLastLoginDisplay(user.getLastLoginDate());
+			user.setLastLoginDate(new Date());
+			userRepo.save(user);
         	log.info("user: {} found in the database", username);
         }
         return new RegisteredUserPrincipal(user);
