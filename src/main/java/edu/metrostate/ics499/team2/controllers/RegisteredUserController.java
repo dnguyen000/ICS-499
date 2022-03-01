@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import edu.metrostate.ics499.team2.exceptions.domain.EmailExistException;
+import edu.metrostate.ics499.team2.exceptions.domain.ExceptionHandling;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import edu.metrostate.ics499.team2.services.RegisteredUserService;
-import lombok.Data;
 import edu.metrostate.ics499.team2.model.Mapper;
 import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.model.Role;
 import edu.metrostate.ics499.team2.model.UserDAO;
+import edu.metrostate.ics499.team2.services.RegisteredUserService;
+import lombok.Data;
 
 @RestController
-@RequestMapping("/api")
-public class RegisteredUserController {	
+@RequestMapping(path = {"/", "/user"})
+public class RegisteredUserController extends ExceptionHandling {
 	
 	private final RegisteredUserService userService;
 	private final Mapper mapper;
@@ -34,7 +36,7 @@ public class RegisteredUserController {
 		this.mapper = mapper;
 	}
 	
-	@PostMapping("/user/save")
+	@PostMapping("/save")
 	public ResponseEntity<RegisteredUser> saveUser(@RequestBody RegisteredUser user) {
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
 		RegisteredUser savedUser = userService.saveUser(user);
@@ -69,6 +71,12 @@ public class RegisteredUserController {
 	@GetMapping("/email")
 	public RegisteredUser getUserByEmail(@PathVariable String email) {
 		return this.userService.getUser(email);
+	}
+
+	@GetMapping("/home")
+	public String showUser() throws EmailExistException {
+		// return "application works";
+		throw new EmailExistException("This email address is already taken.");
 	}
 }
 
