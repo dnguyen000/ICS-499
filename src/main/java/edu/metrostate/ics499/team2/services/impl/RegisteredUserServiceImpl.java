@@ -2,10 +2,12 @@ package edu.metrostate.ics499.team2.services.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import edu.metrostate.ics499.team2.exceptions.domain.EmailExistException;
 import edu.metrostate.ics499.team2.exceptions.domain.UserNotFoundException;
 import edu.metrostate.ics499.team2.exceptions.domain.UsernameExistException;
+import edu.metrostate.ics499.team2.services.LoginAttemptService;
 import edu.metrostate.ics499.team2.services.RegisteredUserService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -29,11 +31,13 @@ import static edu.metrostate.ics499.team2.security.constants.UserImplementationC
 public class RegisteredUserServiceImpl implements RegisteredUserService, UserDetailsService {
 	private final RegisteredUserRepository userRepo;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+	private final LoginAttemptService loginAttemptService;
 	
 	@Autowired
-	public RegisteredUserServiceImpl(RegisteredUserRepository userRepo, BCryptPasswordEncoder bCryptPasswordEncoder) {
+	public RegisteredUserServiceImpl(RegisteredUserRepository userRepo, BCryptPasswordEncoder bCryptPasswordEncoder, LoginAttemptService loginAttemptService) {
 		this.userRepo = userRepo;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.loginAttemptService = loginAttemptService;
 	}
 
 	@Override
@@ -98,33 +102,6 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		return userRepo.findAll();
 	}
 
-//	@Override
-//	public void addRoleToUser(String email, String roleName) {
-//		log.info("adding role: {}, to user: {}", roleName, email);
-//		RegisteredUser user = userRepo.findByEmail(email);
-//		Role role = roleRepo.findByName(roleName);
-//		user.getRole().add(role);
-//		userRepo.save(user);
-//	}
-
-//	@Override
-//	public Role saveRole(Role role) {
-//		log.info("saving new role: {}, to the database", role.getName());
-//		return roleRepo.save(role);
-//	}
-
-//	@Override
-//	public RegisteredUser getUser(String email) {
-//		log.info("fetching user {}", email);
-//		return this.userRepo.findByEmail(email);
-//	}
-	
-//	@Override
-//	public boolean isValid(RegisteredUser obj) {
-//		return getUsers().stream()
-//				.filter(user -> user.equals(obj)).collect(Collectors.toList()).size() > 0 ? false : true;
-//	}
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         RegisteredUser user = userRepo.findRegisteredUserByUsername(username);
@@ -132,12 +109,25 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
         	log.error(NO_USER_FOUND_BY_USERNAME + username);
             throw new UsernameNotFoundException(NO_USER_FOUND_BY_USERNAME + username);
         } else {
+			validateLoginAttempt(user);
 			user.setLastLoginDisplay(user.getLastLoginDate());
 			user.setLastLoginDate(new Date());
 			userRepo.save(user);
         	log.info("user: {} found in the database", username);
         }
         return new RegisteredUserPrincipal(user);
+	}
+
+	private void validateLoginAttempt(RegisteredUser user) {
+		if(user.isNotLocked()) {
+			if(loginAttemptService.hasExceededMaxAttempts(user.getUsername())) {
+				user.setNotLocked(false);
+			} else {
+				user.setNotLocked(true);
+			}
+		} else {
+			loginAttemptService.evictUserFromLoginAttemptCache(user.getUsername());
+		}
 	}
 
 	private String encodePassword(String password) {
