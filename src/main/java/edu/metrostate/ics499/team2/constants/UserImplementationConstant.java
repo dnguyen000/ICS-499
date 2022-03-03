@@ -1,4 +1,4 @@
-package edu.metrostate.ics499.team2.security.constants;
+package edu.metrostate.ics499.team2.constants;
 
 public class UserImplementationConstant {
     public static final String EMAIL_ALREADY_EXISTS = "Email already exists";

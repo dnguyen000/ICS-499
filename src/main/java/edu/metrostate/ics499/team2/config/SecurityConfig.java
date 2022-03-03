@@ -1,6 +1,7 @@
-package edu.metrostate.ics499.team2.security;
+package edu.metrostate.ics499.team2.config;
 
-import edu.metrostate.ics499.team2.security.constants.SecurityConstants;
+import edu.metrostate.ics499.team2.constants.SecurityConstants;
+import edu.metrostate.ics499.team2.security.JwtAuthorizationFilter;
 import edu.metrostate.ics499.team2.security.http.JwtAccessDeniedHandler;
 import edu.metrostate.ics499.team2.security.http.JwtAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;

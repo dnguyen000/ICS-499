@@ -20,9 +20,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
-import static edu.metrostate.ics499.team2.security.constants.SecurityConstants.AUTHORITIES;
-import static edu.metrostate.ics499.team2.security.constants.SecurityConstants.EXPIRATION_TIME;
-import static edu.metrostate.ics499.team2.security.constants.SecurityConstants.TOKEN_CANNOT_BE_VERIFIED;
+import static edu.metrostate.ics499.team2.constants.SecurityConstants.AUTHORITIES;
+import static edu.metrostate.ics499.team2.constants.SecurityConstants.EXPIRATION_TIME;
+import static edu.metrostate.ics499.team2.constants.SecurityConstants.TOKEN_CANNOT_BE_VERIFIED;
 
 import static java.util.Arrays.stream;
 
