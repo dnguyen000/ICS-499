@@ -133,6 +133,8 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		user.setProfileImgUrl(getTemporaryProfileImageUrl(username));
 		userRepo.save(user);
 		saveProfileImg(user, profileImg);
+		log.info("New user password: " + password);
+//		emailService.sendNewPasswordEmail(firstName, password, email);
 		return user;
 	}
 
@@ -167,6 +169,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 			String password = generatePassword();
 			user.setPassword(encodePassword(password));
 			userRepo.save(user);
+			log.info("New user password: " + password);
 			emailService.sendNewPasswordEmail(user.getFirstName(), password, user.getEmail());
 		} catch (EmailNotFoundException e) {
 			e.printStackTrace();
@@ -201,6 +204,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
         return new RegisteredUserPrincipal(user);
 	}
 
+	// update 500 instead of user not found ?
 	private void validateLoginAttempt(RegisteredUser user) {
 		if(user.isNotLocked()) {
 			if(loginAttemptService.hasExceededMaxAttempts(user.getUsername())) {
