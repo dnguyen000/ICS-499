@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.metrostate.ics499.team2.security.constants.SecurityConstants;
+import edu.metrostate.ics499.team2.constants.SecurityConstants;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.stereotype.Component;

@@ -2,11 +2,11 @@ package edu.metrostate.ics499.team2.services.impl;
 
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import edu.metrostate.ics499.team2.exceptions.domain.EmailExistException;
 import edu.metrostate.ics499.team2.exceptions.domain.UserNotFoundException;
 import edu.metrostate.ics499.team2.exceptions.domain.UsernameExistException;
+import edu.metrostate.ics499.team2.services.EmailService;
 import edu.metrostate.ics499.team2.services.LoginAttemptService;
 import edu.metrostate.ics499.team2.services.RegisteredUserService;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -24,20 +24,23 @@ import edu.metrostate.ics499.team2.security.RegisteredUserPrincipal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import static edu.metrostate.ics499.team2.security.constants.Role.ROLE_USER;
-import static edu.metrostate.ics499.team2.security.constants.UserImplementationConstant.*;
+import static edu.metrostate.ics499.team2.constants.Role.ROLE_USER;
+import static edu.metrostate.ics499.team2.constants.UserImplementationConstant.*;
 
 @Service @Slf4j
 public class RegisteredUserServiceImpl implements RegisteredUserService, UserDetailsService {
 	private final RegisteredUserRepository userRepo;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	private final LoginAttemptService loginAttemptService;
+	private final EmailService emailService;
 	
 	@Autowired
-	public RegisteredUserServiceImpl(RegisteredUserRepository userRepo, BCryptPasswordEncoder bCryptPasswordEncoder, LoginAttemptService loginAttemptService) {
+	public RegisteredUserServiceImpl(RegisteredUserRepository userRepo, BCryptPasswordEncoder bCryptPasswordEncoder,
+									 LoginAttemptService loginAttemptService, EmailService emailService) {
 		this.userRepo = userRepo;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 		this.loginAttemptService = loginAttemptService;
+		this.emailService = emailService;
 	}
 
 	@Override
@@ -60,6 +63,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		user.setProfileImgUrl(getTemporaryProfileImageUrl());
 		userRepo.save(user);
 		log.info("New user password: " + password);
+		emailService.sendNewPasswordEmail(firstName, password, email);
 		return user;
 	}
 

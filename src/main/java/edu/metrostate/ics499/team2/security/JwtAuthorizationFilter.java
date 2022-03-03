@@ -1,6 +1,6 @@
 package edu.metrostate.ics499.team2.security;
 
-import edu.metrostate.ics499.team2.security.constants.SecurityConstants;
+import edu.metrostate.ics499.team2.constants.SecurityConstants;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static edu.metrostate.ics499.team2.security.constants.SecurityConstants.TOKEN_PREFIX;
+import static edu.metrostate.ics499.team2.constants.SecurityConstants.TOKEN_PREFIX;
 
 @Component
 public class JwtAuthorizationFilter extends OncePerRequestFilter {

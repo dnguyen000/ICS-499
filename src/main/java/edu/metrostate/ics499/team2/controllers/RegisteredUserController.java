@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import edu.metrostate.ics499.team2.model.Mapper;
 import edu.metrostate.ics499.team2.model.RegisteredUser;
@@ -28,9 +27,7 @@ import edu.metrostate.ics499.team2.model.UserDAO;
 import edu.metrostate.ics499.team2.services.RegisteredUserService;
 import lombok.Data;
 
-import javax.servlet.http.HttpServletRequest;
-
-import static edu.metrostate.ics499.team2.security.constants.SecurityConstants.JWT_TOKEN_HEADER;
+import static edu.metrostate.ics499.team2.constants.SecurityConstants.JWT_TOKEN_HEADER;
 
 @RestController
 @RequestMapping(path = {"/", "/user"})
