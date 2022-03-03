@@ -59,12 +59,6 @@ public class RegisteredUserController extends ExceptionHandling {
 		this.authenticationManager = authenticationManager;
 		this.jwtTokenProvider = jwtTokenProvider;
 	}
-	
-//	@GetMapping("/home")
-//	public RegisteredUser showUser() throws UserNotFoundException {
-//		// application works
-//		throw new UserNotFoundException("user not found");
-//	}
 
 	@PostMapping("/login")
 	public ResponseEntity<RegisteredUser> login(@RequestBody RegisteredUser user, HttpServletRequest req) {
@@ -81,6 +75,7 @@ public class RegisteredUserController extends ExceptionHandling {
 
 	@PostMapping("/register")
 	public ResponseEntity<RegisteredUser> register(@RequestBody RegisteredUser user) throws UserNotFoundException, UsernameExistException, EmailExistException {
+		// might want validation
 		RegisteredUser newUser = userService.register(user.getFirstName(), user.getLastName(), user.getUsername(), user.getEmail());
 		return new ResponseEntity<>(newUser, OK);
 	}
@@ -122,6 +117,7 @@ public class RegisteredUserController extends ExceptionHandling {
 		return new ResponseEntity<>(user, OK);
 	}
 
+	// validate
 	@GetMapping("/find/{username}")
 	public ResponseEntity<RegisteredUser> getUser(@PathVariable("username") String username) {
 		RegisteredUser user = userService.findUserByUsername(username);
@@ -153,7 +149,7 @@ public class RegisteredUserController extends ExceptionHandling {
 		return response(NO_CONTENT, USER_DELETED_SUCCESSFULLY);
 	}
 
-	@GetMapping(path = "/image/{username}/{filename}", produces = IMAGE_JPEG_VALUE)
+	@GetMapping(path = "/image/{username}/{fileName}", produces = IMAGE_JPEG_VALUE)
 	public byte[] getProfileImage(@PathVariable("username") String username, @PathVariable("fileName") String fileName) throws IOException {
 		return Files.readAllBytes(Paths.get(USER_FOLDER + username + FORWARD_SLASH + fileName));
 	}
