@@ -5,11 +5,11 @@ import java.util.List;
 public class UserDAO {
 	
     private String username;
-    private List<String> roles;
+    private String role;
 	
-	public UserDAO(String username, List<String> roles) {
+	public UserDAO(String username, String role) {
 		this.username = username;
-		this.roles = roles;
+		this.role = role;
 	}
 	
 	public UserDAO(String username) {
@@ -23,11 +23,11 @@ public class UserDAO {
 		this.username = username;
 	}
 
-	public List<String> getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 }

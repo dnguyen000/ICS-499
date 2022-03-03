@@ -4,7 +4,6 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.JWTVerifier;
-import edu.metrostate.ics499.team2.security.RegisteredUserPrincipal;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,26 +20,30 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
-import static edu.metrostate.ics499.team2.security.SecurityConstants.EXPIRATION_TIME;
+import static edu.metrostate.ics499.team2.security.constants.SecurityConstants.AUTHORITIES;
+import static edu.metrostate.ics499.team2.security.constants.SecurityConstants.EXPIRATION_TIME;
+import static edu.metrostate.ics499.team2.security.constants.SecurityConstants.TOKEN_CANNOT_BE_VERIFIED;
+
 import static java.util.Arrays.stream;
 
 @Component
 public class JwtTokenProvider {
-//    @Value("${jwt.secret}")           // wait for .yml
-    private String secret = "somesecret";
+    @Value("${jwt.secret}")
+    private String secret;
 
     // generate the token
-    public String generateJwtToken (RegisteredUserPrincipal userPrincipal) {
+    public String generateJwtToken (RegisteredUserPrincipal userPrincipal, String issuer) {
         String[] claims = getClaimsFromUser(userPrincipal);
-        return JWT.create().withIssuer("caleb").withAudience("administration")
+        return JWT.create().withIssuer(issuer)
+//                .withAudience("administration")
                 .withIssuedAt(new Date()).withSubject(userPrincipal.getUsername())
-                .withArrayClaim("authorities", claims).withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .withArrayClaim(AUTHORITIES, claims).withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(secret.getBytes()));
     }
 
     // authorities from token
-    public List<GrantedAuthority> getAuthorities(String token) {
-        String[] claims = getClaimsFromToken(token);
+    public List<GrantedAuthority> getAuthorities(String token, String issuer) {
+        String[] claims = getClaimsFromToken(token, issuer);
         return stream(claims).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
@@ -53,13 +56,13 @@ public class JwtTokenProvider {
         return usernamePasswordAuthToken;
     }
 
-    public boolean isTokenValid(String username, String token) {
-        JWTVerifier verifier = getJWTVerifier();
+    public boolean isTokenValid(String username, String token, String issuer) {
+        JWTVerifier verifier = getJWTVerifier(issuer);
         return StringUtils.isNotEmpty(username) && !isTokenExpired(verifier, token);
     }
 
-    public String getSubject(String token) {
-        JWTVerifier verifier = getJWTVerifier();
+    public String getSubject(String token, String issuer) {
+        JWTVerifier verifier = getJWTVerifier(issuer);
         return verifier.verify(token).getSubject();
     }
 
@@ -70,9 +73,9 @@ public class JwtTokenProvider {
     }
 
     // claims from token
-    private String[] getClaimsFromToken(String token) {
-        JWTVerifier verifier = getJWTVerifier();
-        return verifier.verify(token).getClaim("authorities").asArray(String.class);
+    private String[] getClaimsFromToken(String token, String issuer) {
+        JWTVerifier verifier = getJWTVerifier(issuer);
+        return verifier.verify(token).getClaim(AUTHORITIES).asArray(String.class);
     }
 
     // claims from user
@@ -85,14 +88,13 @@ public class JwtTokenProvider {
         return authorities.toArray(new String[0]); // return as String array
     }
 
-    private JWTVerifier getJWTVerifier() {
+    private JWTVerifier getJWTVerifier(String issuer) {
         JWTVerifier verifier;
         try {
             Algorithm algorithm = HMAC512(secret);
-            verifier = JWT.require(algorithm).withIssuer("caleb").build();
+            verifier = JWT.require(algorithm).withIssuer(issuer).build();
         } catch (JWTVerificationException exception) {
             // hide actual exception
-            final String TOKEN_CANNOT_BE_VERIFIED = "cannot be verified";
             throw new JWTVerificationException(TOKEN_CANNOT_BE_VERIFIED);
         }
         return verifier;
