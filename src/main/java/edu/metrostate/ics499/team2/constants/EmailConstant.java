@@ -2,8 +2,8 @@ package edu.metrostate.ics499.team2.constants;
 
 public class EmailConstant {
     public static final String SIMPLE_MAIL_TRANSFER_PROTOCOL = "smtps";
-    public static final String USERNAME = "***@***";                         // real email
-    public static String PASSWORD;                                          // real password
+    public static final String USERNAME = "***@***";                            // real email
+    //public static String PASSWORD;                                              // real password
     public static final String FROM_EMAIL = "support@team2.com";
     public static final String CC_EMAIL = "";
     public static final String EMAIL_SUBJECT = "team 2 app";

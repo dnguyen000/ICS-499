@@ -18,9 +18,10 @@ import static edu.metrostate.ics499.team2.constants.EmailConstant.*;
 public class EmailService {
 
     @Value("${email.password}")
-    private void setPasswordStatic(String password){
-        PASSWORD = password;
-    }
+    private String emailPwd;
+//    private void setPasswordStatic(String password){
+//        PASSWORD = password;
+//    }
 
     private Session getEmailSession() {
         Properties properties = System.getProperties();
@@ -36,7 +37,7 @@ public class EmailService {
         try {
             Message message = createEmail(firstName, password, email);
             SMTPTransport smtpTransport = (SMTPTransport) getEmailSession().getTransport(SIMPLE_MAIL_TRANSFER_PROTOCOL);
-            smtpTransport.connect(GMAIL_SMTP_SERVER, USERNAME, PASSWORD);
+            smtpTransport.connect(GMAIL_SMTP_SERVER, USERNAME, emailPwd);
             smtpTransport.sendMessage(message, message.getAllRecipients());
             smtpTransport.close();
         } catch (MessagingException e) {
