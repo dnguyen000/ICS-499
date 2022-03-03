@@ -1,7 +1,6 @@
 package edu.metrostate.ics499.team2.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +12,9 @@ public class RegisteredUser implements Serializable {
 	
 	@Id
 	private String id;
+	private String userId;
 	private String email;
+	private String username;
 	private String firstName;
 	private String lastName;
 	private String password;
@@ -22,7 +23,7 @@ public class RegisteredUser implements Serializable {
 	private Date lastLoginDisplay;
 	private Date joinDate;
 	//spring properties
-	private List<Role> roles; 					// ROLE_USER{ read, edit }, ROLE_ADMIN{ delete , update, create }
+	private String role; 					// ROLE_USER{ read, edit }, ROLE_ADMIN{ delete , update, create }
 	private String[] authorities;
 	private boolean isActive;
 	private boolean isNotLocked;
@@ -32,17 +33,22 @@ public class RegisteredUser implements Serializable {
 	// default constructor
 	public RegisteredUser() { }
 
-	public RegisteredUser(String email, String firstName, String lastName, String password, String profileImgUrl, Date lastLoginDate, Date joinDate, List<Role> roles, String[] authorities, boolean isActive, int highScore) {
+	public RegisteredUser(String id, String userId, String email, String username, String firstName, String lastName, String password, String profileImgUrl, Date lastLoginDate, Date lastLoginDisplay, Date joinDate, String role, String[] authorities, boolean isActive, boolean isNotLocked, int highScore) {
+		this.id = id;
+		this.userId = userId;
 		this.email = email;
+		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
 		this.profileImgUrl = profileImgUrl;
 		this.lastLoginDate = lastLoginDate;
+		this.lastLoginDisplay = lastLoginDisplay;
 		this.joinDate = joinDate;
-		this.roles = roles;
+		this.role = role;
 		this.authorities = authorities;
 		this.isActive = isActive;
+		this.isNotLocked = isNotLocked;
 		this.highScore = highScore;
 	}
 
@@ -57,6 +63,22 @@ public class RegisteredUser implements Serializable {
 
 	public void setLastLoginDisplay(Date lastLoginDisplay) {
 		this.lastLoginDisplay = lastLoginDisplay;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public boolean isNotLocked() {
@@ -160,12 +182,12 @@ public class RegisteredUser implements Serializable {
 		return getFirstName() + " " + getLastName();
 	}
 
-	public List<Role> getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

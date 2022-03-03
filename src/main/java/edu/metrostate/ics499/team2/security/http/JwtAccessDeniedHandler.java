@@ -1,8 +1,7 @@
 package edu.metrostate.ics499.team2.security.http;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.metrostate.ics499.team2.security.SecurityConstants;
-import edu.metrostate.ics499.team2.security.http.HttpResponse;
+import edu.metrostate.ics499.team2.security.constants.SecurityConstants;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;

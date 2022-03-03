@@ -1,19 +1,17 @@
 package edu.metrostate.ics499.team2.model;
 
-import java.util.List;
-
 public class UserLoginDTO {
 	
     private String email;
 	private String password;
-	private List<String> roles;
+	private String role;
 	
 	public UserLoginDTO() {};
 	
-	public UserLoginDTO(String email, String password, List<String> roles) {
+	public UserLoginDTO(String email, String password, String role) {
 		this.email = email;
 		this.password = password;
-		this.roles = roles;
+		this.role = role;
 	}
 	
     public String getEmail() {
@@ -29,12 +27,12 @@ public class UserLoginDTO {
 		this.password = password;
 	}
 
-	public List<String> getRoles() {
-		return roles;
+	public String getRoles() {
+		return role;
 	}
 
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
+	public void setRoles(String roles) {
+		this.role = role;
 	}
 
 }
