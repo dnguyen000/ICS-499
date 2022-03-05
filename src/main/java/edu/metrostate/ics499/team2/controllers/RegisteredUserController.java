@@ -1,6 +1,5 @@
 package edu.metrostate.ics499.team2.controllers;
 
-import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +24,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import edu.metrostate.ics499.team2.model.Mapper;
 import edu.metrostate.ics499.team2.model.RegisteredUser;
-import edu.metrostate.ics499.team2.security.constants.Role;
 import edu.metrostate.ics499.team2.model.UserDAO;
 import edu.metrostate.ics499.team2.services.RegisteredUserService;
 import lombok.Data;
@@ -73,7 +70,10 @@ public class RegisteredUserController extends ExceptionHandling {
 		authenticate(user.getUsername(), user.getPassword());
 		RegisteredUser loginUser = userService.findUserByUsername(user.getUsername());
 		RegisteredUserPrincipal userPrincipal = new RegisteredUserPrincipal(loginUser);
-		String issuer = req.getRequestURL().toString();
+		String issuer = ServletUriComponentsBuilder.fromRequestUri(req)
+				.replacePath(null)
+				.build()
+				.toUriString();
 		HttpHeaders jwtHeader = getJwtHeader(userPrincipal, issuer);
 		return new ResponseEntity<>(loginUser, jwtHeader, HttpStatus.OK);
 	}
