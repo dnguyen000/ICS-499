@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -29,8 +30,12 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws ServletException, IOException {
+        // https://huongdanjava.com/get-base-url-in-controller-in-spring-mvc-and-spring-boot.html
+        String issuer = ServletUriComponentsBuilder.fromRequestUri(req)
+                .replacePath(null)
+                .build()
+                .toUriString();
         // if http options method return ok
-        String issuer = req.getRequestURL().toString();
         if (req.getMethod().equalsIgnoreCase(SecurityConstants.OPTIONS_HTTP_METHOD)) {
             res.setStatus(HttpStatus.OK.value());
         } else {
