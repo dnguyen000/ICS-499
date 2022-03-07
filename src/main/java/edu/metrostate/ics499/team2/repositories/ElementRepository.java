@@ -13,6 +13,6 @@ public interface ElementRepository extends MongoRepository<Element, String> {
     @Query("{symbol:'?0'}")
     Element findElementBySymbol(String symbol);
 
-    Element getElementByAtomicNumber(int atomicSymbol);
+    Element getElementByAtomicNumber(String atomicNumber);
 
 }
