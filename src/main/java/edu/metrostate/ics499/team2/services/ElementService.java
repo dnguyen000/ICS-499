@@ -28,7 +28,7 @@ public class ElementService {
 	}
  
 	// 3. Get name and symbol of a all items of a particular family
-	public Element getElementByAtomicNumber(int atomicNumber) {
+	public Element getElementByAtomicNumber(String atomicNumber) {
 		return elmRepo.getElementByAtomicNumber(atomicNumber);
 	}
 
