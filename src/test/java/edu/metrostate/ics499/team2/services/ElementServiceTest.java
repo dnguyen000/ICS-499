@@ -15,22 +15,8 @@ import edu.metrostate.ics499.team2.model.Element;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class ElementServiceTest {
-	
+
 	@Autowired
 	ElementService elmService;
-	
-	@Test
-	@DisplayName("it should return true")
-	void isValid_returns_false() {
-		Element hydrogen = new Element("Hydrogen", "H", "Nonmetal", 1, 1.008, 0, 0);
-		assertTrue(elmService.isValid(hydrogen));
-	}
-	
-	@Test
-	@DisplayName("it should return false")
-	void isValid_returns_true() {
-		Element superUnknown = new Element("superUnknown", "SUk", "Nonmetal", 1000, 1.008, 0, 0);
-		assertFalse(elmService.isValid(superUnknown));
-	}
 
 }
