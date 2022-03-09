@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class ElementServiceTest {
+class ElementServiceIntegrationTest {
 
 	@Autowired
 	ElementService elmService;
@@ -23,7 +23,7 @@ class ElementServiceTest {
 	@Test
 	@DisplayName("should list all 118 elements from database")
 	void testListAll() {
-		List<Element> allElements = elmService.listAll();
+		List<Element> allElements = elmService.getAllElements();
 		assertEquals(allElements.size(), 118);
 	}
 

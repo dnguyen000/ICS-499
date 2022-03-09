@@ -18,7 +18,7 @@ public class ElementService {
 	}
 
 	// 1. Show all the data
-	public List<Element> listAll() {
+	public List<Element> getAllElements() {
     	return elmRepo.findAll();
 	}
 	
