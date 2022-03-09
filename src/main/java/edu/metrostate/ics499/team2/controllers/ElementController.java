@@ -35,7 +35,7 @@ public class ElementController {
     @GetMapping("/list")
     @ResponseBody
     public List<Element> list() {
-    	return elmService.listAll();
+    	return elmService.getAllElements();
     }
 
     @GetMapping("/symbol/{symbol}")
