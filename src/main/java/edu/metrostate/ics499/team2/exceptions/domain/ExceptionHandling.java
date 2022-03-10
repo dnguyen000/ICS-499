@@ -54,6 +54,8 @@ public class ExceptionHandling implements ErrorController {
         return createHttpResponse(UNAUTHORIZED, ACCOUNT_LOCKED);
     }
 
+    // never caught
+    // https://stackoverflow.com/questions/19767267/handle-spring-security-authentication-exceptions-with-exceptionhandler
     @ExceptionHandler(TokenExpiredException.class)
     public ResponseEntity<HttpResponse> tokenExpiredException(TokenExpiredException exception) {
         return createHttpResponse(UNAUTHORIZED, exception.getMessage());
