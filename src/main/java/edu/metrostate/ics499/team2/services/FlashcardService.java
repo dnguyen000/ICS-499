@@ -37,34 +37,30 @@ public class FlashcardService implements ServiceInterface<Flashcard> {
 		return flashcardRepo.findByGameId(id);
 	}
 	
-	public List<Flashcard> queryQuestions(String question) {
+	public List<Flashcard> queryByQuestion(String question) {
 		return flashcardRepo.findByQuestion(question);
 	}
 	
-	public List<Flashcard> queryAnswers(String answer) {
+	public List<Flashcard> queryByAnswer(String answer) {
 		return flashcardRepo.findByAnswer(answer);
 	}
 	
 	public int generatePeriodicTableQuestions() {
-		if (elementService.showAllElements().size() == 0) {
-			elementService.createPeriodicElements();
-		}
+
+		// to-do: audit elements exist
 		
-		List<Element> periodicTable = elementService.showAllElements();
+		List<Element> periodicTable = elementService.getAllElements();
 		List<Flashcard> flashcards = new ArrayList<>();
 		
 		for (Element element : periodicTable) {
 			final String nameQuestion = "What is the name of this symbol: " + element.getSymbol() + "?";
 			final String symbolQuestion = "What is the symbol for " + element.getName() + "?";
-			final String familyQuestion = "What family does the element " + element.getName() + " belong to?";
-			
+
 			Flashcard nameFlashcard = new Flashcard(symbolQuestion, element.getSymbol());
 			Flashcard symbolFlashcard = new Flashcard(nameQuestion, element.getName());
-			Flashcard familyFlashcard = new Flashcard(familyQuestion, element.getFamily());
-			
+
 			flashcards.add(nameFlashcard);
 			flashcards.add(symbolFlashcard);
-			flashcards.add(familyFlashcard);
 		}
 		
 		for (Flashcard flashcard : flashcards) {
