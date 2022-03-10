@@ -55,11 +55,11 @@ public class FlashcardService implements ServiceInterface<Flashcard> {
 		return flashcardRepo.findByGameId(id);
 	}
 	
-	public List<Flashcard> queryQuestions(String question) {
+	public List<Flashcard> queryByQuestion(String question) {
 		return flashcardRepo.findByQuestion(question);
 	}
 	
-	public List<Flashcard> queryAnswers(String answer) {
+	public List<Flashcard> queryByAnswer(String answer) {
 		return flashcardRepo.findByAnswer(answer);
 	}	
 

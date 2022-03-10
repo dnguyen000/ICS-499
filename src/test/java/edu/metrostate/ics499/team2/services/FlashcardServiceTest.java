@@ -31,7 +31,7 @@ import edu.metrostate.ics499.team2.repositories.FlashcardRepository;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 class FlashcardServiceTest {
-	
+
 	@Autowired
 	private FlashcardService flashcardService;
 	
@@ -41,14 +41,14 @@ class FlashcardServiceTest {
 	private final String question2 = "is this mock value 2?";
 	private final String question3 = "is this mock value 3?";
 	private final String question4 = "is this mock value 4?";
-	private final String question5 = "This might be unique?";
 	private final String answerYes = "yes";
 	private final String answerNo = "no";
-	
+
 	@BeforeEach
 	void setUp() {
 		repoMock = mock(FlashcardRepository.class);
 		ReflectionTestUtils.setField(flashcardService, "flashcardRepo", repoMock);
+		String question5 = "This might be unique?";
 
 		when(repoMock.findAll()).thenReturn(
 				Stream.of(new Flashcard(question1, answerYes), 
@@ -71,12 +71,11 @@ class FlashcardServiceTest {
 		
 		verify(repoMock, times(1)).findAll();
 	}
-	
+
 	@Test
 	@DisplayName("it should not insert into the DB if not valid")
 	void test_create_fail() {
 		Flashcard fc = new Flashcard(question1, answerYes);
-		
 		assertNull(flashcardService.create(fc));
 	}
 	
@@ -105,7 +104,7 @@ class FlashcardServiceTest {
 		assertEquals(fc.getQuestion(), flashcardService.create(fc).getQuestion());
 		assertEquals(fc.getAnswer(), flashcardService.create(fc).getAnswer());
 	}
-	
+
 	@Test
 	@DisplayName("it should return the question")
 	void test_get_questions() {
@@ -115,29 +114,27 @@ class FlashcardServiceTest {
 		returnValue.add(new Flashcard(question3, answerNo));
 		returnValue.add(new Flashcard(question4, answerNo));
 		when(repoMock.findByQuestion(question1)).thenReturn(returnValue);
-		
-		List<Flashcard> result = flashcardService.queryQuestions(question1);
-		
+
+		List<Flashcard> result = flashcardService.queryByQuestion(question1);
+
 		assertNotNull(result);
 	}
-	
+
 	@Test
 	@DisplayName("it should return false")
 	void isValid_returns_false() {
 		Flashcard fc = new Flashcard(question1, answerYes);
-		
 		boolean result = flashcardService.isValid(fc);
-		
 		assertFalse(result);
 	}
-	
+
 	@Test
 	@DisplayName("it should return true")
 	void isValid_returns_true() {
 		String question1 = "Is this a unique value?";
 		String answer1 = "Maybe";
 		Flashcard fc = new Flashcard(question1, answer1);
-		
+
 		assertTrue(flashcardService.isValid(fc));
 	}
 

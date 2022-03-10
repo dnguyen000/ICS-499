@@ -26,7 +26,8 @@ public class FlashcardController {
 	private FlashcardService flashcardService;
 	
 	@GetMapping(value = "/all")
-	public @ResponseBody List<Flashcard> list() {
+	@ResponseBody
+	public List<Flashcard> list() {
 		LOG.info("Getting all flashcards.");
 		return flashcardService.list();
 	}
@@ -40,13 +41,13 @@ public class FlashcardController {
 	@GetMapping(value = "/questions")
 	public List<Flashcard> queryQuestions(String question) {
 		LOG.info("Getting all flashcards that match the question");
-		return flashcardService.queryQuestions(question);
+		return flashcardService.queryByQuestion(question);
 	} 
 	
 	@GetMapping(value = "/answers")
 	public List<Flashcard> queryAnswers(String answer) {
 		LOG.info("Getting all flashcards that match the answer");
-		return flashcardService.queryAnswers(answer);
+		return flashcardService.queryByAnswer(answer);
 	}
 	
 	@PostMapping(value = "/add")
