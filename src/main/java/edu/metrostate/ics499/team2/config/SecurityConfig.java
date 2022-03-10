@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)     // w/ jwt no need to session
                 .and().authorizeRequests()
-//                .antMatchers("/user/users").hasAnyAuthority("admin")        // must be admin to access
+//                .antMatchers("/user/users").hasAnyAuthority("admin")                          // must be admin to access
                 .antMatchers(SecurityConstants.PUBLIC_URLS).permitAll()
                 .anyRequest().authenticated()
                 .and()

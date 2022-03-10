@@ -1,6 +1,5 @@
 package edu.metrostate.ics499.team2.listeners;
 
-import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.security.RegisteredUserPrincipal;
 import edu.metrostate.ics499.team2.services.LoginAttemptService;
 import org.springframework.beans.factory.annotation.Autowired;
