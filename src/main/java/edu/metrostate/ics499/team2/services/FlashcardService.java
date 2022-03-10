@@ -2,6 +2,8 @@ package edu.metrostate.ics499.team2.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +79,6 @@ public class FlashcardService implements ServiceInterface<Flashcard> {
 		List<Flashcard> result = flashcardRepo.findAll();
 		return result.stream()
 				.filter(fc -> fc.getQuestion().equalsIgnoreCase(obj.getQuestion()))
-				.filter(fc -> fc.getAnswer().equalsIgnoreCase(obj.getAnswer())).toList().size() > 0 ? false : true;
+				.filter(fc -> fc.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() > 0 ? false : true;
 	}
 }

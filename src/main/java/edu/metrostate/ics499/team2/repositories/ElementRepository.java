@@ -12,12 +12,7 @@ public interface ElementRepository extends MongoRepository<Element, String> {
 
     @Query("{symbol:'?0'}")
     Element findElementBySymbol(String symbol);
-    
-    @Query(value="{family:'?0'}", fields="{'symbol' : 1, 'ionicCharge' : 1, 'atomicNumber': 1, 'massNumber' : 1, 'valence' : 1, 'name' : 1, 'family' : 1}")
-    List<Element> findAll(String family);
-    
-    public long count();
-    
-    Iterable<Element> findElementsByFamily(String family);
+
+    Element getElementByAtomicNumber(String atomicNumber);
 
 }
