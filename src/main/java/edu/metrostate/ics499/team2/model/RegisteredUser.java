@@ -2,7 +2,6 @@ package edu.metrostate.ics499.team2.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -30,7 +29,7 @@ public class RegisteredUser implements Serializable {
 
 	private int highScore;
 	
-	// default constructor
+	// default empty constructor
 	public RegisteredUser() { }
 
 	public RegisteredUser(String id, String userId, String email, String username, String firstName, String lastName, String password, String profileImgUrl, Date lastLoginDate, Date lastLoginDisplay, Date joinDate, String role, String[] authorities, boolean isActive, boolean isNotLocked, int highScore) {
@@ -55,6 +54,15 @@ public class RegisteredUser implements Serializable {
 	public RegisteredUser(UserLoginDTO userDTO) {
 		this.password = userDTO.getPassword();
 		this.email = userDTO.getEmail();
+	}
+
+	public RegisteredUser(String username) {
+		this.username = username;
+	}
+
+	public RegisteredUser(String username, String email) {
+		this.username = username;
+		this.email = email;
 	}
 
 	public Date getLastLoginDisplay() {
