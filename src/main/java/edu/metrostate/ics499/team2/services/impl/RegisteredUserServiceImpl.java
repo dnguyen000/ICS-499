@@ -39,6 +39,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 @Service @Slf4j
 public class RegisteredUserServiceImpl implements RegisteredUserService, UserDetailsService {
+
 	private final RegisteredUserRepository userRepo;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	private final LoginAttemptService loginAttemptService;
@@ -106,12 +107,12 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		return null;
 	}
 
-	public RegisteredUser findUserByEmail(String newEmail) {
-		return userRepo.findRegisteredUserByEmail(newEmail);
+	public RegisteredUser findUserByEmail(String email) {
+		return userRepo.findRegisteredUserByEmail(email);
 	}
 
-	public RegisteredUser findUserByUsername(String newUsername) {
-		return userRepo.findRegisteredUserByUsername(newUsername);
+	public RegisteredUser findUserByUsername(String username) {
+		return userRepo.findRegisteredUserByUsername(username);
 	}
 
 	@Override

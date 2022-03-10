@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import edu.metrostate.ics499.team2.exceptions.domain.EmailExistException;
 import edu.metrostate.ics499.team2.exceptions.domain.ExceptionHandling;
 import edu.metrostate.ics499.team2.exceptions.domain.UserNotFoundException;
@@ -125,14 +126,14 @@ public class RegisteredUserController extends ExceptionHandling {
 	}
 
 	@GetMapping("/list")
-	public ResponseEntity<List<UserDAO>> getAllUsers() {
-//		List<RegisteredUser> users = userService.getUsers();
-//		return new ResponseEntity<>(users, OK);
-		return ResponseEntity.ok().body(userService
-				.getUsers()
-				.stream()
-				.map(mapper::toDao)
-				.collect(Collectors.toList()));
+	public ResponseEntity<List<RegisteredUser>> getAllUsers() {
+		List<RegisteredUser> users = userService.getUsers();
+		return new ResponseEntity<>(users, OK);
+//		return ResponseEntity.ok().body(userService
+//				.getUsers()
+//				.stream()
+//				.map(mapper::toDao)
+//				.collect(Collectors.toList()));
 	}
 
 	@GetMapping("/resetpassword/{email}")
