@@ -15,19 +15,19 @@ import edu.metrostate.ics499.team2.repositories.ElementRepository;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class ElementRepoTests {
+class ElementRepoIntegrationTests {
 
 	@Autowired
 	private ElementRepository elementRepo;
 
 	@Test
-	@DisplayName("it should instantiate the repo")
+	@DisplayName("should instantiate the repo")
 	void testInit() {
 		assertNotNull(elementRepo);
 	}
 	
 	@Test
-	@DisplayName("should equal Hydrogen")
+	@DisplayName("should find element with symbol H in the repo")
 	void testFindBySymbol() {
 		Element elm = elementRepo.findElementBySymbol("H");
 		assertEquals(elm.getSymbol(), "H");
