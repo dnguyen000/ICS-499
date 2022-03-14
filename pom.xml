@@ -15,6 +15,7 @@
 	<description>Team 2 Project for ICS-499</description>
 	<properties>
 		<java.version>11</java.version>
+		<exec.mainClass>edu.metrostate.ics499.team2.ChemistryApplication</exec.mainClass>
 	</properties>
 	<dependencies>
 		<dependency>

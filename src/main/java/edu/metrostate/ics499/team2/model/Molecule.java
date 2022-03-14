@@ -1,10 +1,13 @@
 package edu.metrostate.ics499.team2.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
 import javax.lang.model.element.Element;
 
-@Document (collection = "molecule")
+@Document(collection = "molecule")
 public class Molecule {
 	@Id
 	private String id;
@@ -12,8 +15,7 @@ public class Molecule {
 	private String symbol;
   private List<Element> elements;
 
-    public Molecule(List<Element> Elements) {
-        this.elements = elements;
+    public Molecule(List<Element> Elements) { this.elements = elements;
     }
 
     public void setElements(List<Element> elements) {

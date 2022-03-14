@@ -1,12 +1,10 @@
 package edu.metrostate.ics499.team2.security;
 
 import static edu.metrostate.ics499.team2.security.SecurityConstants.*;
-import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;

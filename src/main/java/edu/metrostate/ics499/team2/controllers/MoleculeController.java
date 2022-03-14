@@ -2,9 +2,11 @@ package edu.metrostate.ics499.team2.controllers;
 
 import java.util.List;
 
-import edu.metrostate.ics499.team2.model.Flashcard;
+
 import edu.metrostate.ics499.team2.model.Molecule;
 import edu.metrostate.ics499.team2.repositories.MoleculeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/molecule")
