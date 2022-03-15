@@ -27,7 +27,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;        
         // spring defines the /login end point automatically, this just defines where it is
-        setFilterProcessesUrl("/api/login");        
+        setFilterProcessesUrl("/api/login");
+
     }
 
     @Override
