@@ -75,8 +75,11 @@ public class FlashcardService implements ServiceInterface<Flashcard> {
 	@Override
 	public boolean isValid(Flashcard obj) {
 		List<Flashcard> result = flashcardRepo.findAll();
-		return result.stream()
-				.filter(fc -> fc.getQuestion().equalsIgnoreCase(obj.getQuestion()))
-				.filter(fc -> fc.getAnswer().equalsIgnoreCase(obj.getAnswer())).toList().size() > 0 ? false : true;
+
+//		return result;
+		return true;
+//		return result.stream()
+//				.filter(fc -> fc.getQuestion().equalsIgnoreCase(obj.getQuestion()))
+//				.filter(fc -> fc.getAnswer().equalsIgnoreCase(obj.getAnswer())).toList().size() > 0 ? false : true;
 	}
 }

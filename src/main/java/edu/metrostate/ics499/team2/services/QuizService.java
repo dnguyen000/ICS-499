@@ -1,6 +1,7 @@
 package edu.metrostate.ics499.team2.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,6 @@ public class QuizService implements ServiceInterface<Quiz>{
 		List<Quiz> result = quizRepo.findAll();
 				return result.stream()
 				.filter(quiz -> quiz.getQuestion().equalsIgnoreCase(obj.getQuestion()))
-				.filter(quiz -> quiz.getAnswer().equalsIgnoreCase(obj.getAnswer())).toList().size() > 0 ? false : true;
+				.filter(quiz -> quiz.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() > 0 ? false : true;
 	}
 }

@@ -13,7 +13,10 @@ public class Molecule {
 	private String id;
 
 	private String symbol;
-  private List<Element> elements;
+    private List<Element> elements;
+
+    public Molecule(String symbol) { this.symbol = symbol;
+    }
 
     public Molecule(List<Element> Elements) { this.elements = elements;
     }
