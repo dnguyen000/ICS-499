@@ -5,17 +5,19 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import edu.metrostate.ics499.team2.model.Flashcard;
+import edu.metrostate.ics499.team2.model.FlashcardDTO;
 import edu.metrostate.ics499.team2.services.FlashcardService;
 
-@RestController
+@Controller
 @RequestMapping("/flashcards")
 public class FlashcardController {
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -47,8 +49,10 @@ public class FlashcardController {
 		return flashcardService.queryAnswers(answer);
 	}
 	
-	@PostMapping("/add")
-	public Flashcard create(@RequestBody final Flashcard flashcard) {
-		return flashcardService.create(flashcard);
+	@PostMapping(value = "/add")
+	public ResponseEntity<String> create(@RequestBody final FlashcardDTO flashcardDto) {
+		Flashcard flashcard = new Flashcard(flashcardDto.getQuestion(), flashcardDto.getAnswer());
+		
+		return flashcardService.create(flashcard) != null ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
 	}
 }

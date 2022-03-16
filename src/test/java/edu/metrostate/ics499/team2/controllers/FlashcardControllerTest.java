@@ -1,8 +1,16 @@
 package edu.metrostate.ics499.team2.controllers;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-import org.junit.jupiter.api.AfterAll;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,19 +19,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import edu.metrostate.ics499.team2.model.Flashcard;
+import edu.metrostate.ics499.team2.model.FlashcardDTO;
 import edu.metrostate.ics499.team2.repositories.FlashcardRepository;
+import edu.metrostate.ics499.team2.services.FlashcardService;
 
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.context.WebApplicationContext;
 
 //@ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class FlashcardControllerTest {
+
+	private FlashcardRepository repoMock;
+	
 	@Autowired
-	private FlashcardRepository flashcardRepo;
+	private FlashcardService flashcardService;
 	
 	@Autowired
 	private FlashcardController flashcardController;
+	
+    @Autowired
+    private WebApplicationContext webApplicationContext;
+	
+	@Captor
+	ArgumentCaptor<Flashcard> valueCaptor;
+	
+    private MockMvc mockMvc;
+
+	private final String question = "is this unique?";
+	private final String answer = "yes";
+	private FlashcardDTO flashcardDto = new FlashcardDTO(question, answer);
+	
+	@BeforeEach
+	void setUp() {
+		repoMock = mock(FlashcardRepository.class);
+		ReflectionTestUtils.setField(flashcardService, "flashcardRepo", repoMock);
+	}
 
 	@Test
 	@DisplayName("It should instantiate the controller")
@@ -34,61 +68,48 @@ class FlashcardControllerTest {
 	@Test
 	@DisplayName("It should not insert the flashcard into the db if it is not unique")
 	void testCreateFail() {
+		ArrayList<Flashcard> mockResult = new ArrayList<Flashcard>();
+		mockResult.add(new Flashcard(question, answer));
+
+		
+		Mockito.doReturn(mockResult).when(repoMock).findAll();
+
 		int beforeInsert = flashcardController.list().size();
-		String question1 = "Does this work?";
-		String answer1 = "yes";
-		Flashcard f1 = new Flashcard(question1, answer1);
-		flashcardController.create(f1);
+
+		flashcardController.create(flashcardDto);
+		
 		assertEquals(beforeInsert, flashcardController.list().size());
 	}
 	
 	@Test
 	@DisplayName("It should insert the flashcard into the db")
 	void testCreate() {
-		String question1 = "Does this work?";
+		String question1 = "Make me unique?";
 		String answer1 = "yes";
-		FlashcardRepository repoMock = Mockito.spy(flashcardRepo);
+		FlashcardDTO flashcardDto2 = new FlashcardDTO(question1, answer1);
+		Flashcard fc = new Flashcard(question1, answer1); 
+
+		Mockito.doReturn(new ArrayList<Flashcard>()).when(repoMock).findAll();
+		Mockito.doReturn(fc).when(repoMock).save(fc);
 		
-		Flashcard result = Mockito.doReturn(true).when(repoMock).save(Mockito.any());
-		Flashcard f1 = new Flashcard(question1, answer1);
-		flashcardController.create(f1);
-		assertNotNull(result);
+		flashcardController.create(flashcardDto2);
+		
+		verify(repoMock, times(1)).save(valueCaptor.capture());
 	}
 	
 	@Test
-	@DisplayName("It should return a list of questions from the db")
+	@DisplayName("It should request findByQuestion when queryQuestion called")
 	void testQueryQuestion() {
-		String question1 = "Does this work?";
-		String answer1 = "yes";
-		Flashcard f1 = new Flashcard(question1, answer1);
-		flashcardController.create(f1);
+		flashcardController.queryQuestions(question);
 		
-		String question2 = "Does this still work?";
-		String answer2 = "no";
-		Flashcard f2 = new Flashcard(question2, answer2);
-		flashcardController.create(f2);
-		
-		assertTrue(flashcardController.queryQuestions(question1).size() > 0);
+		verify(repoMock, times(1)).findByQuestion(question);
 	}
 	
 	@Test
 	@DisplayName("It should return a list of questions from the db")
 	void testQueryAnswers() {
-		String question1 = "Does this work?";
-		String answer1 = "yes";
-		Flashcard f1 = new Flashcard(question1, answer1);
-		flashcardController.create(f1);
+		flashcardController.queryAnswers(answer);
 		
-		String question2 = "Does this still work?";
-		String answer2 = "no";
-		Flashcard f2 = new Flashcard(question2, answer2);
-		flashcardController.create(f2);
-		assertTrue(flashcardController.queryAnswers(answer1).size() > 0);
-	}
-	
-	
-	@AfterAll
-	public void tearDown() throws Exception {
-		//TODO: Find a way to clean up DB after each test
+		verify(repoMock, times(1)).findByAnswer(answer);
 	}
 }

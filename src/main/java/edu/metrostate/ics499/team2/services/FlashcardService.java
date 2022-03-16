@@ -1,6 +1,5 @@
 package edu.metrostate.ics499.team2.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.metrostate.ics499.team2.model.Element;
+import com.mongodb.MongoException;
+
 import edu.metrostate.ics499.team2.model.Flashcard;
 import edu.metrostate.ics499.team2.repositories.FlashcardRepository;
 
@@ -19,18 +19,36 @@ public class FlashcardService implements ServiceInterface<Flashcard> {
 	@Autowired
 	private FlashcardRepository flashcardRepo;
 	
-	@Autowired
-	private ElementService elementService;
-	
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 	
 	public List<Flashcard> list() {
 		LOG.info("Getting all flashcards.");
-		return flashcardRepo.findAll();
+		List<Flashcard> list = flashcardRepo.findAll();
+		
+		return list;
 	}
 	
 	public Flashcard create(final Flashcard flashcard) {
-		return isValid(flashcard) ? flashcardRepo.save(flashcard) : null;
+		Flashcard fc = null;
+		Boolean validFlashcard = isValid(flashcard);
+		
+		try {
+			if (validFlashcard) {
+				LOG.info("User input is valid. Inserting new flashcard into DB");
+				
+				fc = flashcardRepo.save(flashcard);
+				
+				LOG.info("New Flashcard ID: " + fc.getGameId());
+			} else {
+				throw new MongoException ("Invalid entry into database");
+			}
+		} catch (MongoException exception) {
+			LOG.error("Invalid entry into database");
+		} catch (NullPointerException exception) {
+			LOG.error("Insert into database returned null");
+		}
+		
+		return fc;
 	}
 	
 	public Flashcard getFlashcardById(String id) {
@@ -43,40 +61,11 @@ public class FlashcardService implements ServiceInterface<Flashcard> {
 	
 	public List<Flashcard> queryAnswers(String answer) {
 		return flashcardRepo.findByAnswer(answer);
-	}
-	
-	public int generatePeriodicTableQuestions() {
-		if (elementService.showAllElements().size() == 0) {
-			elementService.createPeriodicElements();
-		}
-		
-		List<Element> periodicTable = elementService.showAllElements();
-		List<Flashcard> flashcards = new ArrayList<>();
-		
-		for (Element element : periodicTable) {
-			final String nameQuestion = "What is the name of this symbol: " + element.getSymbol() + "?";
-			final String symbolQuestion = "What is the symbol for " + element.getName() + "?";
-			final String familyQuestion = "What family does the element " + element.getName() + " belong to?";
-			
-			Flashcard nameFlashcard = new Flashcard(symbolQuestion, element.getSymbol());
-			Flashcard symbolFlashcard = new Flashcard(nameQuestion, element.getName());
-			Flashcard familyFlashcard = new Flashcard(familyQuestion, element.getFamily());
-			
-			flashcards.add(nameFlashcard);
-			flashcards.add(symbolFlashcard);
-			flashcards.add(familyFlashcard);
-		}
-		
-		for (Flashcard flashcard : flashcards) {
-			create(flashcard);
-		}
-		
-		return flashcardRepo.findAll().size();
-	}
+	}	
 
 	@Override
 	public boolean isValid(Flashcard obj) {
-		List<Flashcard> result = flashcardRepo.findAll();
+		List<Flashcard> result = list();
 		return result.stream()
 				.filter(fc -> fc.getQuestion().equalsIgnoreCase(obj.getQuestion()))
 				.filter(fc -> fc.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() > 0 ? false : true;
