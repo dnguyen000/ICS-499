@@ -14,14 +14,14 @@ import org.springframework.web.client.RestTemplate;
 public class CompoundService {
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 	
-	@Value("${pubchem.host}")
-	private String host;
-	
-	@Value("${pubchem.pathPrefix}")
-	private String pathPrefix;
-	
-	@Value("${pubchem.pathPostfix}")
-	private String pathPostfix;
+	@Value("${pubchem.prolog}")
+	private String prolog;
+	@Value("${pubchem.input}")
+	private String input;
+	@Value("${pubchem.operation}")
+	private String operation;
+	@Value("${pubchem.output}")
+	private String output;
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -39,6 +39,6 @@ public class CompoundService {
 	public Map<String, ?> validateInput(String molecule, ArrayList<String> elementsArray) {
 		LOG.info("calling PUG API with argument: " + molecule);
 		
-		return restTemplate.getForObject(host + pathPrefix + molecule + pathPostfix, Map.class);
+		return restTemplate.getForObject(prolog + input + molecule + operation + output, Map.class);
 	}
 }

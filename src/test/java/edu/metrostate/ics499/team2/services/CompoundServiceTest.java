@@ -32,14 +32,14 @@ class CompoundServiceTest {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	@Value("${pubchem.host}")
-	private String apiHost;
-	
-	@Value("${pubchem.pathPrefix}")
-	private String pathPrefix;
-	
-	@Value("${pubchem.pathPostfix}")
-	private String pathPostfix;
+	@Value("${pubchem.prolog}")
+	private String apiProlog;
+	@Value("${pubchem.input}")
+	private String apiInput;
+	@Value("${pubchem.operation}")
+	private String apiOperation;
+	@Value("${pubchem.output}")
+	private String apiOutput;
 	
 	@LocalServerPort
 	int randomServerPort;
@@ -78,7 +78,7 @@ class CompoundServiceTest {
 	void test() throws Exception {
 		elementsArray.add("Na");
 		elementsArray.add("Cl");
-		mockServer.expect(requestTo(apiHost + pathPrefix + compound + pathPostfix))
+		mockServer.expect(requestTo(apiProlog + apiInput + compound + apiOperation + apiOutput))
 		.andExpect(method(HttpMethod.GET))
 		.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
