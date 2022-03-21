@@ -1,6 +1,9 @@
 package edu.metrostate.ics499.team2.services;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -8,27 +11,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.util.ReflectionTestUtils;
+
+import com.mongodb.MongoException;
 
 import edu.metrostate.ics499.team2.model.Flashcard;
 import edu.metrostate.ics499.team2.repositories.FlashcardRepository;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.NONE)
 class FlashcardServiceTest {
 	
 	@Autowired
 	private FlashcardService flashcardService;
 	
-	@MockBean
-	private FlashcardRepository flashcardRepo;
+	private FlashcardRepository repoMock;
 	
 	private final String question1 = "is this mock value 1?";
 	private final String question2 = "is this mock value 2?";
@@ -40,7 +47,10 @@ class FlashcardServiceTest {
 	
 	@BeforeEach
 	void setUp() {
-		when(flashcardRepo.findAll()).thenReturn(
+		repoMock = mock(FlashcardRepository.class);
+		ReflectionTestUtils.setField(flashcardService, "flashcardRepo", repoMock);
+
+		when(repoMock.findAll()).thenReturn(
 				Stream.of(new Flashcard(question1, answerYes), 
 						new Flashcard(question2, answerYes),
 						new Flashcard(question3, answerNo),
@@ -49,12 +59,17 @@ class FlashcardServiceTest {
 				.collect(Collectors.toList()));
 	}
 	
+	@AfterEach
+	void tearDown() {
+		
+	}
+	
 	@Test
 	@DisplayName("it should request findAll")
 	void test_list() {
 		flashcardService.list();
 		
-		assertEquals(5, flashcardService.list().size());
+		verify(repoMock, times(1)).findAll();
 	}
 	
 	@Test
@@ -65,12 +80,27 @@ class FlashcardServiceTest {
 		assertNull(flashcardService.create(fc));
 	}
 	
+//	@Test
+//	@DisplayName("it should throw if flashcard is not valid")
+//	void test_create_should_throw() {
+//		Flashcard fc = new Flashcard(question1, answerYes);
+//		
+//		Exception exception = assertThrows(MongoException.class, () -> {
+//			flashcardService.create(fc);
+//		});
+//		
+//		String expectedMessage = "Invalid entry into database";
+//		String actualMessage = exception.getMessage();
+//		
+//		assertTrue(actualMessage.contains(expectedMessage));
+//	}
+	
 	@Test
 	@DisplayName("it should insert into the DB")
 	void test_create_true() {
 		Flashcard fc = new Flashcard("is this question the same as the other mocks?", "no");
 		
-		when(flashcardRepo.save(fc)).thenReturn(fc);
+		Mockito.doReturn(fc).when(repoMock).save(fc);
 		
 		assertEquals(fc.getQuestion(), flashcardService.create(fc).getQuestion());
 		assertEquals(fc.getAnswer(), flashcardService.create(fc).getAnswer());
@@ -84,7 +114,7 @@ class FlashcardServiceTest {
 		returnValue.add(new Flashcard(question2, answerYes));
 		returnValue.add(new Flashcard(question3, answerNo));
 		returnValue.add(new Flashcard(question4, answerNo));
-		when(flashcardRepo.findByQuestion(question1)).thenReturn(returnValue);
+		when(repoMock.findByQuestion(question1)).thenReturn(returnValue);
 		
 		List<Flashcard> result = flashcardService.queryQuestions(question1);
 		
