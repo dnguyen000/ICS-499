@@ -21,6 +21,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
+import static edu.metrostate.ics499.team2.constants.PugApiConstants.*;
+
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -31,16 +33,7 @@ class CompoundServiceTest {
 	
 	@Autowired
 	private RestTemplate restTemplate;
-	
-	@Value("${pubchem.prolog}")
-	private String apiProlog;
-	@Value("${pubchem.input}")
-	private String apiInput;
-	@Value("${pubchem.operation}")
-	private String apiOperation;
-	@Value("${pubchem.output}")
-	private String apiOutput;
-	
+
 	@LocalServerPort
 	int randomServerPort;
 	
@@ -78,7 +71,7 @@ class CompoundServiceTest {
 	void test() throws Exception {
 		elementsArray.add("Na");
 		elementsArray.add("Cl");
-		mockServer.expect(requestTo(apiProlog + apiInput + compound + apiOperation + apiOutput))
+		mockServer.expect(requestTo(PUG_PROLOG + PUG_INPUT + compound + PUG_OPERATION + PUG_OUTPUT))
 		.andExpect(method(HttpMethod.GET))
 		.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
