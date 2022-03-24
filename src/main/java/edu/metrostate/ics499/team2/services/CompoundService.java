@@ -6,26 +6,17 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import static edu.metrostate.ics499.team2.constants.PugApiConstants.*;
 
 @Service
 public class CompoundService {
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
-	
-	@Value("${pubchem.prolog}")
-	private String prolog;
-	@Value("${pubchem.input}")
-	private String input;
-	@Value("${pubchem.operation}")
-	private String operation;
-	@Value("${pubchem.output}")
-	private String output;
-	
+
 	@Autowired
 	private RestTemplate restTemplate;
-	
 	
 	/**
 	 * TODO:
@@ -39,6 +30,6 @@ public class CompoundService {
 	public Map<String, ?> validateInput(String molecule, ArrayList<String> elementsArray) {
 		LOG.info("calling PUG API with argument: " + molecule);
 		
-		return restTemplate.getForObject(prolog + input + molecule + operation + output, Map.class);
+		return restTemplate.getForObject(PUG_PROLOG + PUG_INPUT + molecule + PUG_OPERATION + PUG_OUTPUT, Map.class);
 	}
 }

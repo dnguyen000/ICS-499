@@ -25,59 +25,23 @@ public class ElementController {
 		this.elmService = service;
 	}
 	
-	// provides a thymeleaf table template of all elements in ascending order, or by family with GET variable family
+	// thymeleaf table template of all elements
     @GetMapping
-    public String getElements(@RequestParam(value="family", required=false)String family, Model model) {
-    	List<Element> elms;
-    	if(null != family)
-    		elms = this.elmService.getElementByFamily(family);
-    	else
-    		elms = this.elmService.showAllElements();
-    	
-    	model.addAttribute("elms", elms);
+    public String getElements(Model model) {
+    	model.addAttribute("elms", list());
 		return "elements";
     }
-	
-//  just storing this because I don't understand it
-//	Model View Controller (MVC)
-//	@GetMapping
-//	public ModelAndView index(ModelAndView modelAndView, HttpServletRequest request) {
-//		modelAndView.setViewName("index");
-//		return modelAndView;
-//	}
-    
-    @GetMapping("/createall")
+
+    @GetMapping("/list")
     @ResponseBody
-    public String createAll() {
-//		System.out.println("-------------CREATE ELEMENTS -------------------------------\n");
-    	elmService.createPeriodicElements();
-    	return "Data creation complete...";
+    public List<Element> list() {
+    	return elmService.getAllElements();
     }
-    
-    @GetMapping("/showall")
+
+    @GetMapping("/symbol/{symbol}")
     @ResponseBody
-    public List<Element> showAll() {
-//    	System.out.println("\n----------------SHOW ALL ELEMENTS ---------------------------\n");
-    	return elmService.showAllElements();
-    }
-    
-    @GetMapping("/family")
-    @ResponseBody
-    public Iterable<Element> showAll(String family) {
-    	return elmService.getElementsByFamily(family);
-    }
-    
-    @GetMapping("/symbol")
-    @ResponseBody
-    public Element findElementBySymbol(String symbol) {
+    public Element findElementBySymbol(@PathVariable("symbol") String symbol) {
     	return elmService.getElementBySymbol(symbol);
     }
-    
-//	public void run(String ...args) {
-//		// System.out.println("\n-----------UPDATE CATEGORY NAME OF SNACKS CATEGORY----------------\n");
-//		// updateCategoryName("snacks");
-//		// System.out.println("\n----------DELETE A GROCERY ITEM----------------------------------\n");
-//		// deleteGroceryItem("Kodo Millet"); 
-//	}
 
 }
