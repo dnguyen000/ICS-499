@@ -77,8 +77,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		return user;
 	}
 
-	private RegisteredUser validateNewUsernameAndEmail(String currentUsername, String newUsername, String newEmail) {
-		try {
+	private RegisteredUser validateNewUsernameAndEmail(String currentUsername, String newUsername, String newEmail) throws UserNotFoundException, UsernameExistException, EmailExistException {
 			RegisteredUser userByNewUsername = findUserByUsername(newUsername);
 			RegisteredUser userByNewEmail = findUserByEmail(newEmail);
 			if (StringUtils.isNotBlank(currentUsername)) {
@@ -101,9 +100,6 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 					throw new EmailExistException(EMAIL_ALREADY_EXISTS);
 				}
 			}
-		} catch (UserNotFoundException | UsernameExistException | EmailExistException e) {
-			e.printStackTrace();
-		}
 		return null;
 	}
 
@@ -116,7 +112,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 	}
 
 	@Override
-	public RegisteredUser addNewUser(String firstName, String lastName, String username, String email, String role, boolean isNonLocked, boolean isActive, MultipartFile profileImg) {
+	public RegisteredUser addNewUser(String firstName, String lastName, String username, String email, String role, boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
 		validateNewUsernameAndEmail(EMPTY, username, email);
 		RegisteredUser user = new RegisteredUser();
 		String password = generatePassword();
@@ -140,7 +136,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 	}
 
 	@Override
-	public RegisteredUser updateUser(String currentUsername, String newFirstName, String newLastName, String newUsername, String newEmail, String role, boolean isNonLocked, boolean isActive, MultipartFile profileImg) {
+	public RegisteredUser updateUser(String currentUsername, String newFirstName, String newLastName, String newUsername, String newEmail, String role, boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
 		RegisteredUser user = validateNewUsernameAndEmail(currentUsername, newUsername, newEmail);
 		user.setFirstName(newFirstName);
 		user.setLastName(newLastName);
@@ -178,7 +174,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 	}
 
 	@Override
-	public RegisteredUser updateProfileImage(String username, MultipartFile profileImg) {
+	public RegisteredUser updateProfileImage(String username, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
 		RegisteredUser user = validateNewUsernameAndEmail(username, null, null);
 		saveProfileImg(user, profileImg);
 		return user;
