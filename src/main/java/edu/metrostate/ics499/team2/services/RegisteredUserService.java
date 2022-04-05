@@ -16,10 +16,10 @@ public interface RegisteredUserService {
 	List<RegisteredUser>getUsers();
 	RegisteredUser findUserByUsername(String username);
 	RegisteredUser addNewUser(String firstName, String lastName, String username, String email, String role,
-							  boolean isNonLocked, boolean isActive, MultipartFile profileImg);
+							  boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException;
 	RegisteredUser updateUser(String currentUsername, String newFirstName, String newLastName, String newUsername, String newEmail, String role,
-							boolean isNonLocked, boolean isActive, MultipartFile profileImg);
+							boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException;
 	void deleteUser(String id);
 	void resetPassword(String email);
-	RegisteredUser updateProfileImage(String username, MultipartFile profileImg);
+	RegisteredUser updateProfileImage(String username, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException;
 }

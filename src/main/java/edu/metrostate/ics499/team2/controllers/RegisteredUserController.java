@@ -89,7 +89,7 @@ public class RegisteredUserController extends ExceptionHandling {
 														@RequestParam("role") String role,
 														@RequestParam("isActive") String isActive,			// boolean
 														@RequestParam("isNonLocked") String isNonLocked,	// boolean
-														@RequestParam(value = "profileImg", required = false) MultipartFile profileImg) {
+														@RequestParam(value = "profileImg", required = false) MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
 		RegisteredUser newUser = userService.addNewUser(firstName, lastName, username, email, role,
 				Boolean.parseBoolean(isNonLocked), Boolean.parseBoolean(isActive), profileImg);
 		return new ResponseEntity<>(newUser, OK);
@@ -104,16 +104,14 @@ public class RegisteredUserController extends ExceptionHandling {
 												 @RequestParam("role") String role,
 												 @RequestParam("isActive") String isActive,			// boolean
 												 @RequestParam("isNonLocked") String isNonLocked,	// boolean
-												 @RequestParam(value = "profileImg", required = false) MultipartFile profileImg)
-	{
+												 @RequestParam(value = "profileImg", required = false) MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
 		RegisteredUser updatedUser = userService.updateUser(currentUsername, firstName, lastName, username, email, role,
 				Boolean.parseBoolean(isNonLocked), Boolean.parseBoolean(isActive), profileImg);
 		return new ResponseEntity<>(updatedUser, OK);
 	}
 
 	@PostMapping("/updateprofileimg")
-	public ResponseEntity<RegisteredUser> update(@RequestParam("username") String username, @RequestParam(value = "profileImg") MultipartFile profileImg)
-	{
+	public ResponseEntity<RegisteredUser> update(@RequestParam("username") String username, @RequestParam(value = "profileImg") MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
 		RegisteredUser user = userService.updateProfileImage(username, profileImg);
 		return new ResponseEntity<>(user, OK);
 	}
