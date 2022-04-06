@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "HelloWorld"
+		},
+		{
+			"name": "ICS-499-front-end",
+			"path": "HelloWorld/ICS-499-front-end"
+		}
+	],
+	"settings": {}
+}
