@@ -38,12 +38,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import static edu.metrostate.ics499.team2.constants.FileConstants.*;
 import static edu.metrostate.ics499.team2.constants.SecurityConstants.JWT_TOKEN_HEADER;
-import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 
 @RestController
 @RequestMapping(path = {"/", "/user"})
+@CrossOrigin(origins = "http://localhost:4200")
 public class RegisteredUserController extends ExceptionHandling {
 
 	public static final String EMAIL_SENT = "Email with new password sent to: ";
@@ -145,7 +145,7 @@ public class RegisteredUserController extends ExceptionHandling {
 	@PreAuthorize("hasAnyAuthority('user:delete')")
 	public ResponseEntity<HttpResponse> deleteUser(@PathVariable("id") String id) {
 		userService.deleteUser(id);
-		return response(NO_CONTENT, USER_DELETED_SUCCESSFULLY);
+		return response(OK, USER_DELETED_SUCCESSFULLY);
 	}
 
 	@GetMapping(path = "/image/{username}/{fileName}", produces = IMAGE_JPEG_VALUE)
