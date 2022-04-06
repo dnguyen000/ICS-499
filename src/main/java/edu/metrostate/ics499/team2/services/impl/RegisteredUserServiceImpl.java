@@ -73,7 +73,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		user.setProfileImgUrl(getTemporaryProfileImageUrl(username));
 		userRepo.save(user);
 		log.info("New user password: " + password);
-		emailService.sendNewPasswordEmail(firstName, password, email);
+//		emailService.sendNewPasswordEmail(firstName, password, email);
 		return user;
 	}
 
