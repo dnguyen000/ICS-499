@@ -81,7 +81,7 @@ public class RegisteredUserController extends ExceptionHandling {
                                                      @RequestParam("email") String email,
                                                      @RequestParam("isActive") String isActive,          // boolean
                                                      @RequestParam("isNonLocked") String isNonLocked,    // boolean
-                                                     @RequestParam(value = "profileImg", required = false) MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
+                                                     @RequestParam(value = "profileImg", required = false) MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
         RegisteredUser newUser = userService.addNewUser(firstName, lastName, username, email, Role.ROLE_USER.name(),
                 Boolean.parseBoolean(isNonLocked), Boolean.parseBoolean(isActive), profileImg);
         return new ResponseEntity<>(newUser, OK);
@@ -96,14 +96,14 @@ public class RegisteredUserController extends ExceptionHandling {
                                                  @RequestParam("role") String role,
                                                  @RequestParam("isActive") String isActive,            // boolean
                                                  @RequestParam("isNonLocked") String isNonLocked,    // boolean
-                                                 @RequestParam(value = "profileImg", required = false) MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
+                                                 @RequestParam(value = "profileImg", required = false) MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
         RegisteredUser updatedUser = userService.updateUser(currentUsername, firstName, lastName, username, email, role,
                 Boolean.parseBoolean(isNonLocked), Boolean.parseBoolean(isActive), profileImg);
         return new ResponseEntity<>(updatedUser, OK);
     }
 
     @PostMapping("/updateprofileimg")
-    public ResponseEntity<RegisteredUser> update(@RequestParam("username") String username, @RequestParam(value = "profileImg") MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
+    public ResponseEntity<RegisteredUser> update(@RequestParam("username") String username, @RequestParam(value = "profileImg") MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
         RegisteredUser user = userService.updateProfileImage(username, profileImg);
         return new ResponseEntity<>(user, OK);
     }
@@ -134,7 +134,7 @@ public class RegisteredUserController extends ExceptionHandling {
 
     @DeleteMapping("/delete/{username}")
     @PreAuthorize("hasAnyAuthority('user:delete')")
-    public ResponseEntity<HttpResponse> deleteUser(@PathVariable("username") String username) {
+    public ResponseEntity<HttpResponse> deleteUser(@PathVariable("username") String username) throws IOException {
         userService.deleteUser(username);
         return response(OK, USER_DELETED_SUCCESSFULLY);
     }

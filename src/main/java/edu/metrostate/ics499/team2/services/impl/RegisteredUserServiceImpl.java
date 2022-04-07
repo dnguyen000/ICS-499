@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import edu.metrostate.ics499.team2.constants.Role;
-import edu.metrostate.ics499.team2.exceptions.domain.EmailExistException;
-import edu.metrostate.ics499.team2.exceptions.domain.EmailNotFoundException;
-import edu.metrostate.ics499.team2.exceptions.domain.UserNotFoundException;
-import edu.metrostate.ics499.team2.exceptions.domain.UsernameExistException;
+import edu.metrostate.ics499.team2.exceptions.domain.*;
 import edu.metrostate.ics499.team2.services.EmailService;
 import edu.metrostate.ics499.team2.services.LoginAttemptService;
 import edu.metrostate.ics499.team2.services.RegisteredUserService;
@@ -38,6 +36,7 @@ import static edu.metrostate.ics499.team2.constants.Role.ROLE_USER;
 import static edu.metrostate.ics499.team2.constants.UserImplementationConstant.*;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static org.springframework.http.MediaType.*;
 
 @Service @Slf4j
 public class RegisteredUserServiceImpl implements RegisteredUserService, UserDetailsService {
@@ -114,7 +113,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 	}
 
 	@Override
-	public RegisteredUser addNewUser(String firstName, String lastName, String username, String email, String role, boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
+	public RegisteredUser addNewUser(String firstName, String lastName, String username, String email, String role, boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
 		validateNewUsernameAndEmail(EMPTY, username, email);
 		RegisteredUser user = new RegisteredUser();
 		String password = generatePassword();
@@ -138,7 +137,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 	}
 
 	@Override
-	public RegisteredUser updateUser(String currentUsername, String newFirstName, String newLastName, String newUsername, String newEmail, String role, boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
+	public RegisteredUser updateUser(String currentUsername, String newFirstName, String newLastName, String newUsername, String newEmail, String role, boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
 		RegisteredUser user = validateNewUsernameAndEmail(currentUsername, newUsername, newEmail);
 		user.setFirstName(newFirstName);
 		user.setLastName(newLastName);
@@ -175,7 +174,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 	}
 
 	@Override
-	public RegisteredUser updateProfileImage(String username, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
+	public RegisteredUser updateProfileImage(String username, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
 		RegisteredUser user = validateNewUsernameAndEmail(username, null, null);
 		saveProfileImg(user, profileImg);
 		return user;
@@ -236,23 +235,22 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		return Role.valueOf(role.toUpperCase());
 	}
 
-	private void saveProfileImg(RegisteredUser user, MultipartFile profileImg) {
-		try {
-			if (profileImg != null) {
-				Path userFolder = Paths.get(USER_FOLDER + user.getUsername()).toAbsolutePath().normalize();
-				if (!Files.exists(userFolder)) {
-					Files.createDirectories(userFolder);
-					log.info(DIRECTORY_CREATED + userFolder);
-				}
-				Files.deleteIfExists(Paths.get(userFolder + user.getUsername() + DOT + JPG_EXTENSION));
-				Files.copy(profileImg.getInputStream(), userFolder.resolve(user.getUsername() + DOT + JPG_EXTENSION),
-						REPLACE_EXISTING);
-				user.setProfileImgUrl(setProfileImgURL(user.getUsername()));
-				userRepo.save(user);
-				log.info(FILE_SAVED_IN_FILE_SYSTEM + profileImg.getOriginalFilename());
+	private void saveProfileImg(RegisteredUser user, MultipartFile profileImg) throws IOException, NotAnImageFileException {
+		if (profileImg != null) {
+			if(!Arrays.asList(IMAGE_JPEG_VALUE, IMAGE_PNG_VALUE, IMAGE_GIF_VALUE).contains(profileImg.getContentType())) {
+				throw new NotAnImageFileException(profileImg.getOriginalFilename() + " is not an image file. Please upload an image.");
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+			Path userFolder = Paths.get(USER_FOLDER + user.getUsername()).toAbsolutePath().normalize();
+			if (!Files.exists(userFolder)) {
+				Files.createDirectories(userFolder);
+				log.info(DIRECTORY_CREATED + userFolder);
+			}
+			Files.deleteIfExists(Paths.get(userFolder + user.getUsername() + DOT + JPG_EXTENSION));
+			Files.copy(profileImg.getInputStream(), userFolder.resolve(user.getUsername() + DOT + JPG_EXTENSION),
+					REPLACE_EXISTING);
+			user.setProfileImgUrl(setProfileImgURL(user.getUsername()));
+			userRepo.save(user);
+			log.info(FILE_SAVED_IN_FILE_SYSTEM + profileImg.getOriginalFilename());
 		}
 	}
 
