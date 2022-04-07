@@ -79,7 +79,7 @@ public class RegisteredUserController extends ExceptionHandling {
                                                      @RequestParam("lastName") String lastName,
                                                      @RequestParam("username") String username,
                                                      @RequestParam("email") String email,
-                                                     @RequestParam("isActive") String isActive,            // boolean
+                                                     @RequestParam("isActive") String isActive,          // boolean
                                                      @RequestParam("isNonLocked") String isNonLocked,    // boolean
                                                      @RequestParam(value = "profileImg", required = false) MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException {
         RegisteredUser newUser = userService.addNewUser(firstName, lastName, username, email, Role.ROLE_USER.name(),
@@ -132,10 +132,10 @@ public class RegisteredUserController extends ExceptionHandling {
         return response(OK, EMAIL_SENT + email);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{username}")
     @PreAuthorize("hasAnyAuthority('user:delete')")
-    public ResponseEntity<HttpResponse> deleteUser(@PathVariable("id") String id) {
-        userService.deleteUser(id);
+    public ResponseEntity<HttpResponse> deleteUser(@PathVariable("username") String username) {
+        userService.deleteUser(username);
         return response(OK, USER_DELETED_SUCCESSFULLY);
     }
 

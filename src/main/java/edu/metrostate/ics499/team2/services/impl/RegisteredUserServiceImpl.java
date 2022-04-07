@@ -152,8 +152,9 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 	}
 
 	@Override
-	public void deleteUser(String id) {
-		userRepo.deleteById(id);
+	public void deleteUser(String username) {
+		RegisteredUser user = userRepo.findRegisteredUserByUsername(username);
+		userRepo.deleteById(user.getId());
 	}
 
 	@Override
