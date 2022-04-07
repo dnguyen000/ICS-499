@@ -1,10 +1,7 @@
 package edu.metrostate.ics499.team2.controllers;
 
 import edu.metrostate.ics499.team2.constants.Role;
-import edu.metrostate.ics499.team2.exceptions.domain.EmailExistException;
-import edu.metrostate.ics499.team2.exceptions.domain.ExceptionHandling;
-import edu.metrostate.ics499.team2.exceptions.domain.UserNotFoundException;
-import edu.metrostate.ics499.team2.exceptions.domain.UsernameExistException;
+import edu.metrostate.ics499.team2.exceptions.domain.*;
 import edu.metrostate.ics499.team2.model.Mapper;
 import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.security.JwtTokenProvider;
@@ -130,7 +127,7 @@ public class RegisteredUserController extends ExceptionHandling {
     }
 
     @GetMapping("/resetpassword/{email}")
-    public ResponseEntity<HttpResponse> resetPassword(@PathVariable("email") String email) {
+    public ResponseEntity<HttpResponse> resetPassword(@PathVariable("email") String email) throws EmailNotFoundException {
         userService.resetPassword(email);
         return response(OK, EMAIL_SENT + email);
     }

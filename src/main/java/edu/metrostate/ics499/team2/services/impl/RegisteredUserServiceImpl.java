@@ -157,20 +157,16 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 	}
 
 	@Override
-	public void resetPassword(String email) {
-		try {
-			RegisteredUser user = userRepo.findRegisteredUserByEmail(email);
-			if(user == null) {
-				throw new EmailNotFoundException(NO_USER_FOUND_BY_EMAIL + email);
-			}
-			String password = generatePassword();
-			user.setPassword(encodePassword(password));
-			userRepo.save(user);
-			log.info("New user password: " + password);
-			emailService.sendNewPasswordEmail(user.getFirstName(), password, user.getEmail());
-		} catch (EmailNotFoundException e) {
-			e.printStackTrace();
+	public void resetPassword(String email) throws EmailNotFoundException {
+		RegisteredUser user = userRepo.findRegisteredUserByEmail(email);
+		if(user == null) {
+			throw new EmailNotFoundException(NO_USER_FOUND_BY_EMAIL + email);
 		}
+		String password = generatePassword();
+		user.setPassword(encodePassword(password));
+		userRepo.save(user);
+		log.info("New user password: " + password);
+//			emailService.sendNewPasswordEmail(user.getFirstName(), password, user.getEmail());
 	}
 
 	@Override
