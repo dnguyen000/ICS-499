@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.Objects;
 
 import static org.springframework.http.HttpStatus.*;
