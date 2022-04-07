@@ -1,5 +1,6 @@
 package edu.metrostate.ics499.team2.services.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,6 +18,7 @@ import edu.metrostate.ics499.team2.services.LoginAttemptService;
 import edu.metrostate.ics499.team2.services.RegisteredUserService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -152,8 +154,10 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 	}
 
 	@Override
-	public void deleteUser(String username) {
+	public void deleteUser(String username) throws IOException {
 		RegisteredUser user = userRepo.findRegisteredUserByUsername(username);
+		Path userFolder = Paths.get(USER_FOLDER + user.getUsername()).toAbsolutePath().normalize();
+		FileUtils.deleteDirectory(new File(userFolder.toString()));
 		userRepo.deleteById(user.getId());
 	}
 

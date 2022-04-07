@@ -1,5 +1,6 @@
 package edu.metrostate.ics499.team2.services;
 
+import java.io.IOException;
 import java.util.List;
 
 import edu.metrostate.ics499.team2.exceptions.domain.EmailExistException;
@@ -20,7 +21,7 @@ public interface RegisteredUserService {
 							  boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException;
 	RegisteredUser updateUser(String currentUsername, String newFirstName, String newLastName, String newUsername, String newEmail, String role,
 							boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException;
-	void deleteUser(String id);
+	void deleteUser(String id) throws IOException;
 	void resetPassword(String email) throws EmailNotFoundException;
 	RegisteredUser updateProfileImage(String username, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException;
 }
