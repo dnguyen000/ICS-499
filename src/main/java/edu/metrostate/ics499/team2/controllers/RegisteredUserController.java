@@ -40,7 +40,7 @@ import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 public class RegisteredUserController extends ExceptionHandling {
 
     public static final String EMAIL_SENT = "Email with new password sent to: ";
-    public static final String USER_DELETED_SUCCESSFULLY = "User deleted successfully";
+    public static final String USER_DELETED_SUCCESSFULLY = "User deleted successfully.";
     private final RegisteredUserService userService;
     private final Mapper mapper;
     private final AuthenticationManager authenticationManager;
@@ -81,8 +81,9 @@ public class RegisteredUserController extends ExceptionHandling {
                                                      @RequestParam("email") String email,
                                                      @RequestParam("isActive") String isActive,          // boolean
                                                      @RequestParam("isNonLocked") String isNonLocked,    // boolean
+                                                     @RequestParam("role") String role,
                                                      @RequestParam(value = "profileImg", required = false) MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
-        RegisteredUser newUser = userService.addNewUser(firstName, lastName, username, email, Role.ROLE_USER.name(),
+        RegisteredUser newUser = userService.addNewUser(firstName, lastName, username, email, role,
                 Boolean.parseBoolean(isNonLocked), Boolean.parseBoolean(isActive), profileImg);
         return new ResponseEntity<>(newUser, OK);
     }
