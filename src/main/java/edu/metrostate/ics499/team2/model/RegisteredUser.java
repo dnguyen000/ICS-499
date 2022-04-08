@@ -3,6 +3,7 @@ package edu.metrostate.ics499.team2.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,12 +11,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class RegisteredUser implements Serializable {
 	
 	@Id
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String id;
 	private String userId;
 	private String email;
 	private String username;
 	private String firstName;
 	private String lastName;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	private String profileImgUrl;
 	private Date lastLoginDate;
