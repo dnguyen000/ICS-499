@@ -23,8 +23,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.mongodb.MongoException;
-
 import edu.metrostate.ics499.team2.model.Flashcard;
 import edu.metrostate.ics499.team2.repositories.FlashcardRepository;
 
