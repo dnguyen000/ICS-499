@@ -1,5 +1,6 @@
 package edu.metrostate.ics499.team2.services;
 
+import edu.metrostate.ics499.team2.exceptions.domain.FailedToLoadPTException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +23,7 @@ class ElementServiceIntegrationTest {
 
 	@Test
 	@DisplayName("should list all 118 elements from database")
-	void testListAll() {
+	void testListAll() throws FailedToLoadPTException {
 		List<Element> allElements = elmService.getAllElements();
 		assertEquals(allElements.size(), 118);
 	}

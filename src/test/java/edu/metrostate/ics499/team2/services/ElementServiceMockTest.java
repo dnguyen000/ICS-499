@@ -1,5 +1,6 @@
 package edu.metrostate.ics499.team2.services;
 
+import edu.metrostate.ics499.team2.exceptions.domain.FailedToLoadPTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,7 @@ class ElementServiceMockTest {
 	@Test
 	@DisplayName("should list all elements")
 	// https://stackoverflow.com/questions/54674251/how-to-mock-jpa-repositorys-find-method-in-unit-tests
-	void testListAll() {
+	void testListAll() throws FailedToLoadPTException {
 		Element elm1 = new Element();
 		elm1.setAtomicNumber("1");
 		elm1.setAtomicMass("4.5");

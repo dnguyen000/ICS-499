@@ -3,6 +3,7 @@ package edu.metrostate.ics499.team2.controllers;
 
 import java.util.List;
 
+import edu.metrostate.ics499.team2.exceptions.domain.FailedToLoadPTException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,14 +28,14 @@ public class ElementController {
 	
 	// thymeleaf table template of all elements
     @GetMapping
-    public String getElements(Model model) {
+    public String getElements(Model model) throws FailedToLoadPTException {
     	model.addAttribute("elms", list());
 		return "elements";
     }
 
     @GetMapping("/list")
     @ResponseBody
-    public List<Element> list() {
+    public List<Element> list() throws FailedToLoadPTException {
     	return elmService.getAllElements();
     }
 

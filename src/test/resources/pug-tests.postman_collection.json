@@ -1,0 +1,308 @@
+{
+	"info": {
+		"_postman_id": "b050cbf2-48b4-49f1-90e1-dcad7e06b8b3",
+		"name": "pug-tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "formula",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/formula/H/JSON?AllowOtherElements=false&MaxRecords=2",
+					"protocol": "https",
+					"host": [
+						"pubchem",
+						"ncbi",
+						"nlm",
+						"nih",
+						"gov"
+					],
+					"path": [
+						"rest",
+						"pug",
+						"compound",
+						"formula",
+						"H",
+						"JSON"
+					],
+					"query": [
+						{
+							"key": "AllowOtherElements",
+							"value": "false"
+						},
+						{
+							"key": "MaxRecords",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listkey",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/listkey/655030732594937533/cids/JSON",
+					"protocol": "https",
+					"host": [
+						"pubchem",
+						"ncbi",
+						"nlm",
+						"nih",
+						"gov"
+					],
+					"path": [
+						"rest",
+						"pug",
+						"compound",
+						"listkey",
+						"655030732594937533",
+						"cids",
+						"JSON"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fast formula",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/fastformula/O/property/MolecularFormula,MolecularWeight,CanonicalSMILES,Title/JSON?MaxRecords=2&AllowOtherElements=false",
+					"protocol": "https",
+					"host": [
+						"pubchem",
+						"ncbi",
+						"nlm",
+						"nih",
+						"gov"
+					],
+					"path": [
+						"rest",
+						"pug",
+						"compound",
+						"fastformula",
+						"O",
+						"property",
+						"MolecularFormula,MolecularWeight,CanonicalSMILES,Title",
+						"JSON"
+					],
+					"query": [
+						{
+							"key": "MaxRecords",
+							"value": "2"
+						},
+						{
+							"key": "AllowOtherElements",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "smiles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/[O]/property/MonoisotopicMass,MolecularFormula,MolecularWeight,Title/JSON",
+					"protocol": "https",
+					"host": [
+						"pubchem",
+						"ncbi",
+						"nlm",
+						"nih",
+						"gov"
+					],
+					"path": [
+						"rest",
+						"pug",
+						"compound",
+						"smiles",
+						"[O]",
+						"property",
+						"MonoisotopicMass,MolecularFormula,MolecularWeight,Title",
+						"JSON"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/5362549/property/MonoisotopicMass,Title,MolecularFormula,MolecularWeight,CanonicalSMILES/JSON",
+					"protocol": "https",
+					"host": [
+						"pubchem",
+						"ncbi",
+						"nlm",
+						"nih",
+						"gov"
+					],
+					"path": [
+						"rest",
+						"pug",
+						"compound",
+						"cid",
+						"5362549",
+						"property",
+						"MonoisotopicMass,Title,MolecularFormula,MolecularWeight,CanonicalSMILES",
+						"JSON"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/Atomic oxygen/property/MolecularWeight,Title,CanonicalSMILES/JSON",
+					"protocol": "https",
+					"host": [
+						"pubchem",
+						"ncbi",
+						"nlm",
+						"nih",
+						"gov"
+					],
+					"path": [
+						"rest",
+						"pug",
+						"compound",
+						"name",
+						"Atomic oxygen",
+						"property",
+						"MolecularWeight,Title,CanonicalSMILES",
+						"JSON"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/compound/validate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/compound/validate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"compound",
+						"validate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "png",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/962/PNG?record_type=2d&image_size=large",
+					"protocol": "https",
+					"host": [
+						"pubchem",
+						"ncbi",
+						"nlm",
+						"nih",
+						"gov"
+					],
+					"path": [
+						"rest",
+						"pug",
+						"compound",
+						"cid",
+						"962",
+						"PNG"
+					],
+					"query": [
+						{
+							"key": "record_type",
+							"value": "2d"
+						},
+						{
+							"key": "image_size",
+							"value": "large"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sdf",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/2244/SDF?record_type=3d",
+					"protocol": "https",
+					"host": [
+						"pubchem",
+						"ncbi",
+						"nlm",
+						"nih",
+						"gov"
+					],
+					"path": [
+						"rest",
+						"pug",
+						"compound",
+						"cid",
+						"2244",
+						"SDF"
+					],
+					"query": [
+						{
+							"key": "record_type",
+							"value": "3d"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
