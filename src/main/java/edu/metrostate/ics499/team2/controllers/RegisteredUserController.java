@@ -1,6 +1,5 @@
 package edu.metrostate.ics499.team2.controllers;
 
-import edu.metrostate.ics499.team2.constants.Role;
 import edu.metrostate.ics499.team2.exceptions.domain.*;
 import edu.metrostate.ics499.team2.model.Mapper;
 import edu.metrostate.ics499.team2.model.RegisteredUser;
@@ -42,14 +41,12 @@ public class RegisteredUserController extends ExceptionHandling {
     public static final String EMAIL_SENT = "Email with new password sent to: ";
     public static final String USER_DELETED_SUCCESSFULLY = "User deleted successfully.";
     private final RegisteredUserService userService;
-    private final Mapper mapper;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public RegisteredUserController(RegisteredUserService userService, Mapper mapper, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
+    public RegisteredUserController(RegisteredUserService userService, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
         this.userService = userService;
-        this.mapper = mapper;
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
     }
