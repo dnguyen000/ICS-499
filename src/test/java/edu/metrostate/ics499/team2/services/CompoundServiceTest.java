@@ -1,27 +1,36 @@
 package edu.metrostate.ics499.team2.services;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
+import static edu.metrostate.ics499.team2.constants.PugApiConstants.PUG_INPUT;
+import static edu.metrostate.ics499.team2.constants.PugApiConstants.PUG_OPERATION;
+import static edu.metrostate.ics499.team2.constants.PugApiConstants.PUG_OUTPUT;
+import static edu.metrostate.ics499.team2.constants.PugApiConstants.PUG_PROLOG;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
-import static edu.metrostate.ics499.team2.constants.PugApiConstants.*;
+
+import edu.metrostate.ics499.team2.model.Compound;
+import edu.metrostate.ics499.team2.repositories.CompoundRepository;
 
 
 @ExtendWith(SpringExtension.class)
@@ -31,8 +40,10 @@ class CompoundServiceTest {
 	@Autowired
 	private CompoundService compoundService;
 	
-	@Autowired
-	private RestTemplate restTemplate;
+	@MockBean
+	private RestTemplate restMock;
+	
+	private CompoundRepository repoMock;
 
 	@LocalServerPort
 	int randomServerPort;
@@ -40,7 +51,6 @@ class CompoundServiceTest {
 	private MockRestServiceServer mockServer;
 	
 	private String compound = "NaCl";
-	private ArrayList<String> elementsArray = new ArrayList<>();
 	String responseBody = "{\n"
 			+ "    \"PropertyTable\": {\n"
 			+ "        \"Properties\": [\n"
@@ -64,25 +74,77 @@ class CompoundServiceTest {
 	
 	@BeforeEach
 	public void setUp() {
-		this.mockServer = MockRestServiceServer.createServer(this.restTemplate);
+		repoMock = mock(CompoundRepository.class);
+		ReflectionTestUtils.setField(compoundService, "compoundRepo", repoMock);
+		ReflectionTestUtils.setField(compoundService, "restTemplate", restMock);
+		this.mockServer = MockRestServiceServer.createServer(this.restMock);
 	}
 	
 	@Test
-	void test() throws Exception {
-		elementsArray.add("Na");
-		elementsArray.add("Cl");
-		mockServer.expect(requestTo(PUG_PROLOG + PUG_INPUT + compound + PUG_OPERATION + PUG_OUTPUT))
-		.andExpect(method(HttpMethod.GET))
-		.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
-
-		Map<String, ?> result = compoundService.validateInput(compound, elementsArray);
+	@DisplayName("It should return false if the compound does not exist in the repo")
+	void doesValueExistInRepo_false() {
+		List<Compound> mockValue = new ArrayList<>(); 
+		Mockito.doReturn(mockValue).when(repoMock).findCompoundByFormula("H2O");
 		
-		mockServer.verify();
-		
-		assertFalse(result.isEmpty());
-		
-//		ResponseEntity<String> response = testRestTemplate.getForEntity(null, null);
-//		mockServer.verify();
+		assertFalse(compoundService.doesValueExistInRepo("H2O"));
 	}
+	
+	@Test
+	@DisplayName("It should return true if the compound exists in the repo")
+	void doesValueExistInRepo_true() {
+		String userId = "12345";
+		HashMap<String, Integer> elements = new HashMap<>();
+		elements.put("H", 2);
+		elements.put("O", 1);
+		
+		Compound c1 = new Compound(elements, userId);
+		List<Compound> mockValue = new ArrayList<>();
+		mockValue.add(c1);
+		Mockito.doReturn(mockValue).when(repoMock).findCompoundByFormula("H2O");
+		
+		assertTrue(compoundService.doesValueExistInRepo("H2O"));
+	}
+	
+	@Test
+	@DisplayName("It should return the value from the repo if it exists")
+	void validateInput_returnFromRepo() {
+		String userId = "12345";
+		HashMap<String, Integer> elements = new HashMap<>();
+		elements.put("H", 2);
+		elements.put("O", 1);
+		
+		Compound c1 = new Compound(elements, userId);
+		String formula = "H2O";
+		List<Compound> mockValue = new ArrayList<>();
+		mockValue.add(c1);
+		Mockito.doReturn(mockValue).when(repoMock).findCompoundByFormula(formula);
+		
+		assertNotNull(compoundService.validateInput(c1));
+		
+		verify(restMock, never()).getForObject(PUG_PROLOG + PUG_INPUT + formula + PUG_OPERATION + PUG_OUTPUT, HashMap.class);
+	}
+	
+	
+	//TODO: Revise this test
+//	@Test
+//	@DisplayName("It should return the value from PUG API if the value does not exist in the repo")
+//	void validateInput_returnFromPugApi() throws Exception {
+//		List<Compound> mockValue = new ArrayList<>(); 
+//		String formula = "NaCl";
+//		String userId = "12345";
+//		HashMap<String, Integer> elements = new HashMap<>();
+//		elements.put("Na", 1);
+//		elements.put("Cl", 1);
+//		
+//		Mockito.doReturn(mockValue).when(repoMock).findCompoundByFormula("NaCl");
+//		Compound c1 = new Compound(elements, userId);
+//		mockServer.expect(requestTo(PUG_PROLOG + PUG_INPUT + compound + PUG_OPERATION + PUG_OUTPUT))
+//		.andExpect(method(HttpMethod.GET))
+//		.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
+//
+//		compoundService.validateInput(c1);
+//		
+//		verify(restMock, times(1)).getForObject(PUG_PROLOG + PUG_INPUT + formula + PUG_OPERATION + PUG_OUTPUT, HashMap.class);
+//	}
 
 }
