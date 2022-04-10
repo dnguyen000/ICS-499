@@ -24,6 +24,7 @@ public class Element {
 	private String boilingPoint;
 	private String density;
 	private String groupBlock;										// group/family: metal, metalloid, non-metal etc.
+	private String tablePosition;
 	private String yearDiscovered;
 
 	public Element(){};
@@ -49,6 +50,7 @@ public class Element {
 		this.boilingPoint = boilingPoint;
 		this.density = density;
 		this.groupBlock = groupBlock;
+		this.tablePosition = tablePosition;
 		this.yearDiscovered = yearDiscovered;
 	}
 
@@ -186,6 +188,14 @@ public class Element {
 
 	public void setGroupBlock(String groupBlock) {
 		this.groupBlock = groupBlock;
+	}
+	
+	public String getTablePosition() {
+		return tablePosition;
+	}
+	
+	public void setTablePosition(String tablePosition) {
+		this.tablePosition = tablePosition;
 	}
 
 	public String getYearDiscovered() {

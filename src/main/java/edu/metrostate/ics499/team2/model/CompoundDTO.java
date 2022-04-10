@@ -1,16 +1,17 @@
 package edu.metrostate.ics499.team2.model;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public class CompoundDTO {
 	private ArrayList<Data> data;
+	private String userId;
 	
 	@JsonCreator
-	public CompoundDTO(ArrayList<Data> data) {
+	public CompoundDTO(ArrayList<Data> data, String userId) {
 		this.data = data;
 	}
 	
@@ -18,24 +19,40 @@ public class CompoundDTO {
 		return this.data;
 	}
 	
-	public String getConcatPayload() {
-		return data.stream().map(element -> element.getElement()).collect(Collectors.joining());
+	public String getUserId() {
+		return this.userId;
 	}
 	
-	public ArrayList<String> getArrayPayload() {
-		return data.stream().map(element -> element.getElement()).collect(Collectors.toCollection(ArrayList::new));
+	public String getConcatPayload() {
+		return getMappedPayload().entrySet().stream().map(entry -> entry.getKey() + entry.getValue()).collect(Collectors.joining());
+	}
+	
+	public HashMap<String, Integer> getMappedPayload() {
+		HashMap<String, Integer> molecule = new HashMap<>();
+		
+		for(Data d : data) {
+			molecule.put(d.getElement(), d.getNumberOfAtoms());
+		}
+		
+		return molecule;
 	}
 	
 	static class Data {
 		private String element;
+		private int numberOfAtoms;
 		
 		@JsonCreator
-		public Data (String element) {
+		public Data (String element, int numberOfAtoms) {
 			this.element = element;
+			this.numberOfAtoms = numberOfAtoms;
 		}
 		
 		public String getElement() {
 			return this.element;
+		}
+		
+		public int getNumberOfAtoms() {
+			return this.numberOfAtoms;
 		}
 	}	
 }
