@@ -154,6 +154,12 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		return user;
 	}
 
+	public void saveLastLogin(Date date, String username) {
+		RegisteredUser user = userRepo.findRegisteredUserByUsername(username);
+		user.setLastLoginDate(new Date());
+		userRepo.save(user);
+	}
+
 	@Override
 	public void deleteUser(String username) throws IOException {
 		RegisteredUser user = userRepo.findRegisteredUserByUsername(username);
@@ -195,9 +201,6 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
             throw new UsernameNotFoundException(NO_USER_FOUND_BY_USERNAME + username);
         } else {
 			validateLoginAttempt(user);
-			user.setLastLoginDisplay(user.getLastLoginDate());
-			user.setLastLoginDate(new Date());
-			userRepo.save(user);
         	log.info("user: {} found in the database", username);
         }
         return new RegisteredUserPrincipal(user);

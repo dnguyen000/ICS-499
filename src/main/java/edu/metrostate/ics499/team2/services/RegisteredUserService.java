@@ -1,6 +1,7 @@
 package edu.metrostate.ics499.team2.services;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import edu.metrostate.ics499.team2.exceptions.domain.*;
@@ -21,4 +22,7 @@ public interface RegisteredUserService {
 	void deleteUser(String id) throws IOException;
 	void resetPassword(String email) throws EmailNotFoundException;
 	RegisteredUser updateProfileImage(String username, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException;
+
+	void saveLastLogin(Date date, String username);
+
 }
