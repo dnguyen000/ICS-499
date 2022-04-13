@@ -1,10 +1,12 @@
 package edu.metrostate.ics499.team2.services.impl;
-
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -152,6 +154,12 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		return user;
 	}
 
+	public void saveLastLogin(Date date, String username) {
+		RegisteredUser user = userRepo.findRegisteredUserByUsername(username);
+		user.setLastLoginDate(new Date());
+		userRepo.save(user);
+	}
+
 	@Override
 	public void deleteUser(String username) throws IOException {
 		RegisteredUser user = userRepo.findRegisteredUserByUsername(username);
@@ -193,9 +201,6 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
             throw new UsernameNotFoundException(NO_USER_FOUND_BY_USERNAME + username);
         } else {
 			validateLoginAttempt(user);
-			user.setLastLoginDisplay(user.getLastLoginDate());
-			user.setLastLoginDate(new Date());
-			userRepo.save(user);
         	log.info("user: {} found in the database", username);
         }
         return new RegisteredUserPrincipal(user);
@@ -203,7 +208,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 
 	// update 500 instead of user not found ?
 	private void validateLoginAttempt(RegisteredUser user) {
-		if(user.isNotLocked()) {
+		if (user.isNotLocked()) {
 			if(loginAttemptService.hasExceededMaxAttempts(user.getUsername())) {
 				user.setNotLocked(false);
 			} else {
@@ -245,18 +250,43 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 				Files.createDirectories(userFolder);
 				log.info(DIRECTORY_CREATED + userFolder);
 			}
-			Files.deleteIfExists(Paths.get(userFolder + user.getUsername() + DOT + JPG_EXTENSION));
-			Files.copy(profileImg.getInputStream(), userFolder.resolve(user.getUsername() + DOT + JPG_EXTENSION),
-					REPLACE_EXISTING);
-			user.setProfileImgUrl(setProfileImgURL(user.getUsername()));
+			// calculate file hash
+			String md5Hash = createMD5HashImg(profileImg);
+			String filename = md5Hash + "_" + user.getUsername();
+//			Files.deleteIfExists(Paths.get(userFolder + filename + DOT + JPG_EXTENSION));
+			log.info("image hash: " + md5Hash);
+			Files.copy(profileImg.getInputStream(), userFolder.resolve(filename + DOT + JPG_EXTENSION), REPLACE_EXISTING);
+			user.setProfileImgUrl(setProfileImgURL(user.getUsername(), md5Hash));
 			userRepo.save(user);
 			log.info(FILE_SAVED_IN_FILE_SYSTEM + profileImg.getOriginalFilename());
 		}
 	}
 
-	private String setProfileImgURL(String username) {
+	private String setProfileImgURL(String username, String hash) {
+		log.info("image hash: " + hash);
 		return ServletUriComponentsBuilder.fromCurrentContextPath().path(USER_IMAGE_PATH + username + FORWARD_SLASH
-				+ username + DOT + JPG_EXTENSION).toUriString();
+				+ hash + "_" + username + DOT + JPG_EXTENSION).toUriString();
+	}
+
+	private String createMD5HashImg(final MultipartFile input) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			// Compute message digest of the input
+			byte[] messageDigest = md.digest(input.getBytes());
+			return convertToHex(messageDigest);
+		} catch (NoSuchAlgorithmException | IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	private String convertToHex(final byte[] messageDigest) {
+		BigInteger bigint = new BigInteger(1, messageDigest);
+		String hexText = bigint.toString(16);
+		while (hexText.length() < 32) {
+			hexText = "0".concat(hexText);
+		}
+		return hexText;
 	}
 
 }

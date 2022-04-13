@@ -1,10 +1,7 @@
 // a domain class
 package edu.metrostate.ics499.team2.model;
-
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("new_elms")
 public class Element {
 	
 	@Id
@@ -15,7 +12,7 @@ public class Element {
 	private String name;											// name
 	private String atomicMass;										// mass number: varies, identifies the isotope, represents the sum of protons
 																	// and neutrons in the nucleus of the atom
-	private String cpkHexColor;										// color
+	private String cPKHexColor;										// color
 	private String electronConfiguration;
 	private String electronegativity;								// valence, outer energy level electrons involved in covalent bond ?
 	private String atomicRadius;
@@ -27,17 +24,21 @@ public class Element {
 	private String boilingPoint;
 	private String density;
 	private String groupBlock;										// group/family: metal, metalloid, non-metal etc.
+	private String tablePosition;
 	private String yearDiscovered;
 
 	public Element(){};
 
-	public Element(String id, String atomicNumber, String symbol, String name, String atomicMass, String cpkHexColor, String electronConfiguration, String electronegativity, String atomicRadius, String ionizationEnergy, String electronAffinity, String oxidationStates, String standardState, String meltingPoint, String boilingPoint, String density, String groupBlock, String yearDiscovered) {
+	public Element(String id, String atomicNumber, String symbol, String name, String atomicMass, String cPKHexColor,
+				   String electronConfiguration, String electronegativity, String atomicRadius, String ionizationEnergy,
+				   String electronAffinity, String oxidationStates, String standardState, String meltingPoint,
+				   String boilingPoint, String density, String groupBlock, String yearDiscovered) {
 		this.id = id;
 		this.atomicNumber = atomicNumber;
 		this.symbol = symbol;
 		this.name = name;
 		this.atomicMass = atomicMass;
-		this.cpkHexColor = cpkHexColor;
+		this.cPKHexColor = cPKHexColor;
 		this.electronConfiguration = electronConfiguration;
 		this.electronegativity = electronegativity;
 		this.atomicRadius = atomicRadius;
@@ -49,6 +50,7 @@ public class Element {
 		this.boilingPoint = boilingPoint;
 		this.density = density;
 		this.groupBlock = groupBlock;
+		this.tablePosition = tablePosition;
 		this.yearDiscovered = yearDiscovered;
 	}
 
@@ -92,12 +94,12 @@ public class Element {
 		this.atomicMass = atomicMass;
 	}
 
-	public String getCpkHexColor() {
-		return cpkHexColor;
+	public String getcPKHexColor() {
+		return cPKHexColor;
 	}
 
-	public void setCpkHexColor(String cpkHexColor) {
-		this.cpkHexColor = cpkHexColor;
+	public void setcPKHexColor(String cpkHexColor) {
+		this.cPKHexColor = cpkHexColor;
 	}
 
 	public String getElectronConfiguration() {
@@ -186,6 +188,14 @@ public class Element {
 
 	public void setGroupBlock(String groupBlock) {
 		this.groupBlock = groupBlock;
+	}
+	
+	public String getTablePosition() {
+		return tablePosition;
+	}
+	
+	public void setTablePosition(String tablePosition) {
+		this.tablePosition = tablePosition;
 	}
 
 	public String getYearDiscovered() {

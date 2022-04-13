@@ -22,7 +22,6 @@ public class RegisteredUser implements Serializable {
 	private String password;
 	private String profileImgUrl;
 	private Date lastLoginDate;
-	private Date lastLoginDisplay;
 	private Date joinDate;
 	//spring properties
 	private String role; 					// ROLE_USER{ read, edit }, ROLE_ADMIN{ delete , update, create }
@@ -35,7 +34,7 @@ public class RegisteredUser implements Serializable {
 	// default empty constructor
 	public RegisteredUser() { }
 
-	public RegisteredUser(String id, String userId, String email, String username, String firstName, String lastName, String password, String profileImgUrl, Date lastLoginDate, Date lastLoginDisplay, Date joinDate, String role, String[] authorities, boolean isActive, boolean isNotLocked, int highScore) {
+	public RegisteredUser(String id, String userId, String email, String username, String firstName, String lastName, String password, String profileImgUrl, Date lastLoginDate, Date joinDate, String role, String[] authorities, boolean isActive, boolean isNotLocked, int highScore) {
 		this.id = id;
 		this.userId = userId;
 		this.email = email;
@@ -45,7 +44,6 @@ public class RegisteredUser implements Serializable {
 		this.password = password;
 		this.profileImgUrl = profileImgUrl;
 		this.lastLoginDate = lastLoginDate;
-		this.lastLoginDisplay = lastLoginDisplay;
 		this.joinDate = joinDate;
 		this.role = role;
 		this.authorities = authorities;
@@ -66,14 +64,6 @@ public class RegisteredUser implements Serializable {
 	public RegisteredUser(String username, String email) {
 		this.username = username;
 		this.email = email;
-	}
-
-	public Date getLastLoginDisplay() {
-		return lastLoginDisplay;
-	}
-
-	public void setLastLoginDisplay(Date lastLoginDisplay) {
-		this.lastLoginDisplay = lastLoginDisplay;
 	}
 
 	public String getUsername() {
@@ -117,7 +107,7 @@ public class RegisteredUser implements Serializable {
 	}
 
 	public Date getLastLoginDate() {
-		return lastLoginDate;
+		return this.lastLoginDate;
 	}
 
 	public void setLastLoginDate(Date lastLoginDate) {

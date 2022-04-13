@@ -1,6 +1,5 @@
 package edu.metrostate.ics499.team2.controllers;
 
-import edu.metrostate.ics499.team2.constants.Role;
 import edu.metrostate.ics499.team2.exceptions.domain.*;
 import edu.metrostate.ics499.team2.model.Mapper;
 import edu.metrostate.ics499.team2.model.RegisteredUser;
@@ -17,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 
 import static edu.metrostate.ics499.team2.constants.FileConstants.*;
@@ -42,29 +43,31 @@ public class RegisteredUserController extends ExceptionHandling {
     public static final String EMAIL_SENT = "Email with new password sent to: ";
     public static final String USER_DELETED_SUCCESSFULLY = "User deleted successfully.";
     private final RegisteredUserService userService;
-    private final Mapper mapper;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public RegisteredUserController(RegisteredUserService userService, Mapper mapper, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
+    public RegisteredUserController(RegisteredUserService userService, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
         this.userService = userService;
-        this.mapper = mapper;
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @PostMapping("/login")
     public ResponseEntity<RegisteredUser> login(@RequestBody RegisteredUser user, HttpServletRequest req) {
-        authenticate(user.getUsername(), user.getPassword());
-        RegisteredUser loginUser = userService.findUserByUsername(user.getUsername());
-        RegisteredUserPrincipal userPrincipal = new RegisteredUserPrincipal(loginUser);
-        String issuer = ServletUriComponentsBuilder.fromRequestUri(req)
-                .replacePath(null)
-                .build()
-                .toUriString();
-        HttpHeaders jwtHeader = getJwtHeader(userPrincipal, issuer);
-        return new ResponseEntity<>(loginUser, jwtHeader, HttpStatus.OK);
+        Authentication auth = authenticate(user.getUsername(), user.getPassword());
+        if (auth.isAuthenticated()) {
+            userService.saveLastLogin(new Date(), user.getUsername());
+            RegisteredUser loginUser = userService.findUserByUsername(user.getUsername());
+            RegisteredUserPrincipal userPrincipal = new RegisteredUserPrincipal(loginUser);
+            String issuer = ServletUriComponentsBuilder.fromRequestUri(req)
+                    .replacePath(null)
+                    .build()
+                    .toUriString();
+            HttpHeaders jwtHeader = getJwtHeader(userPrincipal, issuer);
+            return new ResponseEntity<>(loginUser, jwtHeader, HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @PostMapping("/register")
@@ -165,8 +168,8 @@ public class RegisteredUserController extends ExceptionHandling {
                 message.toUpperCase()), httpStatus);
     }
 
-    private void authenticate(String username, String password) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    private Authentication authenticate(String username, String password) {
+       return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
     }
 
     private HttpHeaders getJwtHeader(RegisteredUserPrincipal userPrincipal, String issuer) {
