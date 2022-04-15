@@ -75,8 +75,8 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		user.setAuthorities(ROLE_USER.getAuthorities());
 		user.setProfileImgUrl(getTemporaryProfileImageUrl(username));
 		userRepo.save(user);
-		log.info("New user password: " + password);
-//		emailService.sendNewPasswordEmail(firstName, password, email);
+//		log.info("New user password: " + password);
+		emailService.sendNewPasswordEmail(firstName, password, email);
 		return user;
 	}
 
@@ -133,7 +133,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		user.setProfileImgUrl(getTemporaryProfileImageUrl(username));
 		userRepo.save(user);
 		saveProfileImg(user, profileImg);
-		log.info("New user password: " + password);
+//		log.info("New user password: " + password);
 		emailService.sendNewPasswordEmail(firstName, password, email);
 		return user;
 	}
@@ -177,7 +177,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		String password = generatePassword();
 		user.setPassword(encodePassword(password));
 		userRepo.save(user);
-		log.info("New user password: " + password);
+//		log.info("New user password: " + password);
 		emailService.sendNewPasswordEmail(user.getFirstName(), password, user.getEmail());
 	}
 

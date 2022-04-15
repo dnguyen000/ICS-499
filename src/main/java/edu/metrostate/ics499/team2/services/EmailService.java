@@ -21,7 +21,6 @@ public class EmailService {
         Properties properties = System.getProperties();
         properties.put("mail.smtp.host", SMTP_SERVER);
         properties.put("mail.smtp.port", DEFAULT_PORT);
-        properties.put("mail.debug", "true");
         return Session.getInstance(properties);
     }
 
