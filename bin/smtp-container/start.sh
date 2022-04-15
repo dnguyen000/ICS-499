@@ -91,6 +91,8 @@ sed -i "s/{{APP_DOMAIN}}/$APP_DOMAIN/g" /etc/postfix/main.cf
 # number option to `s' command may not be zero
 # sed -i "s/{{MY_NETWORKS}}/$MY_NETWORKS/g" /etc/postfix/main.cf
 
+# support user receive at root
+#echo -e "support:\troot" >> /etc/aliases
 newaliases
 postfix start
 
