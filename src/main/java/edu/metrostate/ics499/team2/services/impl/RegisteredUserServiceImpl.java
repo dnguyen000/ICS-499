@@ -34,7 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import static edu.metrostate.ics499.team2.constants.FileConstants.*;
-import static edu.metrostate.ics499.team2.constants.Role.ROLE_USER;
+import static edu.metrostate.ics499.team2.constants.Role.USER;
 import static edu.metrostate.ics499.team2.constants.UserImplementationConstant.*;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
@@ -71,8 +71,8 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		user.setPassword(encodePassword(password));
 		user.setActive(true);
 		user.setNotLocked(true);
-		user.setRole(ROLE_USER.name());
-		user.setAuthorities(ROLE_USER.getAuthorities());
+		user.setRole(USER.name());
+		user.setAuthorities(USER.getAuthorities());
 		user.setProfileImgUrl(getTemporaryProfileImageUrl(username));
 		userRepo.save(user);
 //		log.info("New user password: " + password);
