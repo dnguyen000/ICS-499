@@ -1,6 +1,7 @@
-package edu.metrostate.ics499.team2.exceptions.domain;
+package edu.metrostate.ics499.team2.exceptions;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
+import edu.metrostate.ics499.team2.exceptions.domain.*;
 import edu.metrostate.ics499.team2.security.http.HttpResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -15,6 +16,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -121,10 +123,10 @@ public class ExceptionHandling implements ErrorController {
                 httpStatus.getReasonPhrase().toUpperCase(), message.toUpperCase()), httpStatus);
     }
 
-    @RequestMapping(ERROR_PATH)
-    public ResponseEntity<HttpResponse> notFound404() {
-        return createHttpResponse(NOT_FOUND, "There is no mapping for this URL");
-    }
+//    @RequestMapping(ERROR_PATH)
+//    public ResponseEntity<HttpResponse> notFound404() {
+//        return createHttpResponse(NOT_FOUND, "There is no mapping for this URL");
+//    }
 
 //    @Override
 //    public String getErrorPath() {

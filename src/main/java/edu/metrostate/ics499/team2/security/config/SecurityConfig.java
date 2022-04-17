@@ -1,4 +1,4 @@
-package edu.metrostate.ics499.team2.config;
+package edu.metrostate.ics499.team2.security.config;
 
 import edu.metrostate.ics499.team2.constants.SecurityConstants;
 import edu.metrostate.ics499.team2.security.JwtAuthorizationFilter;
