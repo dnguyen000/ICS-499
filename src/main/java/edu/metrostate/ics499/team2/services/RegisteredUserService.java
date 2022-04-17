@@ -19,10 +19,16 @@ public interface RegisteredUserService {
 							  boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException;
 	RegisteredUser updateUser(String currentUsername, String newFirstName, String newLastName, String newUsername, String newEmail, String role,
 							boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException;
+
+	RegisteredUser editUser(String userId, String newFirstName, String newLastName, String newUsername, String newEmail, String role,
+							  boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException;
+
 	void deleteUser(String id) throws IOException;
 	void resetPassword(String email) throws EmailNotFoundException;
 	RegisteredUser updateProfileImage(String username, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException;
 
 	void saveLastLogin(Date date, String username);
+
+
 
 }

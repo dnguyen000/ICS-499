@@ -1,7 +1,7 @@
 package edu.metrostate.ics499.team2.controllers;
 
+import edu.metrostate.ics499.team2.exceptions.ExceptionHandling;
 import edu.metrostate.ics499.team2.exceptions.domain.*;
-import edu.metrostate.ics499.team2.model.Mapper;
 import edu.metrostate.ics499.team2.model.RegisteredUser;
 import edu.metrostate.ics499.team2.security.JwtTokenProvider;
 import edu.metrostate.ics499.team2.security.RegisteredUserPrincipal;
@@ -106,6 +106,21 @@ public class RegisteredUserController extends ExceptionHandling {
         return new ResponseEntity<>(updatedUser, OK);
     }
 
+    @PostMapping("/edit")
+    public ResponseEntity<RegisteredUser> edit(@RequestParam("userId") String userId,
+                                               @RequestParam("firstName") String firstName,
+                                               @RequestParam("lastName") String lastName,
+                                               @RequestParam("username") String username,
+                                               @RequestParam("email") String email,
+                                               @RequestParam("role") String role,
+                                               @RequestParam("isActive") String isActive,               // boolean
+                                               @RequestParam("isNonLocked") String isNonLocked,         // boolean
+                                               @RequestParam(value = "profileImg", required = false) MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
+        RegisteredUser updatedUser = userService.editUser(userId, firstName, lastName, username, email, role,
+                Boolean.parseBoolean(isNonLocked), Boolean.parseBoolean(isActive), profileImg);
+        return new ResponseEntity<>(updatedUser, OK);
+    }
+
     @PostMapping("/updateprofileimg")
     public ResponseEntity<RegisteredUser> update(@RequestParam("username") String username, @RequestParam(value = "profileImg") MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
         RegisteredUser user = userService.updateProfileImage(username, profileImg);
@@ -169,7 +184,7 @@ public class RegisteredUserController extends ExceptionHandling {
     }
 
     private Authentication authenticate(String username, String password) {
-       return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
     }
 
     private HttpHeaders getJwtHeader(RegisteredUserPrincipal userPrincipal, String issuer) {

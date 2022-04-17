@@ -10,7 +10,9 @@ public interface RegisteredUserRepository extends MongoRepository<RegisteredUser
 	RegisteredUser findRegisteredUserByEmail(String email);
 	RegisteredUser findRegisteredUserByUsername(String username);
 
-	// getAllUsers first 100 da da da
+    RegisteredUser findRegisteredUserByUserId(String userId);
+
+    // getAllUsers first 100 da da da
 	//	@Query("")
 	//	List<RegisteredUser> getUsers =
 }

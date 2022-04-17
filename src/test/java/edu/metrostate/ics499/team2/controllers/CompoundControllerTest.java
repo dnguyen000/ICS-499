@@ -19,6 +19,8 @@ import edu.metrostate.ics499.team2.security.http.JwtAccessDeniedHandler;
 import edu.metrostate.ics499.team2.security.http.JwtAuthenticationEntryPoint;
 import edu.metrostate.ics499.team2.services.CompoundService;
 
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = CompoundController.class)

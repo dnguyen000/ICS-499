@@ -1,6 +1,7 @@
 package edu.metrostate.ics499.team2.security;
 
 import edu.metrostate.ics499.team2.constants.SecurityConstants;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -20,6 +21,7 @@ import java.util.List;
 import static edu.metrostate.ics499.team2.constants.SecurityConstants.TOKEN_PREFIX;
 
 @Component
+@Slf4j
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -40,19 +42,25 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             res.setStatus(HttpStatus.OK.value());
         } else {
             String authorizationHeader = req.getHeader(HttpHeaders.AUTHORIZATION);
+            log.info("Authorization: " + authorizationHeader);
             // if null or not starts with "Bearer "
-            if (authorizationHeader == null || !authorizationHeader.startsWith(TOKEN_PREFIX)) {
+            if (authorizationHeader == null || authorizationHeader.equals("Bearer null") || !authorizationHeader.startsWith(TOKEN_PREFIX)) {
                 chain.doFilter(req, res);
                 return;
             }
-            String token = authorizationHeader.substring(TOKEN_PREFIX.length());
-            String username = jwtTokenProvider.getSubject(token, issuer);
-            if (jwtTokenProvider.isTokenValid(username, token, issuer) && SecurityContextHolder.getContext().getAuthentication() == null) {
-                List<GrantedAuthority> authorities = jwtTokenProvider.getAuthorities(token, issuer);
-                Authentication authentication = jwtTokenProvider.getAuthentication(username, authorities, req);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            } else {
-                SecurityContextHolder.clearContext();
+            try {
+                String token = authorizationHeader.substring(TOKEN_PREFIX.length());
+                String username = jwtTokenProvider.getSubject(token, issuer);
+                if (jwtTokenProvider.isTokenValid(username, token, issuer) && SecurityContextHolder.getContext().getAuthentication() == null) {
+                    List<GrantedAuthority> authorities = jwtTokenProvider.getAuthorities(token, issuer);
+                    Authentication authentication = jwtTokenProvider.getAuthentication(username, authorities, req);
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else {
+                    SecurityContextHolder.clearContext();
+                }
+            } catch(Exception e) {
+                log.warn("Authorization: " + authorizationHeader + "; invalid.");
+                throw new ServletException(e);
             }
         }
         chain.doFilter(req, res);

@@ -34,7 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import static edu.metrostate.ics499.team2.constants.FileConstants.*;
-import static edu.metrostate.ics499.team2.constants.Role.ROLE_USER;
+import static edu.metrostate.ics499.team2.constants.Role.USER;
 import static edu.metrostate.ics499.team2.constants.UserImplementationConstant.*;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
@@ -71,39 +71,13 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		user.setPassword(encodePassword(password));
 		user.setActive(true);
 		user.setNotLocked(true);
-		user.setRole(ROLE_USER.name());
-		user.setAuthorities(ROLE_USER.getAuthorities());
+		user.setRole(USER.name());
+		user.setAuthorities(USER.getAuthorities());
 		user.setProfileImgUrl(getTemporaryProfileImageUrl(username));
 		userRepo.save(user);
-		log.info("New user password: " + password);
-//		emailService.sendNewPasswordEmail(firstName, password, email);
+//		log.info("New user password: " + password);
+		emailService.sendNewPasswordEmail(firstName, password, email);
 		return user;
-	}
-
-	private RegisteredUser validateNewUsernameAndEmail(String currentUsername, String newUsername, String newEmail) throws UserNotFoundException, UsernameExistException, EmailExistException {
-			RegisteredUser userByNewUsername = findUserByUsername(newUsername);
-			RegisteredUser userByNewEmail = findUserByEmail(newEmail);
-			if (StringUtils.isNotBlank(currentUsername)) {
-				RegisteredUser currentUser = findUserByUsername(currentUsername);
-				if (currentUser == null) {
-					throw new UserNotFoundException(NO_USER_FOUND_BY_USERNAME + currentUsername);
-				}
-				if (userByNewUsername != null && !currentUser.getId().equals(userByNewUsername.getId())) {
-					throw new UsernameExistException(USERNAME_ALREADY_EXISTS);
-				}
-				if (userByNewEmail != null && !currentUser.getId().equals(userByNewEmail.getId())) {
-					throw new EmailExistException(EMAIL_ALREADY_EXISTS);
-				}
-				return currentUser;
-			} else {
-				if (userByNewUsername != null) {
-					throw new UsernameExistException(USERNAME_ALREADY_EXISTS);
-				}
-				if (userByNewEmail != null) {
-					throw new EmailExistException(EMAIL_ALREADY_EXISTS);
-				}
-			}
-		return null;
 	}
 
 	public RegisteredUser findUserByEmail(String email) {
@@ -133,14 +107,30 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		user.setProfileImgUrl(getTemporaryProfileImageUrl(username));
 		userRepo.save(user);
 		saveProfileImg(user, profileImg);
-		log.info("New user password: " + password);
-//		emailService.sendNewPasswordEmail(firstName, password, email);
+//		log.info("New user password: " + password);
+		emailService.sendNewPasswordEmail(firstName, password, email);
 		return user;
 	}
 
 	@Override
 	public RegisteredUser updateUser(String currentUsername, String newFirstName, String newLastName, String newUsername, String newEmail, String role, boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
 		RegisteredUser user = validateNewUsernameAndEmail(currentUsername, newUsername, newEmail);
+		user.setFirstName(newFirstName);
+		user.setLastName(newLastName);
+		user.setUsername(newUsername);
+		user.setEmail(newEmail);
+		user.setActive(isActive);
+		user.setNotLocked(isNonLocked);
+		user.setRole(getRoleEnumName(role).name());
+		user.setAuthorities(getRoleEnumName(role).getAuthorities());
+		userRepo.save(user);
+		saveProfileImg(user, profileImg);
+		return user;
+	}
+
+	@Override
+	public RegisteredUser editUser(String userId, String newFirstName, String newLastName, String newUsername, String newEmail, String role, boolean isNonLocked, boolean isActive, MultipartFile profileImg) throws UserNotFoundException, EmailExistException, UsernameExistException, IOException, NotAnImageFileException {
+		RegisteredUser user = validateEditUsernameAndEmail(userId, newUsername, newEmail);
 		user.setFirstName(newFirstName);
 		user.setLastName(newLastName);
 		user.setUsername(newUsername);
@@ -177,8 +167,8 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		String password = generatePassword();
 		user.setPassword(encodePassword(password));
 		userRepo.save(user);
-		log.info("New user password: " + password);
-//			emailService.sendNewPasswordEmail(user.getFirstName(), password, user.getEmail());
+//		log.info("New user password: " + password);
+		emailService.sendNewPasswordEmail(user.getFirstName(), password, user.getEmail());
 	}
 
 	@Override
@@ -204,6 +194,63 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
         	log.info("user: {} found in the database", username);
         }
         return new RegisteredUserPrincipal(user);
+	}
+
+	private RegisteredUser validateNewUsernameAndEmail(String currentUsername, String newUsername, String newEmail) throws UserNotFoundException, UsernameExistException, EmailExistException {
+		RegisteredUser userByNewUsername = findUserByUsername(newUsername);
+		RegisteredUser userByNewEmail = findUserByEmail(newEmail);
+		if (StringUtils.isNotBlank(currentUsername)) {
+			RegisteredUser currentUser = findUserByUsername(currentUsername);
+			if (currentUser == null) {
+				throw new UserNotFoundException(NO_USER_FOUND_BY_USERNAME + currentUsername);
+			}
+			if (userByNewUsername != null && !currentUser.getId().equals(userByNewUsername.getId())) {
+				throw new UsernameExistException(USERNAME_ALREADY_EXISTS);
+			}
+			if (userByNewEmail != null && !currentUser.getId().equals(userByNewEmail.getId())) {
+				throw new EmailExistException(EMAIL_ALREADY_EXISTS);
+			}
+			return currentUser;
+		} else {
+			if (userByNewUsername != null) {
+				throw new UsernameExistException(USERNAME_ALREADY_EXISTS);
+			}
+			if (userByNewEmail != null) {
+				throw new EmailExistException(EMAIL_ALREADY_EXISTS);
+			}
+		}
+		return null;
+	}
+
+	private RegisteredUser validateEditUsernameAndEmail(String userId, String newUsername, String newEmail) throws UserNotFoundException, UsernameExistException, EmailExistException {
+		RegisteredUser userByNewUsername = findUserByUsername(newUsername);
+		RegisteredUser userByNewEmail = findUserByEmail(newEmail);
+		if (StringUtils.isNotBlank(userId)) {
+			RegisteredUser currentUser = findUserByUserId(userId);
+			log.info(currentUser.getUserId());
+			if (currentUser == null) {
+				throw new UserNotFoundException("No user found by id: " + userId);
+			}
+			if (userByNewUsername != null && !currentUser.getId().equals(userByNewUsername.getId())) {
+				throw new UsernameExistException(USERNAME_ALREADY_EXISTS);
+			}
+			if (userByNewEmail != null && !currentUser.getId().equals(userByNewEmail.getId())) {
+				throw new EmailExistException(EMAIL_ALREADY_EXISTS);
+			}
+			return currentUser;
+		} else {
+			if (userByNewUsername != null) {
+				throw new UsernameExistException(USERNAME_ALREADY_EXISTS);
+			}
+			if (userByNewEmail != null) {
+				throw new EmailExistException(EMAIL_ALREADY_EXISTS);
+			}
+		}
+		return null;
+	}
+
+	private RegisteredUser findUserByUserId(String userId) {
+		return userRepo.findRegisteredUserByUserId(userId);
 	}
 
 	// update 500 instead of user not found ?

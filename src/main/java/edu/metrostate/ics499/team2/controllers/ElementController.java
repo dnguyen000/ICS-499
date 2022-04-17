@@ -17,6 +17,7 @@ import edu.metrostate.ics499.team2.services.ElementService;
 // @RestController
 @Controller
 @RequestMapping("/elements")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ElementController {
 	
     private final ElementService elmService;
@@ -33,7 +34,8 @@ public class ElementController {
 		return "elements";
     }
 
-    @GetMapping("/list")
+//    @GetMapping("/list")
+    @GetMapping(value = "/list", produces="application/json")
     @ResponseBody
     public List<Element> list() throws FailedToLoadPTException {
     	return elmService.getAllElements();
