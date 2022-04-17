@@ -48,14 +48,19 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 chain.doFilter(req, res);
                 return;
             }
-            String token = authorizationHeader.substring(TOKEN_PREFIX.length());
-            String username = jwtTokenProvider.getSubject(token, issuer);
-            if (jwtTokenProvider.isTokenValid(username, token, issuer) && SecurityContextHolder.getContext().getAuthentication() == null) {
-                List<GrantedAuthority> authorities = jwtTokenProvider.getAuthorities(token, issuer);
-                Authentication authentication = jwtTokenProvider.getAuthentication(username, authorities, req);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            } else {
-                SecurityContextHolder.clearContext();
+            try {
+                String token = authorizationHeader.substring(TOKEN_PREFIX.length());
+                String username = jwtTokenProvider.getSubject(token, issuer);
+                if (jwtTokenProvider.isTokenValid(username, token, issuer) && SecurityContextHolder.getContext().getAuthentication() == null) {
+                    List<GrantedAuthority> authorities = jwtTokenProvider.getAuthorities(token, issuer);
+                    Authentication authentication = jwtTokenProvider.getAuthentication(username, authorities, req);
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else {
+                    SecurityContextHolder.clearContext();
+                }
+            } catch(Exception e) {
+                log.warn("Authorization: " + authorizationHeader + "; invalid.");
+                throw new ServletException(e);
             }
         }
         chain.doFilter(req, res);
