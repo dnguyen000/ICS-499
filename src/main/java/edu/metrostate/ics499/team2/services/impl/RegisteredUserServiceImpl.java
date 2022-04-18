@@ -75,6 +75,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		user.setAuthorities(ROLE_USER.getAuthorities());
 		user.setProfileImgUrl(getTemporaryProfileImageUrl(username));
 		userRepo.save(user);
+		System.out.println("New user password: " + password);
 		log.info("New user password: " + password);
 //		emailService.sendNewPasswordEmail(firstName, password, email);
 		return user;
