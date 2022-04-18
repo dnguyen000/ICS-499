@@ -47,16 +47,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // https://stackoverflow.com/questions/36261781/x-csrf-token-is-not-generated-by-spring-boot
-        http.csrf()                                                                         // CSRF settings
-//                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())	    // return C(X)SRF-TOKEN cookie for postman
-                .disable()																    // rather not disable CSRF security
-//                .and()
+        http
+                .csrf().disable()                                                                       // JWT stateless so disable CSRF
                 .cors().and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)     // w/ jwt no need to session
-                .and().authorizeRequests()
-//                .antMatchers("/user/users").hasAnyAuthority("admin")                          // must be admin to access
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()       // w/ jwt no need to session
+                .authorizeRequests()
+                .antMatchers("/user/list").hasAnyAuthority("user:update")
                 .antMatchers(SecurityConstants.PUBLIC_URLS).permitAll()
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().accessDeniedHandler(jwtAccessDeniedHandler)
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
