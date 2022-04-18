@@ -72,7 +72,7 @@ public class QuizService implements ServiceInterface<Quiz>{
 	public boolean isValid(Quiz obj) {
 		List<Quiz> result = quizRepo.findAll();
 				return result.stream()
-				.filter(quiz -> quiz.getQuestion().equalsIgnoreCase(obj.getQuestion()))
-				.filter(quiz -> quiz.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() > 0 ? false : true;
+						.filter(quiz -> quiz.getQuestion().equalsIgnoreCase(obj.getQuestion()))
+						.filter(quiz -> quiz.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() <= 0;
 	}
 }

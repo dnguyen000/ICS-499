@@ -6,9 +6,9 @@ public class UserLoginDTO {
 	private String password;
 	private String role;
 	
-	public UserLoginDTO() {};
-	
-	public UserLoginDTO(String email, String password, String role) {
+	public UserLoginDTO() {}
+
+    public UserLoginDTO(String email, String password, String role) {
 		this.email = email;
 		this.password = password;
 		this.role = role;

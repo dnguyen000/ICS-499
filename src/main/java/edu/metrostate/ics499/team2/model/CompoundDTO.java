@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public class CompoundDTO {
-	private ArrayList<Data> data;
+	private final ArrayList<Data> data;
 	private String userId;
 	
 	@JsonCreator
@@ -38,8 +38,8 @@ public class CompoundDTO {
 	}
 	
 	static class Data {
-		private String element;
-		private int numberOfAtoms;
+		private final String element;
+		private final int numberOfAtoms;
 		
 		@JsonCreator
 		public Data (String element, int numberOfAtoms) {
