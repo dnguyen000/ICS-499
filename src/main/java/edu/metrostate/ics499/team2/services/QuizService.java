@@ -149,6 +149,6 @@ public class QuizService implements ServiceInterface<Quiz>{
 				return result.stream()
 				.filter(quiz -> quiz.getUserId().equalsIgnoreCase(obj.getUserId()))
 				.filter(quiz -> quiz.getQuestion().equalsIgnoreCase(obj.getQuestion()))
-				.filter(quiz -> quiz.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() > 0 ? false : true;
+				.filter(quiz -> quiz.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() <= 0;
 	}
 }

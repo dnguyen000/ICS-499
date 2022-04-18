@@ -1,8 +1,8 @@
 package edu.metrostate.ics499.team2.model;
 
 public class FlashcardDTO {
-	private String question;
-	private String answer;
+	private final String question;
+	private final String answer;
 	
 	public FlashcardDTO(String question, String answer) {
 		this.question = question;
