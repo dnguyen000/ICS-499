@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import edu.metrostate.ics499.team2.model.Compound;
 
-public interface CompoundRepository extends MongoRepository<Compound, String>{
+public interface CompoundRepository extends MongoRepository<Compound, String> {
 	
     @Query("{formula:'?0'}")
 	List<Compound> findCompoundByFormula(String formula);
