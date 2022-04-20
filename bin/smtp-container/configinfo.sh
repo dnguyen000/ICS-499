@@ -1,3 +1,5 @@
+#!/bin/bash
+
 green() {
   echo -e '\e[32m'$1'\e[m';
 }
