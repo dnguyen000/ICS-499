@@ -13,7 +13,7 @@ public class Compound {
 	private String id;
 	
 	private final HashMap<String, Integer> elements;
-	private final String formula;
+	private String formula;
 	private String title;
 	private final String userId;
 	
@@ -47,6 +47,10 @@ public class Compound {
 	
 	public String getFormula() {
 		return this.formula;
+	}
+
+	public void setFormula(String formula) {
+		this.formula = formula;
 	}
 	
 	public String getUserId() {

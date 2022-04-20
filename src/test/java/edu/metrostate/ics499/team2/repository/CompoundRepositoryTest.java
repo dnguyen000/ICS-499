@@ -46,7 +46,6 @@ public class CompoundRepositoryTest {
 	@DisplayName("it should fetch the compound from the repo if it exists")
 	void getCompoundByFormula() {
 		List<Compound> result = compoundRepo.findCompoundByFormula("H2O");
-		
 		assertTrue(result.get(0).equals(c1));
 	}
 
