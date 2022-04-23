@@ -56,8 +56,8 @@ class QuizServiceTest {
 		verify(repoMock, never()).save(q1);
 	}
 
-	@Test
-	@DisplayName("it should not insert quiz into the repo if user already has quiz")
+//	@Test
+//	@DisplayName("it should not insert quiz into the repo if user already has quiz")
 	
 	@Test
 	@DisplayName("it should insert a new quiz into the repo")
