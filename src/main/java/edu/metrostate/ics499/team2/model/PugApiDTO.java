@@ -9,7 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PugApiDTO {
 	private PropertyTableObj PropertyTable;
-	
+
+	public PugApiDTO() {
+		this.PropertyTable = new PropertyTableObj(new ArrayList<Properties>());
+	}
+
 	@JsonCreator
 	public PugApiDTO(@JsonProperty("PropertyTable") PropertyTableObj PropertyTable) {
 		this.PropertyTable = PropertyTable;
@@ -23,6 +27,13 @@ public class PugApiDTO {
 		return this.PropertyTable.Properties.get(0).getTitle();
 	}
 	
+	public void initializePropertyTableObj() {
+		this.PropertyTable = new PropertyTableObj(new ArrayList<Properties>());
+	}
+	
+	public void appendToPropertyTableObj(int CID, String molecularFormula, String molecularWeight, String title) {
+		this.PropertyTable.addProperties(new Properties(CID, molecularFormula, molecularWeight, title));
+	}
 //	public ArrayList<Properties> getProperties() {
 //		return this.properties;
 //	}
@@ -53,6 +64,10 @@ public class PugApiDTO {
 		
 		public ArrayList<Properties> getProperties () {
 			return this.Properties;
+		}
+		
+		public void addProperties(Properties properties) {
+			this.Properties.add(properties);
 		}
 	}
 	

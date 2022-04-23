@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
+//import org.springframework.test.web.client.MockRestServiceServer;
 
 import edu.metrostate.ics499.team2.model.Compound;
 import edu.metrostate.ics499.team2.model.PugApiDTO;
@@ -21,6 +23,10 @@ public class CompoundService {
 	
 	@Autowired
 	private CompoundRepository compoundRepo;
+	
+	@Autowired
+	private QuizService quizService;
+	
 	
 	/**
 	 * TODO:
@@ -42,11 +48,19 @@ public class CompoundService {
 	
 	private Compound retrieveCompoundFromPugApi(String formula, Compound compound) {
 		LOG.info("calling PUG API with argument: " + formula);
+		Compound returnValue = null;
 		
-		PugApiDTO pugApiValue = restTemplate.getForObject(PUG_PROLOG + PUG_INPUT + formula + PUG_OPERATION + PUG_OUTPUT, PugApiDTO.class);
-		compound.setTitle(pugApiValue.getFirstPropertyTitle());
+		try {
+			PugApiDTO pugApiValue = restTemplate.getForObject(PUG_PROLOG + PUG_INPUT + formula + PUG_OPERATION + PUG_OUTPUT, PugApiDTO.class);
+			compound.setTitle(pugApiValue.getFirstPropertyTitle());
+			returnValue = compoundRepo.save(compound);
+			
+			quizService.createCompoundQuizes(compound);
+		} catch (HttpStatusCodeException exception) {
+			LOG.error("Received " + exception.getStatusCode().value() + " response code from PUG API.");
+		}
 		
-		return compoundRepo.save(compound);
+		return returnValue;
 	}
 	
 	public Compound validateInput(Compound compound) {
