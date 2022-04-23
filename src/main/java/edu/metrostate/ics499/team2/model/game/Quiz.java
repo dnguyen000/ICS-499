@@ -5,9 +5,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "quiz")
 public class Quiz extends Game {
-	
-	//private Map<String, String> chemQuiz;
-	
 	public Quiz() {
 		super();
 	}
@@ -15,6 +12,10 @@ public class Quiz extends Game {
 
 	public Quiz(String question, String answer) {
 		super(question, answer);
+	}
+	
+	public Quiz(String question, String answer, String userId) {
+		super(question, answer, userId);
 	}
 }
 		

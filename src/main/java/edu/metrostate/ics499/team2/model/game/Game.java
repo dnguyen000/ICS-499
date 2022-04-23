@@ -11,6 +11,7 @@ public abstract class Game {
 	private String userId;
 	private String question;
 	private String answer;
+	private String userId;
 	
 	public Game() {
 		super();
@@ -21,6 +22,12 @@ public abstract class Game {
 		this.userId = userId;
 		this.question = question;
 		this.answer = answer;
+	}
+	
+	public Game(String question, String answer, String userId) {
+		this.question = question;
+		this.answer = answer;
+		this.userId = userId;
 	}
 	
 	public String getGameId() {
@@ -48,7 +55,7 @@ public abstract class Game {
 	}
 
 	public String getUserId() {
-		return userId;
+		return this.userId;
 	}
 
 	public Boolean isEqual(String id) {
