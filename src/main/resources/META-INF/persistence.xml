@@ -1,4 +1,4 @@
 <persistence>
 	<persistence-unit>
-		<Flashcard>edu.metrostate.ics499.team2.model.Flashcard</Flashcard>
-		<Game>edu.metrostate.ics499.team2.model.Game</Game></persistence-unit></persistence>
+		<Flashcard>edu.metrostate.ics499.team2.model.game.Flashcard</Flashcard>
+		<Game>edu.metrostate.ics499.team2.model.game.Game</Game></persistence-unit></persistence>
