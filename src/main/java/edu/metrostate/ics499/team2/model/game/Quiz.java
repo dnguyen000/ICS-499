@@ -1,8 +1,6 @@
-package edu.metrostate.ics499.team2.model;
+package edu.metrostate.ics499.team2.model.game;
 
-import java.util.Map;
-
-import org.springframework.data.annotation.Id;
+import edu.metrostate.ics499.team2.model.game.Game;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "quiz")
