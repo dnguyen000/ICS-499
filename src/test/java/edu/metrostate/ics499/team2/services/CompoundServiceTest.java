@@ -7,12 +7,10 @@ import static edu.metrostate.ics499.team2.constants.PugApiConstants.PUG_PROLOG;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +29,6 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.test.web.client.MockRestServiceServer;
 
 import edu.metrostate.ics499.team2.model.Compound;
 import edu.metrostate.ics499.team2.model.PugApiDTO;
@@ -57,24 +54,6 @@ class CompoundServiceTest {
 	int randomServerPort;
 
 	String compound = "NaCl";
-	String responseBody = "{\n"
-			+ "    \"PropertyTable\": {\n"
-			+ "        \"Properties\": [\n"
-			+ "            {\n"
-			+ "                \"CID\": 5234,\n"
-			+ "                \"MolecularFormula\": \"ClNa\",\n"
-			+ "                \"MolecularWeight\": \"58.44\",\n"
-			+ "                \"Title\": \"Sodium chloride\"\n"
-			+ "            },\n"
-			+ "            {\n"
-			+ "                \"CID\": 23667643,\n"
-			+ "                \"MolecularFormula\": \"ClNa\",\n"
-			+ "                \"MolecularWeight\": \"57.45\",\n"
-			+ "                \"Title\": \"Sodium chloride na-22\"\n"
-			+ "            }\n"
-			+ "        ]\n"
-			+ "    }\n"
-			+ "}";
 
 	@BeforeEach
 	public void setUp() {
@@ -150,7 +129,7 @@ class CompoundServiceTest {
 
 		verify(restMock, times(1)).getForObject(PUG_PROLOG + PUG_INPUT + formula + PUG_OPERATION + PUG_OUTPUT, PugApiDTO.class);
 		verify(repoMock, times(1)).save(c1);
-		verify(quizMock, times(1)).createCompoundQuizes(c1, c1.getUserId(), "compound");
-		verify(quizMock, times(1)).createElementQuizes(c1, c1.getUserId(), "element");
+		verify(quizMock, times(1)).createNewQuizes(c1, c1.getUserId(), "compound");
+		verify(quizMock, times(1)).createNewQuizes(c1, c1.getUserId(), "element");
 	}
 }

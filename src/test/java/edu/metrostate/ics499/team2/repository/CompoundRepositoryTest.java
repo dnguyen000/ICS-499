@@ -49,4 +49,48 @@ public class CompoundRepositoryTest {
 		assertTrue(result.get(0).equals(c1));
 	}
 
+	@Test
+	@DisplayName("it should return all quizes from the queried user")
+	void getCompoundsByUserId() {
+		List<Compound> result = compoundRepo.findCompoundByUserId("12345");
+		System.out.println("size: " + result.size());
+		assertTrue(result.size() == 1);
+	}
+
+	@Test
+	@DisplayName("it should only return quizes fro the specified user")
+	void getCompoundsByUserId_2() {
+		String userId = "12345";
+		HashMap<String, Integer> elements2 = new HashMap<>();
+		elements2.put("H", 1);
+		elements2.put("O", 2);
+
+		Compound c2 = new Compound(elements2, userId);
+
+		HashMap<String, Integer> elements3 = new HashMap<>();
+		elements2.put("Na", 1);
+		elements2.put("Cl", 1);
+
+		Compound c3 = new Compound(elements2, userId);
+
+		HashMap<String, Integer> elements4 = new HashMap<>();
+		elements4.put("H", 1);
+		elements4.put("Cl", 1);
+
+		Compound c4 = new Compound(elements2, "54321");
+
+		HashMap<String, Integer> elements5 = new HashMap<>();
+		elements5.put("C", 1);
+		elements5.put("O", 2);
+
+		Compound c5 = new Compound(elements2, "54321");
+
+		compoundRepo.save(c2);
+		compoundRepo.save(c3);
+		compoundRepo.save(c4);
+		compoundRepo.save(c5);
+		List<Compound> result = compoundRepo.findCompoundByUserId("12345");
+		System.out.println("size: " + result.size());
+		assertTrue(result.size() == 3);
+	}
 }

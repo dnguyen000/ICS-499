@@ -65,43 +65,38 @@ public class QuizService implements ServiceInterface<Quiz>{
 		
 	}
 	
-	public void createCompoundQuizes(Compound compound, String userId, String quizType) {
+	public void createNewQuizes(Compound compound, String userId, String quizType) {
 		LOG.info("creating multiple compound quizes");
 		List<Quiz> quizList = new ArrayList<>();
 
-		String q1 = "What is the name of this compound: " + compound.getFormula() + "?";
-		String a1 = compound.getTitle();
-		String q2 = "What is the formula for " + compound.getTitle() + "?";
-		String a2 = compound.getFormula();
-		Quiz quiz1 = new Quiz(q1, a1, userId, quizType);
-		Quiz quiz2 = new Quiz(q2, a2, userId, quizType);
-
-		quizList.add(quiz1);
-		quizList.add(quiz2);
-
-		createQuizes(quizList);
-	}
-
-	public void createElementQuizes(Compound compound, String userId, String quizType) {
-		LOG.info("creating multiple element quizes");
-		List<Quiz> quizList = new ArrayList<>();
-
-		compound.getElements().keySet().stream().forEach((k) -> {
-			LOG.info("creating a quiz for the element: " + k);
-			Element element = elementService.getElementBySymbol(k);
-			LOG.info("About to call element");
-			LOG.info("Element: " + element.toString());
-			String q1 = "What is the name of the element " + element.getSymbol() + "?";
-			String a1 = element.getName();
-			String q2 = "What is the symbol for " + element.getName() + "?";
-			String a2 = element.getSymbol();
-
+		if (quizType.equalsIgnoreCase("compound")) {
+			String q1 = "What is the name of this compound: " + compound.getFormula() + "?";
+			String a1 = compound.getTitle();
+			String q2 = "What is the formula for " + compound.getTitle() + "?";
+			String a2 = compound.getFormula();
 			Quiz quiz1 = new Quiz(q1, a1, userId, quizType);
 			Quiz quiz2 = new Quiz(q2, a2, userId, quizType);
 
 			quizList.add(quiz1);
 			quizList.add(quiz2);
-		});
+		} else if (quizType.equalsIgnoreCase("element")) {
+			compound.getElements().keySet().stream().forEach((k) -> {
+				LOG.info("creating a quiz for the element: " + k);
+				Element element = elementService.getElementBySymbol(k);
+				LOG.info("About to call element");
+				LOG.info("Element: " + element.toString());
+				String q1 = "What is the name of the element " + element.getSymbol() + "?";
+				String a1 = element.getName();
+				String q2 = "What is the symbol for " + element.getName() + "?";
+				String a2 = element.getSymbol();
+
+				Quiz quiz1 = new Quiz(q1, a1, userId, quizType);
+				Quiz quiz2 = new Quiz(q2, a2, userId, quizType);
+
+				quizList.add(quiz1);
+				quizList.add(quiz2);
+			});
+		}
 
 		createQuizes(quizList);
 	}
@@ -143,10 +138,11 @@ public class QuizService implements ServiceInterface<Quiz>{
 
 	@Override
 	public boolean isValid(Quiz obj) {
+		String userId = obj.getUserId();
 		List<Quiz> result = quizRepo.findAll();
-				return result.stream()
+				return ((userId != null && !userId.equalsIgnoreCase("")) && (result.stream()
 				.filter(quiz -> quiz.getUserId().equalsIgnoreCase(obj.getUserId()))
 				.filter(quiz -> quiz.getQuestion().equalsIgnoreCase(obj.getQuestion()))
-				.filter(quiz -> quiz.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() > 0 ? false : true;
+				.filter(quiz -> quiz.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() <= 0));
 	}
 }

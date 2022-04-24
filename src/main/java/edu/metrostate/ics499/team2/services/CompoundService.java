@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 import static edu.metrostate.ics499.team2.constants.PugApiConstants.*;
 
 @Service
@@ -53,7 +55,8 @@ public class CompoundService {
             assert pugApiValue != null;
             compound.setTitle(pugApiValue.getFirstPropertyTitle());
             if (compound.getUserId() != null) {
-                quizService.createElementQuizes(compound, compound.getUserId(), "element");
+                quizService.createNewQuizes(compound, compound.getUserId(), "compound");
+                quizService.createNewQuizes(compound, compound.getUserId(), "element");
                 return compoundRepo.save(compound);
             } else
                 return compound;
@@ -67,6 +70,10 @@ public class CompoundService {
                 throw new PugApiException("pug api error");
         }
     }
+
+    public List<Compound> getCompoundsByUserId(String userId) {
+		return compoundRepo.findCompoundByUserId(userId);
+	}
 
     public Compound validateInput(Compound compound) throws PugApiException {
         String formula = compound.getFormula();
