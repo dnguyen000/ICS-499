@@ -1,7 +1,9 @@
 // a domain class
 package edu.metrostate.ics499.team2.model;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "new_elms")
 public class Element {
 	
 	@Id
@@ -27,9 +29,9 @@ public class Element {
 	private String tablePosition;
 	private String yearDiscovered;
 
-	public Element(){};
+	public Element(){}
 
-	public Element(String id, String atomicNumber, String symbol, String name, String atomicMass, String cPKHexColor,
+    public Element(String id, String atomicNumber, String symbol, String name, String atomicMass, String cPKHexColor,
 				   String electronConfiguration, String electronegativity, String atomicRadius, String ionizationEnergy,
 				   String electronAffinity, String oxidationStates, String standardState, String meltingPoint,
 				   String boilingPoint, String density, String groupBlock, String yearDiscovered) {

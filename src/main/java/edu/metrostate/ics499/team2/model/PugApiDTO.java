@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PugApiDTO {
-	private PropertyTableObj PropertyTable;
+	private final PropertyTableObj PropertyTable;
 	
 	@JsonCreator
 	public PugApiDTO(@JsonProperty("PropertyTable") PropertyTableObj PropertyTable) {
@@ -44,7 +44,7 @@ public class PugApiDTO {
 //	}
 	
 	static class PropertyTableObj {
-		private ArrayList<Properties> Properties;
+		private final ArrayList<Properties> Properties;
 		
 		@JsonCreator
 		public PropertyTableObj (@JsonProperty("Properties") ArrayList<Properties> Properties) {
@@ -58,10 +58,10 @@ public class PugApiDTO {
 	
 	
 	static class Properties {
-		private int CID;
-		private String MolecularFormula;
-		private String MolecularWeight;
-		private String Title;
+		private final int CID;
+		private final String MolecularFormula;
+		private final String MolecularWeight;
+		private final String Title;
 		
 		@JsonCreator
 		public Properties(@JsonProperty("CID") int CID, @JsonProperty("MolecularFormula") String MolecularFormula, @JsonProperty("MolecularWeight") String MolecularWeight, @JsonProperty("Title") String Title) {

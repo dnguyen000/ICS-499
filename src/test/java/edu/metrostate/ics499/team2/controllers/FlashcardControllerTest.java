@@ -51,7 +51,7 @@ class FlashcardControllerTest {
 
 	private final String question = "is this unique?";
 	private final String answer = "yes";
-	private FlashcardDTO flashcardDto = new FlashcardDTO(question, answer);
+	private final FlashcardDTO flashcardDto = new FlashcardDTO(question, answer);
 	
 	@BeforeEach
 	void setUp() {

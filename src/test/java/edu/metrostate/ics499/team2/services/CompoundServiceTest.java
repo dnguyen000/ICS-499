@@ -50,7 +50,7 @@ class CompoundServiceTest {
 	
 	private MockRestServiceServer mockServer;
 	
-	private String compound = "NaCl";
+	private final String compound = "NaCl";
 	String responseBody = "{\n"
 			+ "    \"PropertyTable\": {\n"
 			+ "        \"Properties\": [\n"

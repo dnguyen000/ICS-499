@@ -68,6 +68,6 @@ public class FlashcardService implements ServiceInterface<Flashcard> {
 		List<Flashcard> result = list();
 		return result.stream()
 				.filter(fc -> fc.getQuestion().equalsIgnoreCase(obj.getQuestion()))
-				.filter(fc -> fc.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() > 0 ? false : true;
+				.filter(fc -> fc.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() <= 0;
 	}
 }

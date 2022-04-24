@@ -31,7 +31,7 @@ public class CompoundService {
 	 */
 	
 	public boolean doesValueExistInRepo(String formula) {
-		return compoundRepo.findCompoundByFormula(formula).size() > 0 ? true : false;
+		return compoundRepo.findCompoundByFormula(formula).size() > 0;
 	}
 	
 	private Compound retrieveCompoundFromRepo(String formula) {

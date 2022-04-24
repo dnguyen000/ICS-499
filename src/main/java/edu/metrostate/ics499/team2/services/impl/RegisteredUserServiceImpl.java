@@ -256,11 +256,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 	// update 500 instead of user not found ?
 	private void validateLoginAttempt(RegisteredUser user) {
 		if (user.isNotLocked()) {
-			if(loginAttemptService.hasExceededMaxAttempts(user.getUsername())) {
-				user.setNotLocked(false);
-			} else {
-				user.setNotLocked(true);
-			}
+            user.setNotLocked(!loginAttemptService.hasExceededMaxAttempts(user.getUsername()));
 		} else {
 			loginAttemptService.evictUserFromLoginAttemptCache(user.getUsername());
 		}
