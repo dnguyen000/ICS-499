@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import edu.metrostate.ics499.team2.exceptions.domain.PugApiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -110,7 +111,7 @@ class CompoundServiceTest {
 
 	@Test
 	@DisplayName("It should return the value from the repo if it exists")
-	void validateInput_returnFromRepo() {
+	void validateInput_returnFromRepo() throws PugApiException {
 		String userId = "12345";
 		HashMap<String, Integer> elements = new HashMap<>();
 		elements.put("H", 2);
