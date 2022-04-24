@@ -13,6 +13,7 @@ public class CompoundDTO {
 	@JsonCreator
 	public CompoundDTO(ArrayList<Data> data, String userId) {
 		this.data = data;
+		this.userId = userId;
 	}
 	
 	public ArrayList<Data> getData() {

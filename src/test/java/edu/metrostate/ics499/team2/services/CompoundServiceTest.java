@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import edu.metrostate.ics499.team2.model.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -138,6 +139,7 @@ class CompoundServiceTest {
 		elements.put("Cl", 1);
 		Mockito.doReturn(mockValue).when(repoMock).findCompoundByFormula("NaCl");
 		Compound c1 = new Compound(elements, userId);
+		Mockito.doReturn(c1).when(repoMock).save(c1);
 
 		PugApiDTO pugApiMock = new PugApiDTO();
 		pugApiMock.initializePropertyTableObj();
@@ -148,6 +150,7 @@ class CompoundServiceTest {
 
 		verify(restMock, times(1)).getForObject(PUG_PROLOG + PUG_INPUT + formula + PUG_OPERATION + PUG_OUTPUT, PugApiDTO.class);
 		verify(repoMock, times(1)).save(c1);
-		verify(quizMock, times(1)).createCompoundQuizes(c1);
+		verify(quizMock, times(1)).createCompoundQuizes(c1, c1.getUserId(), "compound");
+		verify(quizMock, times(1)).createElementQuizes(c1, c1.getUserId(), "element");
 	}
 }

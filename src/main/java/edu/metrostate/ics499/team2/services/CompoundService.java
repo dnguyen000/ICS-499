@@ -52,10 +52,13 @@ public class CompoundService {
 		
 		try {
 			PugApiDTO pugApiValue = restTemplate.getForObject(PUG_PROLOG + PUG_INPUT + formula + PUG_OPERATION + PUG_OUTPUT, PugApiDTO.class);
+			String userId = null;
 			compound.setTitle(pugApiValue.getFirstPropertyTitle());
 			returnValue = compoundRepo.save(compound);
+			userId = returnValue.getUserId();
 			
-			quizService.createCompoundQuizes(compound);
+//			quizService.createCompoundQuizes(compound, userId, "compound");
+			quizService.createElementQuizes(compound, userId, "element");
 		} catch (HttpStatusCodeException exception) {
 			LOG.error("Received " + exception.getStatusCode().value() + " response code from PUG API.");
 		}

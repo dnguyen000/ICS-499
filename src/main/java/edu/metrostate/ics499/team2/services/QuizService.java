@@ -20,6 +20,9 @@ import edu.metrostate.ics499.team2.repositories.QuizRepository;
 public class QuizService implements ServiceInterface<Quiz>{
 	@Autowired
 	private QuizRepository quizRepo;
+
+	@Autowired
+	private ElementService elementService;
 	
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 	
@@ -42,8 +45,12 @@ public class QuizService implements ServiceInterface<Quiz>{
 	}
 	
 	public void createQuizes(List<Quiz> quizList) {
+		LOG.info("Create Quiz from list");
 		quizList.forEach(quiz -> {
-			quizRepo.save(quiz);
+			if (isValid(quiz)) {
+				LOG.info("Quiz is valid:" + quiz.toString());
+				quizRepo.save(quiz);
+			}
 		});
 	}
 	
@@ -59,35 +66,44 @@ public class QuizService implements ServiceInterface<Quiz>{
 		
 	}
 	
-	public boolean createCompoundQuizes(Compound compound) {
+	public void createCompoundQuizes(Compound compound, String userId, String quizType) {
+		LOG.info("creating multiple compound quizes");
 		List<Quiz> quizList = new ArrayList<>();
+
 		String q1 = "What is the name of this compound: " + compound.getFormula() + "?";
 		String a1 = compound.getTitle();
 		String q2 = "What is the formula for " + compound.getTitle() + "?";
 		String a2 = compound.getFormula();
-		Quiz quiz1 = new Quiz(q1, a1);
-		Quiz quiz2 = new Quiz(q2, a2);
-		
+		Quiz quiz1 = new Quiz(q1, a1, userId, quizType);
+		Quiz quiz2 = new Quiz(q2, a2, userId, quizType);
+
 		quizList.add(quiz1);
 		quizList.add(quiz2);
-		
+
 		createQuizes(quizList);
-		
-		return true;
 	}
-	
-	public void createElementQuizes(Element element) {
+
+	public void createElementQuizes(Compound compound, String userId, String quizType) {
+		LOG.info("creating multiple element quizes");
 		List<Quiz> quizList = new ArrayList<>();
-		String q1 = "What is the name of the element " + element.getSymbol() + "?";
-		String a1 = element.getName();
-		String q2 = "What is the symbol for " + element.getName() + "?";
-		String a2 = element.getSymbol();
-		Quiz quiz1 = new Quiz(q1, a1);
-		Quiz quiz2 = new Quiz(q2, a2);
-		
-		quizList.add(quiz1);
-		quizList.add(quiz2);
-		
+
+		compound.getElements().keySet().stream().forEach((k) -> {
+			LOG.info("creating a quiz for the element: " + k);
+			Element element = elementService.getElementBySymbol(k);
+			LOG.info("About to call element");
+			LOG.info("Element: " + element.toString());
+			String q1 = "What is the name of the element " + element.getSymbol() + "?";
+			String a1 = element.getName();
+			String q2 = "What is the symbol for " + element.getName() + "?";
+			String a2 = element.getSymbol();
+
+			Quiz quiz1 = new Quiz(q1, a1, userId, quizType);
+			Quiz quiz2 = new Quiz(q2, a2, userId, quizType);
+
+			quizList.add(quiz1);
+			quizList.add(quiz2);
+		});
+
 		createQuizes(quizList);
 	}
 
@@ -126,10 +142,12 @@ public class QuizService implements ServiceInterface<Quiz>{
 		else
 			throw new MongoException ("Answer not found");
 	}
+
 	@Override
 	public boolean isValid(Quiz obj) {
 		List<Quiz> result = quizRepo.findAll();
 				return result.stream()
+				.filter(quiz -> quiz.getUserId().equalsIgnoreCase(obj.getUserId()))
 				.filter(quiz -> quiz.getQuestion().equalsIgnoreCase(obj.getQuestion()))
 				.filter(quiz -> quiz.getAnswer().equalsIgnoreCase(obj.getAnswer())).collect(Collectors.toList()).size() > 0 ? false : true;
 	}
