@@ -12,6 +12,8 @@ import edu.metrostate.ics499.team2.model.Compound;
 import edu.metrostate.ics499.team2.model.PugApiDTO;
 import edu.metrostate.ics499.team2.repositories.CompoundRepository;
 
+import java.util.List;
+
 import static edu.metrostate.ics499.team2.constants.PugApiConstants.*;
 
 @Service
@@ -26,7 +28,6 @@ public class CompoundService {
 	
 	@Autowired
 	private QuizService quizService;
-	
 	
 	/**
 	 * TODO:
@@ -52,13 +53,12 @@ public class CompoundService {
 		
 		try {
 			PugApiDTO pugApiValue = restTemplate.getForObject(PUG_PROLOG + PUG_INPUT + formula + PUG_OPERATION + PUG_OUTPUT, PugApiDTO.class);
-			String userId = null;
+			String userId = compound.getUserId();
 			compound.setTitle(pugApiValue.getFirstPropertyTitle());
 			returnValue = compoundRepo.save(compound);
-			userId = returnValue.getUserId();
 			
-//			quizService.createCompoundQuizes(compound, userId, "compound");
-			quizService.createElementQuizes(compound, userId, "element");
+			quizService.createNewQuizes(compound, userId, "compound");
+			quizService.createNewQuizes(compound, userId, "element");
 		} catch (HttpStatusCodeException exception) {
 			LOG.error("Received " + exception.getStatusCode().value() + " response code from PUG API.");
 		}
@@ -70,5 +70,9 @@ public class CompoundService {
 		String formula = compound.getFormula();	
 		
 		return doesValueExistInRepo(formula) ? retrieveCompoundFromRepo(formula) : retrieveCompoundFromPugApi(formula, compound);
+	}
+
+	public List<Compound> getCompoundsByUserId(String userId) {
+		return compoundRepo.findCompoundByUserId(userId);
 	}
 }

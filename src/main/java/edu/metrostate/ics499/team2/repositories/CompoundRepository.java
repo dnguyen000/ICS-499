@@ -12,4 +12,7 @@ public interface CompoundRepository extends MongoRepository<Compound, String> {
 	
     @Query("{formula:'?0'}")
 	List<Compound> findCompoundByFormula(String formula);
+
+    @Query("{ userId: '?0' }")
+    List<Compound> findCompoundByUserId(String userId);
 }

@@ -57,13 +57,23 @@ class QuizServiceTest {
 		verify(repoMock, never()).save(q1);
 	}
 
-//	@Test
-//	@DisplayName("it should not insert quiz into the repo if user already has quiz")
+	@Test
+	@DisplayName("it should not insert quiz into the DB if the userId is non-empty")
+	void createQuiz_fail_2() {
+		Quiz q1 = new Quiz("this shouldn't work", "yes", "");
+		List<Quiz> quizList = new ArrayList<>();
+
+		Mockito.doReturn(quizList).when(repoMock).findAll();
+
+		quizService.createQuiz(q1);
+
+		verify(repoMock, never()).save(q1);
+	}
 	
 	@Test
 	@DisplayName("it should insert a new quiz into the repo")
 	void createQuiz_success() {
-		Quiz q1 = new Quiz("Does this work?", "yes");
+		Quiz q1 = new Quiz("Does this work?", "yes", "12345");
 		
 		quizService.createQuiz(q1);
 		
@@ -88,7 +98,7 @@ class QuizServiceTest {
 	@Test
 	@DisplayName("it should iterate through the list of quizes and insert into the repo")
 	void createQuizes() {
-		Quiz q1 = new Quiz("Does this work?", "yes");
+		Quiz q1 = new Quiz("Does this work?", "yes", "12345");
 		
 		List<Quiz> quizList = new ArrayList<>();
 		quizList.add(q1);
