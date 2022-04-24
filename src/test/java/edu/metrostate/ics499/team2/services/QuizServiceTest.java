@@ -1,6 +1,5 @@
 package edu.metrostate.ics499.team2.services;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -45,13 +44,15 @@ class QuizServiceTest {
 	}
 	
 	@Test
-	@DisplayName("it should not insert quiz into the repo if it is not valid")
+	@DisplayName("it should not insert quiz into the repo if a quiz already exists for a user")
 	void createQuiz_fail() {
-		Quiz q1 = new Quiz("this shouldn't work", "yes");
+		Quiz q1 = new Quiz("this shouldn't work", "yes", "12345");
 		List<Quiz> quizList = new ArrayList<>();
 		quizList.add(q1);
 		
 		Mockito.doReturn(quizList).when(repoMock).findAll();
+
+		quizService.createQuiz(q1);
 		
 		verify(repoMock, never()).save(q1);
 	}
@@ -61,12 +62,27 @@ class QuizServiceTest {
 	
 	@Test
 	@DisplayName("it should insert a new quiz into the repo")
-	void createQuiz() {
+	void createQuiz_success() {
 		Quiz q1 = new Quiz("Does this work?", "yes");
 		
 		quizService.createQuiz(q1);
 		
 		verify(repoMock, times(1)).save(q1);
+	}
+
+	@Test
+	@DisplayName("it should same quiz but for different user")
+	void createQuiz_success_2() {
+		Quiz q1 = new Quiz("the first quiz", "yes", "12345");
+		Quiz q2 = new Quiz("the first quiz", "yes", "54321");
+		List<Quiz> quizList = new ArrayList<>();
+		quizList.add(q1);
+
+		Mockito.doReturn(quizList).when(repoMock).findAll();
+
+		quizService.createQuiz(q2);
+
+		verify(repoMock, times(1)).save(q2);
 	}
 	
 	@Test
@@ -93,8 +109,5 @@ class QuizServiceTest {
 		
 		verify (repoMock, times(1)).findAll();
 	}
-	
-//	@Test
-//	@DisplayName("")
 
 }

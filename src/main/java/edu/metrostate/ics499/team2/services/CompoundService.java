@@ -53,7 +53,7 @@ public class CompoundService {
             assert pugApiValue != null;
             compound.setTitle(pugApiValue.getFirstPropertyTitle());
             if (compound.getUserId() != null) {
-                quizService.createCompoundQuizes(compound);
+                quizService.createElementQuizes(compound, compound.getUserId(), "element");
                 return compoundRepo.save(compound);
             } else
                 return compound;
