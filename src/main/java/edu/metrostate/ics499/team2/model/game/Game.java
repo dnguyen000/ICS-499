@@ -1,4 +1,4 @@
-package edu.metrostate.ics499.team2.model;
+package edu.metrostate.ics499.team2.model.game;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -8,7 +8,7 @@ public abstract class Game {
 	
 	@Id
 	private String gameId;
-	
+	private String userId;
 	private String question;
 	private String answer;
 	
@@ -16,8 +16,9 @@ public abstract class Game {
 		super();
 	}
 	
-	public Game(String question, String answer) {
+	public Game(String userId, String question, String answer) {
 		super();
+		this.userId = userId;
 		this.question = question;
 		this.answer = answer;
 	}
@@ -45,7 +46,11 @@ public abstract class Game {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	
+
+	public String getUserId() {
+		return userId;
+	}
+
 	public Boolean isEqual(String id) {
 		return this.gameId.equals(id);
 	}
