@@ -15,6 +15,12 @@ public abstract class Game {
 	public Game() {
 		super();
 	}
+
+	public Game(String question, String answer) {
+		super();
+		this.question = question;
+		this. answer = answer;
+	}
 	
 	public Game(String userId, String question, String answer) {
 		super();

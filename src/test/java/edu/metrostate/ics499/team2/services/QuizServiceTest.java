@@ -8,6 +8,7 @@ import static org.mockito.Mockito.verify;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.metrostate.ics499.team2.model.game.Quiz;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +21,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import edu.metrostate.ics499.team2.model.Quiz;
 import edu.metrostate.ics499.team2.repositories.QuizRepository;
 
 @ExtendWith(SpringExtension.class)

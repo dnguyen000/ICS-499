@@ -5,6 +5,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import edu.metrostate.ics499.team2.model.game.Flashcard;
+import edu.metrostate.ics499.team2.model.game.FlashcardDTO;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 
@@ -18,8 +20,6 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import edu.metrostate.ics499.team2.model.Flashcard;
-import edu.metrostate.ics499.team2.model.FlashcardDTO;
 import edu.metrostate.ics499.team2.repositories.FlashcardRepository;
 import edu.metrostate.ics499.team2.services.FlashcardService;
 

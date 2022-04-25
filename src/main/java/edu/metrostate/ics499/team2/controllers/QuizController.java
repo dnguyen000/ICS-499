@@ -2,12 +2,12 @@ package edu.metrostate.ics499.team2.controllers;
 
 import java.util.List;
 
+import edu.metrostate.ics499.team2.model.game.Quiz;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import edu.metrostate.ics499.team2.model.Quiz;
 import edu.metrostate.ics499.team2.services.QuizService;
 
 @RestController

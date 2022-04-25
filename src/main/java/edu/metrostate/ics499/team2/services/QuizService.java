@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import edu.metrostate.ics499.team2.model.game.Quiz;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import com.mongodb.MongoException;
 
 import edu.metrostate.ics499.team2.model.Compound;
 import edu.metrostate.ics499.team2.model.Element;
-import edu.metrostate.ics499.team2.model.Quiz;
 import edu.metrostate.ics499.team2.repositories.QuizRepository;
 
 @Service
@@ -32,7 +32,6 @@ public class QuizService implements ServiceInterface<Quiz>{
 		try {
 			if (isValid(quiz)) {
 				LOG.info("Inserting new quiz into DB");
-				
 				q = quizRepo.save(quiz);
 			} else {
 				throw new MongoException("Invalid entry into database");
@@ -113,7 +112,6 @@ public class QuizService implements ServiceInterface<Quiz>{
 	} 
 	
 	public List<Quiz> queryAnswers(String answer) {
-		
 		return quizRepo.findByAnswer(answer);
 	}
 	

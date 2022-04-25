@@ -1,31 +1,25 @@
 package edu.metrostate.ics499.team2.model.game;
 
-import edu.metrostate.ics499.team2.model.game.Game;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "quiz")
 public class Quiz extends Game {
 	private String quizType;
-	private String userId;
 
 	public Quiz() {
 		super();
 	}
 
-
 	public Quiz(String question, String answer) {
 		super(question, answer);
 	}
-	
-	public Quiz(String question, String answer, String userId) {
 
-		super(question, answer);
-		this.userId = userId;
+	public Quiz(String userId, String question, String answer) {
+		super(userId, question, answer);
 	}
 
-	public Quiz(String question, String answer, String userId, String quizType) {
-		super(question, answer);
-		this.userId = userId;
+	public Quiz(String userId, String question, String answer, String quizType) {
+		super(userId, question, answer);
 		this.quizType = quizType;
 	}
 
@@ -35,14 +29,6 @@ public class Quiz extends Game {
 
 	public void setQuizType(String quizType) {
 		this.quizType = quizType;
-	}
-
-	public String getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 }

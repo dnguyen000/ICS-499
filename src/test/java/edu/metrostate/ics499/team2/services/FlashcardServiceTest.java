@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import edu.metrostate.ics499.team2.model.game.Flashcard;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,7 +24,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import edu.metrostate.ics499.team2.model.Flashcard;
 import edu.metrostate.ics499.team2.repositories.FlashcardRepository;
 
 @ExtendWith(SpringExtension.class)
@@ -49,7 +49,7 @@ class FlashcardServiceTest {
 		String question5 = "This might be unique?";
 
 		when(repoMock.findAll()).thenReturn(
-				Stream.of(new Flashcard(question1, answerYes), 
+				Stream.of(new Flashcard(question1, answerYes),
 						new Flashcard(question2, answerYes),
 						new Flashcard(question3, answerNo),
 						new Flashcard(question4, answerNo),
