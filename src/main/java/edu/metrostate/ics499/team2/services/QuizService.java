@@ -109,32 +109,10 @@ public class QuizService implements ServiceInterface<Quiz>{
 	public List<Quiz> queryAnswers(String answer) {
 		return quizRepo.findByAnswer(answer);
 	}
-	
-	public Quiz deletQuizById(String id) {
-		if(quizRepo.findById(id).isPresent()) {
-			Quiz quiz = quizRepo.findById(id).get();
-			 quizRepo.delete(quiz);
-			return quiz;
-		}
-		else
-			throw new MongoException ("Record can not found");
-		
-	}
 
-	public Quiz getQuestionById(String question) {
-		if(quizRepo.findById(question).isPresent())
-			return quizRepo.findById(question).get();
-		else
-			throw new MongoException ("Record not found");
-		
-	}
+	public List<Quiz> findQuizByUserId(String userId) { return quizRepo.findQuizByUserId(userId); }
 
-	public Quiz getAnswerById(String answer) {
-		if(quizRepo.findById(answer).isPresent())
-			return quizRepo.findById(answer).get();
-		else
-			throw new MongoException ("Answer not found");
-	}
+	public List<Quiz> findQuizByQuizType(String quizType) { return 	quizRepo.findQuizByQuizType(quizType); }
 
 	@Override
 	public boolean isValid(Quiz obj) {

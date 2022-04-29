@@ -60,7 +60,7 @@ class QuizServiceTest {
 	@Test
 	@DisplayName("it should not insert quiz into the DB if the userId is non-empty")
 	void createQuiz_fail_2() {
-		Quiz q1 = new Quiz("this shouldn't work", "yes", "");
+		Quiz q1 = new Quiz("", "this shouldn't work", "yes");
 		List<Quiz> quizList = new ArrayList<>();
 
 		Mockito.doReturn(quizList).when(repoMock).findAll();
@@ -73,7 +73,7 @@ class QuizServiceTest {
 	@Test
 	@DisplayName("it should insert a new quiz into the repo")
 	void createQuiz_success() {
-		Quiz q1 = new Quiz("Does this work?", "yes", "12345");
+		Quiz q1 = new Quiz("12345", "Does this work?", "yes");
 		
 		quizService.createQuiz(q1);
 		
@@ -83,8 +83,8 @@ class QuizServiceTest {
 	@Test
 	@DisplayName("it should same quiz but for different user")
 	void createQuiz_success_2() {
-		Quiz q1 = new Quiz("the first quiz", "yes", "12345");
-		Quiz q2 = new Quiz("the first quiz", "yes", "54321");
+		Quiz q1 = new Quiz("12345", "the first quiz", "yes");
+		Quiz q2 = new Quiz("54321","the first quiz", "yes");
 		List<Quiz> quizList = new ArrayList<>();
 		quizList.add(q1);
 
@@ -118,6 +118,24 @@ class QuizServiceTest {
 		quizService.list();
 		
 		verify (repoMock, times(1)).findAll();
+	}
+
+	@Test
+	@DisplayName("it should request findQuizByUserId from repo")
+	void findQuizByUserId() {
+		String userId = "12345";
+		quizService.findQuizByUserId(userId);
+
+		verify (repoMock, times(1)).findQuizByUserId(userId);
+	}
+
+	@Test
+	@DisplayName("it should request findQuizByQuizType from repo")
+	void findQuizByQuizType() {
+		String quizType = "test";
+		quizService.findQuizByQuizType(quizType);
+
+		verify (repoMock, times(1)).findQuizByQuizType(quizType);
 	}
 
 }

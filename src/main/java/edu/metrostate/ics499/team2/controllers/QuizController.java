@@ -45,7 +45,12 @@ public class QuizController {
 	@PostMapping("/add")
 	public Quiz create(@RequestBody final Quiz quiz) {
 		return quizService.createQuiz(quiz);
-		
+
 	}
+
+	@GetMapping("/getByUserId")
+	public List<Quiz> getByUserId(@RequestParam String userId) { return this.quizService.findQuizByUserId(userId); }
+
+	@GetMapping("/getByQuizType")
+	public List<Quiz> getByQuizType(@RequestParam String quizType) { return this.quizService.findQuizByQuizType(quizType); }
 }
-	
