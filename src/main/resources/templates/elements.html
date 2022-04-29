@@ -12,19 +12,17 @@
 				<th>Name</th>
 				<th>Symbol</th>
 				<th>Atomic Number</th>
-				<th>Family</th>
-				<th>Mass Number</th>
-				<th>Valence</th>
-				<th>Ionic Charge</th>
+				<th>Group Block</th>
+				<th>Atomic Mass</th>
+				<th>Electronegativity</th>
 			</tr>
 			<tr th:each="elm: ${elms}">
 				<td th:text="${elm.name}">Name</td>
 				<td th:text="${elm.symbol}">Symbol</td>
 				<td th:text="${elm.atomicNumber}">Atomic Number</td>
-				<td th:text="${elm.family}">Family</td>
-				<td th:text="${elm.massNumber}">Mass Number</td>
-				<td th:text="${elm.valence}">Valence</td>
-				<td th:text="${elm.ionicCharge}">Ionic Charge</td>
+				<td th:text="${elm.groupBlock}">Family</td>
+				<td th:text="${elm.atomicMass}">Mass Number</td>
+				<td th:text="${elm.electronegativity}">Valence</td>
 			</tr>
 		</table>
 	</body>

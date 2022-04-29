@@ -1,121 +1,210 @@
 // a domain class
 package edu.metrostate.ics499.team2.model;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("elms")
-public class Element implements Comparable <Element> {
+@Document(collection = "new_elms")
+public class Element {
 	
 	@Id
-	private String id;												// primary key per @Id
-	private String symbol;											// symbol (was not working as primary key?)
-
+	private String id;
+	private String atomicNumber;									// atomic number: invariant, identifies the element, represents
+																	// the number of protons in the nucleus of the atom  (becomes _id in mongo)
+	private String symbol;											// symbol
 	private String name;											// name
-	private String family;											// family: metal, metalloid, non-metal
-	private int atomicNumber;										// atomic number: invariant, identifies the element, represents the number
-																	// the number of protons in the nucleus of the atom
-	private double massNumber;										// mass number: varies, identifies the isotope, represents the sum of protons
+	private String atomicMass;										// mass number: varies, identifies the isotope, represents the sum of protons
 																	// and neutrons in the nucleus of the atom
-	private int valence;											// valence: outer energy level electrons involved in covalent bond
-	private int ionicCharge;										// ionicCharge: positive or negative integer; relates to one or more lost or gained electrons
-																	// giving the atom a positive or negative electric charge (cation +, anion -), inolved in ionic bond
-	
-	//	constructor
-	public Element(String name, String symbol, String family, int atomicNumber, double massNumber, int valence, int ionicCharge) {
-		this.name = name;
-		this.family = family;
-		this.symbol = symbol;
+	private String cPKHexColor;										// color
+	private String electronConfiguration;
+	private String electronegativity;								// valence, outer energy level electrons involved in covalent bond ?
+	private String atomicRadius;
+	private String ionizationEnergy;
+	private String electronAffinity;
+	private String oxidationStates;
+	private String standardState;
+	private String meltingPoint;
+	private String boilingPoint;
+	private String density;
+	private String groupBlock;										// group/family: metal, metalloid, non-metal etc.
+	private String tablePosition;
+	private String yearDiscovered;
+
+	public Element(){}
+
+    public Element(String id, String atomicNumber, String symbol, String name, String atomicMass, String cPKHexColor,
+				   String electronConfiguration, String electronegativity, String atomicRadius, String ionizationEnergy,
+				   String electronAffinity, String oxidationStates, String standardState, String meltingPoint,
+				   String boilingPoint, String density, String groupBlock, String yearDiscovered) {
+		this.id = id;
 		this.atomicNumber = atomicNumber;
-		this.massNumber = massNumber;
-		this.valence = valence;
-		this.ionicCharge = ionicCharge;
+		this.symbol = symbol;
+		this.name = name;
+		this.atomicMass = atomicMass;
+		this.cPKHexColor = cPKHexColor;
+		this.electronConfiguration = electronConfiguration;
+		this.electronegativity = electronegativity;
+		this.atomicRadius = atomicRadius;
+		this.ionizationEnergy = ionizationEnergy;
+		this.electronAffinity = electronAffinity;
+		this.oxidationStates = oxidationStates;
+		this.standardState = standardState;
+		this.meltingPoint = meltingPoint;
+		this.boilingPoint = boilingPoint;
+		this.density = density;
+		this.groupBlock = groupBlock;
+		this.tablePosition = tablePosition;
+		this.yearDiscovered = yearDiscovered;
 	}
-	
-	// getters
-	// name
-	public String getName() {
-		return this.name;
+
+	public String getId() {
+		return id;
 	}
-	// family
-	public String getFamily() {
-		return this.family;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	// symbol
+
+	public String getAtomicNumber() {
+		return atomicNumber;
+	}
+
+	public void setAtomicNumber(String atomicNumber) {
+		this.atomicNumber = atomicNumber;
+	}
+
 	public String getSymbol() {
-		return this.symbol;
+		return symbol;
 	}
-	// atomic number
-	public int getAtomicNumber() {
-		return this.atomicNumber;
-	}
-	// mass number
-	public double getMassNumber() {
-		return this.massNumber;
-	}
-	// valence
-	public int getValence() {
-		return this.valence;
-	}
-	// ionic charge
-	public int getIonicCharge() {
-		return this.ionicCharge;
-	}
-	
-	// setters
+
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setFamily(String family) {
-		this.family = family;
+	public String getAtomicMass() {
+		return atomicMass;
 	}
 
-	public void setAtomicNumber(int atomicNumber) {
-		this.atomicNumber = atomicNumber;
+	public void setAtomicMass(String atomicMass) {
+		this.atomicMass = atomicMass;
 	}
 
-	public void setMassNumber(double massNumber) {
-		this.massNumber = massNumber;
+	public String getcPKHexColor() {
+		return cPKHexColor;
 	}
 
-	public void setValence(int valence) {
-		this.valence = valence;
+	public void setcPKHexColor(String cpkHexColor) {
+		this.cPKHexColor = cpkHexColor;
 	}
 
-	public void setIonicCharge(int ionicCharge) {
-		this.ionicCharge = ionicCharge;
+	public String getElectronConfiguration() {
+		return electronConfiguration;
+	}
+
+	public void setElectronConfiguration(String electronConfiguration) {
+		this.electronConfiguration = electronConfiguration;
+	}
+
+	public String getElectronegativity() {
+		return electronegativity;
+	}
+
+	public void setElectronegativity(String electronegativity) {
+		this.electronegativity = electronegativity;
+	}
+
+	public String getAtomicRadius() {
+		return atomicRadius;
+	}
+
+	public void setAtomicRadius(String atomicRadius) {
+		this.atomicRadius = atomicRadius;
+	}
+
+	public String getIonizationEnergy() {
+		return ionizationEnergy;
+	}
+
+	public void setIonizationEnergy(String ionizationEnergy) {
+		this.ionizationEnergy = ionizationEnergy;
+	}
+
+	public String getElectronAffinity() {
+		return electronAffinity;
+	}
+
+	public void setElectronAffinity(String electronAffinity) {
+		this.electronAffinity = electronAffinity;
+	}
+
+	public String getOxidationStates() {
+		return oxidationStates;
+	}
+
+	public void setOxidationStates(String oxidationStates) {
+		this.oxidationStates = oxidationStates;
+	}
+
+	public String getStandardState() {
+		return standardState;
+	}
+
+	public void setStandardState(String standardState) {
+		this.standardState = standardState;
+	}
+
+	public String getMeltingPoint() {
+		return meltingPoint;
+	}
+
+	public void setMeltingPoint(String meltingPoint) {
+		this.meltingPoint = meltingPoint;
+	}
+
+	public String getBoilingPoint() {
+		return boilingPoint;
+	}
+
+	public void setBoilingPoint(String boilingPoint) {
+		this.boilingPoint = boilingPoint;
+	}
+
+	public String getDensity() {
+		return density;
+	}
+
+	public void setDensity(String density) {
+		this.density = density;
+	}
+
+	public String getGroupBlock() {
+		return groupBlock;
+	}
+
+	public void setGroupBlock(String groupBlock) {
+		this.groupBlock = groupBlock;
 	}
 	
-	// to string
-	public String toString() {
-		String output = "";
-		output += String.format("%-20s%-20d%-20s%-20s", this.name, this.atomicNumber, this.symbol, this.family);
-		return output;
+	public String getTablePosition() {
+		return tablePosition;
 	}
 	
-	// equals
-	public boolean equals(Object other) {
-		if (other instanceof Element) {
-			Element candidate = (Element) other;
-			return name.equalsIgnoreCase(candidate.name) && candidate.atomicNumber == atomicNumber && 
-					symbol.equalsIgnoreCase(candidate.symbol);
-		} else		
-			return false;
-	}
-	
-	// compare
-	@Override
-	public int compareTo(Element o) {
-		if (this.atomicNumber < o.atomicNumber)
-			return -1;
-		else if (this.atomicNumber > o.atomicNumber)
-			return 1;
-		else return 0;
+	public void setTablePosition(String tablePosition) {
+		this.tablePosition = tablePosition;
 	}
 
+	public String getYearDiscovered() {
+		return yearDiscovered;
+	}
+
+	public void setYearDiscovered(String yearDiscovered) {
+		this.yearDiscovered = yearDiscovered;
+	}
 }

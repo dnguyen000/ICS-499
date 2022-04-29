@@ -1,10 +1,10 @@
 package edu.metrostate.ics499.team2.repository;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+import edu.metrostate.ics499.team2.model.game.Flashcard;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import edu.metrostate.ics499.team2.model.Flashcard;
 import edu.metrostate.ics499.team2.repositories.FlashcardRepository;
 
 @ExtendWith(SpringExtension.class)

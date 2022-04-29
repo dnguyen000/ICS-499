@@ -1,7 +1,7 @@
-package edu.metrostate.ics499.team2;
+package edu.metrostate.ics499.team2.repository;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,25 +15,21 @@ import edu.metrostate.ics499.team2.repositories.ElementRepository;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class Ics499ChemApplicationTests {
+class ElementRepoIntegrationTests {
 
-	@Test
-	void contextLoads() {
-	}
-	
 	@Autowired
-	private ElementRepository ElementRepo;
+	private ElementRepository elementRepo;
 
 	@Test
-	@DisplayName("It should instantiate the repo")
+	@DisplayName("should instantiate the repo")
 	void testInit() {
-		assertNotNull(ElementRepo);
+		assertNotNull(elementRepo);
 	}
 	
 	@Test
-	@DisplayName("should equal Hydrogen")
+	@DisplayName("should find element with symbol H in the repo")
 	void testFindBySymbol() {
-		Element elm = ElementRepo.findElementBySymbol("H");
+		Element elm = elementRepo.findElementBySymbol("H");
 		assertEquals(elm.getSymbol(), "H");
 	}
 	

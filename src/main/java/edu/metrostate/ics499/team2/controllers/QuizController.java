@@ -2,56 +2,49 @@ package edu.metrostate.ics499.team2.controllers;
 
 import java.util.List;
 
+import edu.metrostate.ics499.team2.model.game.Quiz;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-<<<<<<< HEAD
-=======
-import edu.metrostate.ics499.team2.model.Flashcard;
->>>>>>> main
-import edu.metrostate.ics499.team2.model.Quiz;
-import edu.metrostate.ics499.team2.repositories.QuizRepository;
+import edu.metrostate.ics499.team2.services.QuizService;
 
 @RestController
 @RequestMapping("/quiz")
 public class QuizController {
 	
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
-
 	
 	@Autowired
-	private QuizRepository quizRepo;
+	private QuizService quizService;
 	
 	@GetMapping(value = "/all")
+	@ResponseBody
 	public List<Quiz> list() {
-	    return quizRepo.findAll();
+	    return quizService.list();
 	}
+
 	@GetMapping(value = "{gameId}")
 	public Quiz getQuizById(String id) {
-		return this.quizRepo.findByGameId(id);
+		return this.quizService.getQuizById(id);
 	}
+
 	@GetMapping(value = "/questions")
 	public List<Quiz> queryQuestions(String question) {
 		LOG.info("Getting all quiz that match the question");
-		return quizRepo.findByQuestion(question);
-	} 
+		return quizService.queryQuestions(question);
+	}
+
 	@GetMapping(value = "/answers")
 	public List<Quiz> queryAnswers(String answer) {
-		LOG.info("Getting all quiz");
-		return quizRepo.findByAnswer(answer);
+		LOG.info("Getting all quizzes");
+		return quizService.queryAnswers(answer);
 	}
-	
 	
 	@PostMapping("/add")
 	public Quiz create(@RequestBody final Quiz quiz) {
-		return quizRepo.save(quiz);
+		return quizService.createQuiz(quiz);
 		
 	}
 }
-	
