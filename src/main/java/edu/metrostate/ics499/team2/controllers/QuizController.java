@@ -48,8 +48,8 @@ public class QuizController {
 
 	}
 
-	@GetMapping("/getByUserId")
-	public List<Quiz> getByUserId(@RequestParam String userId) { return this.quizService.findQuizByUserId(userId); }
+	@GetMapping("/getbyuserid/{userId}")
+	public List<Quiz> getByUserId(@PathVariable("userId") String userId) { return this.quizService.findQuizByUserId(userId); }
 
 	@GetMapping("/getByQuizType")
 	public List<Quiz> getByQuizType(@RequestParam String quizType) { return this.quizService.findQuizByQuizType(quizType); }
