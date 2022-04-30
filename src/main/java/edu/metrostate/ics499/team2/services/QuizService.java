@@ -74,8 +74,8 @@ public class QuizService implements ServiceInterface<Quiz>{
 			String a1 = compound.getTitle();
 			String q2 = "What is the formula for " + compound.getTitle() + "?";
 			String a2 = compound.getFormula();
-			Quiz quiz1 = new Quiz(q1, a1, userId, quizType);
-			Quiz quiz2 = new Quiz(q2, a2, userId, quizType);
+			Quiz quiz1 = new Quiz(userId, q1, a1, quizType);
+			Quiz quiz2 = new Quiz(userId, q2, a2, quizType);
 
 			quizList.add(quiz1);
 			quizList.add(quiz2);
@@ -90,8 +90,8 @@ public class QuizService implements ServiceInterface<Quiz>{
 				String q2 = "What is the symbol for " + element.getName() + "?";
 				String a2 = element.getSymbol();
 
-				Quiz quiz1 = new Quiz(q1, a1, userId, quizType);
-				Quiz quiz2 = new Quiz(q2, a2, userId, quizType);
+				Quiz quiz1 = new Quiz(userId, q1, a1, quizType);
+				Quiz quiz2 = new Quiz(userId, q2, a2, quizType);
 
 				quizList.add(quiz1);
 				quizList.add(quiz2);
