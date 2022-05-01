@@ -119,10 +119,13 @@ public class RegisteredUserServiceImpl implements RegisteredUserService, UserDet
 		user.setLastName(newLastName);
 		user.setUsername(newUsername);
 		user.setEmail(newEmail);
-		user.setActive(isActive);
-		user.setNotLocked(isNonLocked);
-		user.setRole(getRoleEnumName(role).name());
-		user.setAuthorities(getRoleEnumName(role).getAuthorities());
+		// role is undefined from form in user space, so leave these properties alone
+		if(!role.equalsIgnoreCase("undefined")) {
+			user.setActive(isActive);
+			user.setNotLocked(isNonLocked);
+			user.setRole(getRoleEnumName(role).name());
+			user.setAuthorities(getRoleEnumName(role).getAuthorities());
+		}
 		userRepo.save(user);
 		saveProfileImg(user, profileImg);
 		return user;
