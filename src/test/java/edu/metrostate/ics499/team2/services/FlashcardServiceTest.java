@@ -59,7 +59,7 @@ class FlashcardServiceTest {
 	
 	@AfterEach
 	void tearDown() {
-		
+		repoMock.deleteAll();
 	}
 	
 	@Test
@@ -74,7 +74,10 @@ class FlashcardServiceTest {
 	@DisplayName("it should not insert into the DB if not valid")
 	void test_create_fail() {
 		Flashcard fc = new Flashcard(question1, answerYes);
-		assertNull(flashcardService.create(fc));
+
+		Flashcard result = flashcardService.create(fc);
+
+		assertNotEquals(result, fc);
 	}
 	
 //	@Test
